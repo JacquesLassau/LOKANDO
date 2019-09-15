@@ -1,0 +1,101 @@
+﻿@{ViewBag.Title = "Cadastro do Cliente";}
+@Scripts.Render("~/BLL/LimparObrigatorios/LimparObrigatoriosCliente.js")
+@Scripts.Render("~/BLL/DataNascimento/DataNascimentoCliente.js")
+@Scripts.Render("~/BLL/Cpf/CpfCliente.js")
+@Scripts.Render("~/BLL/Habilitacao/HabilitacaoCliente.js")
+@Scripts.Render("~/BLL/PesquisaSenha/SenhaCliente.js")
+@Scripts.Render("~/BLL/Mascara/MascaraCliente.js")
+
+<div class="container">
+    <h2>Cadastro do Cliente</h2>
+    <hr />
+    @using (Html.BeginForm("CadastrarClienteAR", "Cliente", FormMethod.Post))
+    {
+        <div class="row">
+            <div class="col-md-4 col-md-4 col-sm-4 col-xs-12">
+                <fieldset id="dadosGerais">
+                    <legend>Dados Gerais</legend>
+                    <br />
+                    <div class="form-group">
+                        @Html.Label("lblNomeCliente", "Nome:")
+                        @Html.TextBox("txtNomeCliente", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("lblEmailCliente", "E-Mail:")
+                        @Html.TextBox("txtEmailCliente", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("lblSenhaCliente", "Senha:")
+                        @Html.TextBox("txtSenhaCliente", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", type = "password", onfocusout = "SenhaCliente()" })
+                        @Html.Raw("<div id='validaSenha'></div>")
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("lblConfirmaSenhaCliente", "Confirme a Senha:")
+                        @Html.TextBox("txtConfirmaSenhaCliente", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", type = "password", onfocusout = "ConfirmaSenhaCliente()" })
+                        @Html.Raw("<div id='confirmaSenha'></div>")
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("lblNascimentoCliente", "Data de Nascimento:")
+                        @Html.TextBox("txtNascimentoCliente", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", type = "date", onfocusout = "ValidaDataNasimento()" })
+                        @Html.Raw("<div id='validaNascimento'></div>")
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("lblTelefoneCliente", "Telefone:")
+                        @Html.TextBox("txtTelefoneCliente", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("lblSituacaoCliente", "Qual é a Situação do Cliente?")
+                        @Html.Raw("<select id='selSituacaoCliente' name='selSituacaoCliente' class='form-control' required><option value='A'>Ativo</option><option value='B'>Bloqueado</option></select>")
+                    </div>
+                </fieldset>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <fieldset id="documentosCliente">
+                    <legend>Documentação</legend>
+                    <br />
+                    <div class="form-group">
+                        @Html.Label("lblRgCliente", "Registro Geral:")
+                        @Html.TextBox("txtRgCliente", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("lblCpfCliente", "Cpf:")
+                        @Html.TextBox("txtCpfCliente", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", onfocusout = "ValidaCpf()" })
+                        @Html.Raw("<div id='validaCpf'></div>")
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("lblHabilitacaoCliente", "Habilitação:")
+                        @Html.TextBox("txtHabilitacaoCliente", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", onfocusout = "ValidaHabilitacao()" })
+                        @Html.Raw("<div id='validaHabilitacao'></div>")
+                    </div>
+                </fieldset>
+                <br />
+                <fieldset id="enderecoContato">
+                    <legend>Endereço</legend>
+                    <br />
+                    <div class="form-group">
+                        @Html.Label("lblLogadouroCliente", "Logadouro:")
+                        @Html.TextBox("txtLogadouroCliente", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("lblCidadeCliente", "Cidade:")
+                        @Html.TextBox("txtCidadeCliente", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("lblEstadoCliente", "Estado:")
+                        @Html.Raw("<select id='selEstadoCliente' name='selEstadoCliente' class='form-control' required><option value='AC'>Acre</option><option value='AL'>Alagoas</option><option value='AP'>Amapá</option><option value='AM'>Amazonas</option><option value='BA'>Bahia</option><option value='CE'>Ceará</option><option value='DF'>Distrito Federal</option><option value='ES'>Espírito Santo</option><option value='GO'>Goiás</option><option value='MA'>Maranhão</option><option value='MT'>Mato Grosso</option><option value='MS'>Mato Grosso do Sul</option><option value='MG'>Minas Gerais</option><option value='PA'>Pará</option><option value='PB'>Paraíba</option><option value='PR'>Paraná</option><option value='PE'>Pernambuco</option><option value='PI'>Piauí</option><option value='RJ'>Rio de Janeiro</option><option value='RN'>Rio Grande do Norte</option><option value='RS'>Rio Grande do Sul</option><option value='RO'>Rondônia</option><option value='RR'>Roraima</option><option value='SC'>Santa Catarina</option><option value='SP'>São Paulo</option><option value='SE'>Sergipe</option><option value='TO'>Tocantins</option><option value='EX'>Estrangeiro</option></select>")
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("lblCepCliente", "CEP:")
+                        @Html.TextBox("txtCepCliente", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-success form-group" type="submit"><i class="fa fa-check"></i> Confirmar</button>
+            <button class="btn btn-danger form-group" type="reset" onclick="LimparObrigatoriosCliente()"><i class="fa fa-trash"></i> Limpar</button>
+            <a href="@Url.Action("Index", "Inicio")" class="btn btn-primary form-group"><i class="fa fa-reply"></i> Voltar</a>
+        </div>
+    }
+</div>
+
