@@ -1,8 +1,7 @@
 ﻿function PesquisarAtendente() {
 
     event.preventDefault();    
-
-    document.getElementById("listarAtendentes").style.display = "none";
+    
     document.getElementById("txtNomeAtendente").value = null;
     document.getElementById("txtEmailAtendente").value = null;
     document.getElementById("selSituacaoAtendente").value = null;

@@ -2,7 +2,7 @@
     
     var habilitacao = document.getElementById("txtHabilitacaoCliente").value;
 
-    if (habilitacao.lenth != 11) {
+    if (habilitacao.length !== 11) {
         $("#valHabilitacao").remove();
         alert("Habilitação inválida!");
         document.getElementById("txtHabilitacaoCliente").value = "";

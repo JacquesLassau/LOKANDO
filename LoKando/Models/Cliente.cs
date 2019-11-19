@@ -14,6 +14,7 @@ namespace LoKando.Models
         public string CpfCliente { get; set; }        
         public string RgCliente { get; set; }
         public DateTime NascimentoCliente { get; set; }
+        public string NascimentoClienteStr { get; }
         public string EmailCliente { get; set; }
         public string TelefoneCliente { get; set; }        
         public string EnderecoCliente { get; set; }
@@ -37,6 +38,9 @@ namespace LoKando.Models
 
         public Cliente(string nomeCliente, string habilitacaoCliente, string cpfCliente, string rgCliente, DateTime nascimentoCliente, string emailCliente, string telefoneCliente, string enderecoCliente, string cidadeCliente, string estadoCliente, string cepCliente, char situacaoCliente)
         {
+            DateTime nascimentoClienteJson = nascimentoCliente;
+            this.NascimentoClienteStr = Convert.ToDateTime(nascimentoClienteJson).ToString("yyyy-MM-dd");
+
             this.NomeCliente = nomeCliente;
             this.HabilitacaoCliente = habilitacaoCliente;
             this.CpfCliente = cpfCliente;
@@ -65,6 +69,27 @@ namespace LoKando.Models
             this.CidadeCliente = cidadeCliente;
             this.EstadoCliente = estadoCliente;
             this.CepCliente = cepCliente;
+            this.HoraRegistroCliente = horaRegistroCliente;
+        }
+
+        public Cliente(int codigoCliente, string nomeCliente, string habilitacaoCliente, string cpfCliente, string rgCliente, DateTime nascimentoCliente, string emailCliente, string telefoneCliente, string enderecoCliente, string cidadeCliente, string estadoCliente, string cepCliente, char situacaoCliente, string horaRegistroCliente)
+        {
+            DateTime nascimentoClienteJson = nascimentoCliente;
+            this.NascimentoClienteStr = Convert.ToDateTime(nascimentoClienteJson).ToString("yyyy-MM-dd");
+
+            this.CodigoCliente = codigoCliente;
+            this.NomeCliente = nomeCliente;
+            this.HabilitacaoCliente = habilitacaoCliente;
+            this.CpfCliente = cpfCliente;
+            this.RgCliente = rgCliente;
+            this.NascimentoCliente = nascimentoCliente;
+            this.EmailCliente = emailCliente;
+            this.TelefoneCliente = telefoneCliente;
+            this.EnderecoCliente = enderecoCliente;
+            this.CidadeCliente = cidadeCliente;
+            this.EstadoCliente = estadoCliente;
+            this.CepCliente = cepCliente;
+            this.SituacaoCliente = situacaoCliente;
             this.HoraRegistroCliente = horaRegistroCliente;
         }
 

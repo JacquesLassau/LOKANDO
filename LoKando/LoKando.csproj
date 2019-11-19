@@ -145,7 +145,7 @@
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Models\Veiculo.cs" />
     <Compile Include="Models\ControllerModel\AtendenteControllerModel.cs" />
-    <Compile Include="Models\ControllerModel\ClienteViewModel.cs" />
+    <Compile Include="Models\ControllerModel\ClienteControllerModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -154,11 +154,11 @@
     <Content Include="BLL\Habilitacao\HabilitacaoCliente.js" />
     <Content Include="BLL\LimparObrigatorios\LimparObrigatoriosAtendente.js" />
     <Content Include="BLL\LimparObrigatorios\LimparObrigatoriosCliente.js" />
-    <Content Include="BLL\LinkHelperModal\LinkCliente .js" />
     <Content Include="BLL\LinkHelperModal\LinkAtendente.js" />
+    <Content Include="BLL\LinkHelperModal\LinkCliente.js" />
     <Content Include="BLL\Mascara\MascaraCliente.js" />
-    <Content Include="BLL\PesquisaHelperModal\HelperCliente .js" />
     <Content Include="BLL\PesquisaHelperModal\HelperAtendente.js" />
+    <Content Include="BLL\PesquisaHelperModal\HelperCliente.js" />
     <Content Include="BLL\PesquisaSenha\SenhaCliente.js" />
     <Content Include="BLL\PesquisaSenha\SenhaAtendente.js" />
     <Content Include="Content\bootstrap-theme.css" />

@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace LoKando.Models.ViewModel
+namespace LoKando.Models.ControllerModel
 {
-    public class ClienteModel
+    public class ClienteControllerModel
     {
         public List<Cliente> Cliente { get; set; }
 
-        public ClienteModel()
+        public ClienteControllerModel()
         {
             this.Cliente = new List<Cliente>();
         }

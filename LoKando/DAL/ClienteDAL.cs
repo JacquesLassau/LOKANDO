@@ -141,8 +141,7 @@ namespace LoKando.DAL
                 comandoDML.CommandType = CommandType.StoredProcedure;
 
                 comandoDML.Parameters.Add("@CLIDCLLOK", SqlDbType.Int);
-                comandoDML.Parameters["@CLIDCLLOK"].Value = cliente.CodigoCliente;
-                
+                comandoDML.Parameters["@CLIDCLLOK"].Value = cliente.CodigoCliente;                
 
                 SqlDataReader dr = comandoDML.ExecuteReader();
 
@@ -161,16 +160,17 @@ namespace LoKando.DAL
                         string habilitacaoCliente = Convert.ToString(dr["CLHABILLOK"]);
                         string cpfCliente = Convert.ToString(dr["CLCPFLOK"]);
                         string rgCliente = Convert.ToString(dr["CLRGLOK"]);
-                        string nascimentoCliente = Convert.ToString(dr["CLNASCLOK"]);
+                        DateTime nascimentoCliente = Convert.ToDateTime(dr["CLNASCLOK"]);
                         string emailCliente = Convert.ToString(dr["CLEMAILLOK"]);
                         string telefoneCliente = Convert.ToString(dr["CLNMLOK"]);
                         string logadouroCliente = Convert.ToString(dr["CLLOGLOK"]);
                         string cidadeCliente = Convert.ToString(dr["CLCIDLOK"]);
                         string estadoCliente = Convert.ToString(dr["CLUFLOK"]);
                         string cepCliente = Convert.ToString(dr["CLCEPLOK"]);
+                        string situacaoCliente = Convert.ToString(dr["CLSITLOK"]);
                         string ultimaAtualizacaoCliente = Convert.ToString(dr["CLHRREG"]);
 
-                        cliente = new Cliente(idCliente, nomeCliente, habilitacaoCliente, cpfCliente, rgCliente, Convert.ToDateTime(nascimentoCliente), emailCliente, telefoneCliente, logadouroCliente, cidadeCliente, estadoCliente, cepCliente, ultimaAtualizacaoCliente);
+                        cliente = new Cliente(idCliente, nomeCliente, habilitacaoCliente, cpfCliente, rgCliente, nascimentoCliente, emailCliente, telefoneCliente, logadouroCliente, cidadeCliente, estadoCliente, cepCliente, Convert.ToChar(situacaoCliente), ultimaAtualizacaoCliente);
                     }
                 }
 

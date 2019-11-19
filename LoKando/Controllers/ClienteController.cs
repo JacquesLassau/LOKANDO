@@ -5,24 +5,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using LoKando.Models.ViewModel;
+using LoKando.Models.ControllerModel;
 
 namespace LoKando.Controllers
 {
     public class ClienteController : Controller
     {
-        public ClienteModel ConvertToModel(List<Cliente> listaCliente)
+        public ClienteControllerModel ConvertToModel(List<Cliente> listaCliente)
         {
-            ClienteModel clienteViewModel = new ClienteModel();
+            ClienteControllerModel clienteControllerModel = new ClienteControllerModel();
             if(listaCliente != null)
             {
                 foreach(var cliente in listaCliente)
                 {
-                    clienteViewModel.Cliente.Add(cliente);
+                    clienteControllerModel.Cliente.Add(cliente);
                 }
             }
 
-            return clienteViewModel;
+            return clienteControllerModel;
         }
 
         [HttpGet]
@@ -33,7 +33,7 @@ namespace LoKando.Controllers
 
 
         [HttpPost]                                                                                                                                                                                                              
-        public ActionResult CadastrarClienteAR(string txtNomeCliente, string txtHabilitacaoCliente, string txtCpfCliente, string txtRgCliente, string txtNascimentoCliente,string txtEmailCliente, string txtTelefoneCliente, string txtLogadouroCliente, string txtCidadeCliente, string selEstadoCliente, string txtCepCliente,string selSituacaoCliente, string txtSenhaCliente)
+        public ActionResult CadastrarClienteAR(string txtNomeCliente, string txtHabilitacaoCliente, string txtCpfCliente, string txtRgCliente, string txtNascimentoCliente,string txtEmailCliente, string txtTelefoneCliente, string txtEnderecoCliente, string txtCidadeCliente, string selEstadoCliente, string txtCepCliente,string selSituacaoCliente, string txtSenhaCliente)
         {
             ClienteDAL clienteDAL = new ClienteDAL();
             UsuarioDAL usuarioDAL = new UsuarioDAL();
@@ -63,7 +63,7 @@ namespace LoKando.Controllers
             else
             {
                 usuario = new Usuario(txtEmailCliente, txtSenhaCliente, Convert.ToChar(selSituacaoCliente));
-                cliente = new Cliente(txtNomeCliente, txtHabilitacaoCliente, txtCpfCliente, txtRgCliente, Convert.ToDateTime(txtNascimentoCliente), txtEmailCliente, txtTelefoneCliente, txtLogadouroCliente, txtCidadeCliente, selEstadoCliente, txtCepCliente, Convert.ToChar(selSituacaoCliente));
+                cliente = new Cliente(txtNomeCliente, txtHabilitacaoCliente, txtCpfCliente, txtRgCliente, Convert.ToDateTime(txtNascimentoCliente), txtEmailCliente, txtTelefoneCliente, txtEnderecoCliente, txtCidadeCliente, selEstadoCliente, txtCepCliente, Convert.ToChar(selSituacaoCliente));
 
                 usuarioDAL.CadastrarUsuario(usuario);
                 clienteDAL.CadastrarCliente(cliente);
@@ -77,12 +77,12 @@ namespace LoKando.Controllers
         public ActionResult AlterarClienteUI()
         {
             ClienteDAL clienteDAL = new ClienteDAL();
-            ClienteModel clienteViewModel = ConvertToModel(clienteDAL.ListarCliente());
+            ClienteControllerModel clienteViewModel = ConvertToModel(clienteDAL.ListarCliente());
             return View(clienteViewModel); 
         }
 
         [HttpPost]
-        public ActionResult AlterarClienteAR(string txtCodigoCliente, string txtNomeCliente, string txtRgCliente, string txtNascimentoCliente, string txtTelefoneCliente, string txtLogadouroCliente, string txtCidadeCliente, string selEstadoCliente, string txtCepCliente, string selSituacaoCliente)
+        public ActionResult AlterarClienteAR(string txtCodigoCliente, string txtNomeCliente, string txtRgCliente, string txtNascimentoCliente, string txtTelefoneCliente, string txtEnderecoCliente, string txtCidadeCliente, string selEstadoCliente, string txtCepCliente, string selSituacaoCliente)
         {
             ClienteDAL clienteDAL = new ClienteDAL();
             Cliente cliente = clienteDAL.SelecionarClienteId(Convert.ToInt32(txtCodigoCliente));
@@ -90,12 +90,12 @@ namespace LoKando.Controllers
             if (cliente.CodigoCliente == 0)
             {
                 TempData[Constantes.MensagemAlerta] = "Não existe Cliente para o código digitado... Tente novamente!";
-                ClienteModel clienteViewModel = ConvertToModel(clienteDAL.ListarCliente());
+                ClienteControllerModel clienteViewModel = ConvertToModel(clienteDAL.ListarCliente());
                 return View("AlterarClienteUI", clienteViewModel);
             }
             else
             {
-                cliente = new Cliente(Convert.ToInt32(txtCodigoCliente), txtNomeCliente, txtRgCliente, Convert.ToDateTime(txtNascimentoCliente), txtTelefoneCliente, txtLogadouroCliente, txtCidadeCliente, selEstadoCliente, txtCepCliente, Convert.ToChar(selSituacaoCliente));
+                cliente = new Cliente(Convert.ToInt32(txtCodigoCliente), txtNomeCliente, txtRgCliente, Convert.ToDateTime(txtNascimentoCliente), txtTelefoneCliente, txtEnderecoCliente, txtCidadeCliente, selEstadoCliente, txtCepCliente, Convert.ToChar(selSituacaoCliente));
                 clienteDAL.AlterarCliente(cliente);
                 TempData[Constantes.MensagemAlerta] = "Cliente Alterado com Sucesso!";
                 return RedirectToAction("Index", "Inicio");
@@ -114,7 +114,7 @@ namespace LoKando.Controllers
         public ActionResult ConsultarClienteUI()
         {
             ClienteDAL clienteDAL = new ClienteDAL();
-            ClienteModel clienteViewModel = ConvertToModel(clienteDAL.ListarCliente());
+            ClienteControllerModel clienteViewModel = ConvertToModel(clienteDAL.ListarCliente());
             return View(clienteViewModel);
         }
 
@@ -122,7 +122,7 @@ namespace LoKando.Controllers
         public ActionResult ExcluirClienteUI()
         {
             ClienteDAL clienteDAL = new ClienteDAL();
-            ClienteModel clienteViewModel = ConvertToModel(clienteDAL.ListarCliente());
+            ClienteControllerModel clienteViewModel = ConvertToModel(clienteDAL.ListarCliente());
             return View(clienteViewModel);
         }
 
@@ -135,7 +135,7 @@ namespace LoKando.Controllers
             if (cliente.CodigoCliente == 0)
             {
                 TempData[Constantes.MensagemAlerta] = "Não existe Cliente para o código digitado... Tente novamente!";
-                ClienteModel clienteViewModel = ConvertToModel(clienteDAL.ListarCliente());
+                ClienteControllerModel clienteViewModel = ConvertToModel(clienteDAL.ListarCliente());
                 return View("ExcluirClienteUI", clienteViewModel);
             }
             else

@@ -3,15 +3,9 @@
     event.preventDefault();
 
     document.getElementById("txtNomeCliente").value = null;
-    document.getElementById("txtRgCliente").value = null;
-    document.getElementById("txtNascimentoCliente").value = null;
-    document.getElementById("txtTelefoneCliente").value = null;
-    document.getElementById("txtEnderecoCliente").value = null;
-    document.getElementById("txtCidadeCliente").value = null;
-    document.getElementById("txtEstadoCliente").value = null;
-    document.getElementById("txtCepCliente").value = null;
-    document.getElementById("txtSituacaoCliente").value = null;
-    document.getElementById("txtUltimaAtualizacao").value = null;
+    document.getElementById("txtEmailCliente").value = null;
+    document.getElementById("selSituacaoCliente").value = null;
+    document.getElementById("txtUltimaAtualizacaoCliente").value = null;
 
     var item = document.getElementById("txtCodigoCliente").value;
 
@@ -29,32 +23,35 @@
                 $("#txtHabilitacaoCliente").val(data.HabilitacaoCliente);
                 $("#txtCpfCliente").val(data.CpfCliente);
                 $("#txtRgCliente").val(data.RgCliente);
-                $("#txtNascimentoCliente").val(data.NascimentoCliente);
+                $("#txtNascimentoCliente").val(data.NascimentoClienteStr);
                 $("#txtEmailCliente").val(data.EmailCliente);
                 $("#txtTelefoneCliente").val(data.TelefoneCliente);
                 $("#txtEnderecoCliente").val(data.EnderecoCliente);
                 $("#txtCidadeCliente").val(data.CidadeCliente);
-                $("#txtEstadoCliente").val(data.EstadoCliente);
+                $("#selEstadoCliente").val(data.EstadoCliente);
                 $("#txtCepCliente").val(data.CepCliente);
-                $("#txtSituacaoCliente").val(data.SituacaoCliente);
-                $("#txtUltimaAtualizacao").val(data.HoraRegistroCliente);
+                $("#selSituacaoCliente").val(data.SituacaoCliente);
+                $("#txtUltimaAtualizacaoCliente").val(data.HoraRegistroCliente);
 
             });
 
         } else {
 
             $(function () {
-
+                
                 $("#txtNomeCliente").val(null);
+                $("#txtHabilitacaoCliente").val(null);
+                $("#txtCpfCliente").val(null);
                 $("#txtRgCliente").val(null);
                 $("#txtNascimentoCliente").val(null);
+                $("#txtEmailCliente").val(null);
                 $("#txtTelefoneCliente").val(null);
                 $("#txtEnderecoCliente").val(null);
                 $("#txtCidadeCliente").val(null);
-                $("#txtEstadoCliente").val(null);
+                $("#selEstadoCliente").val(null);
                 $("#txtCepCliente").val(null);
-                $("#txtSituacaoCliente").val(null);
-                $("#txtUltimaAtualizacao").val(null);
+                $("#selSituacaoCliente").val(null);
+                $("#txtUltimaAtualizacaoCliente").val(null);
                 $("#listarClientes").modal("show");
 
             });
