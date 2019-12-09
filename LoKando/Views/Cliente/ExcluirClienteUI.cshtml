@@ -1,17 +1,133 @@
-﻿@{
-    Layout = null;
-}
+﻿@{ViewBag.Title = "Exclusão do Cliente";}
+@Scripts.Render("~/BLL/LimparObrigatorios/LimparObrigatoriosCliente.js")
+@Scripts.Render("~/BLL/DataNascimento/DataNascimentoCliente.js")
+@Scripts.Render("~/BLL/Cpf/CpfCliente.js")
+@Scripts.Render("~/BLL/Habilitacao/HabilitacaoCliente.js")
+@Scripts.Render("~/BLL/PesquisaSenha/SenhaCliente.js")
+@Scripts.Render("~/BLL/Mascara/MascaraCliente.js")
+@Scripts.Render("~/BLL/PesquisaHelperModal/HelperCliente.js")
+@Scripts.Render("~/BLL/LinkHelperModal/LinkCliente.js")
+@model LoKando.Models.ControllerModel.ClienteControllerModel
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
-</head>
-<body>
-    <div>
-    
+<div class="container">
+    <h2>Exclusão do Cliente</h2>
+    <hr />
+    @using (Html.BeginForm("ExcluirClienteAR", "Cliente", FormMethod.Post))
+    {
+        <div class="row">
+            <div class="col-md-4 col-md-4 col-sm-4 col-xs-12">
+                <fieldset id="dadosGerais">
+                    <legend>Código do Cliente</legend>
+                    <div class="input-group">
+                        @Html.TextBox("txtCodigoCliente", null, new { @class = "form-control", onfocusout = "PesquisarCliente()", placeholder = "Pesquise o Código do Cliente", required = "required" })
+                        <button class="btn btn-primary" name="pesquisaCliente" id="pesquisaCliente" maxlength="5" data-toggle="modal" data-target="#listarCliente" onclick="PesquisarCliente()" style="width:94.75%; margin-top:6px;"><i class="fa fa-search"></i>  Procurar</button>
+                    </div>
+                </fieldset>
+                <br />
+                <fieldset id="dadosGerais">
+                    <legend>Dados Gerais</legend>
+                    <br />
+                    <div class="form-group">
+                        @Html.Label("lblNomeCliente", "Nome:")
+                        @Html.TextBox("txtNomeCliente", null, new { @class = "form-control", placeholder = "preenchimento automático", disabled = "disalbed" })
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("lblEmailCliente", "E-Mail:")
+                        @Html.TextBox("txtEmailCliente", null, new { @class = "form-control", placeholder = "preenchimento automático", disabled = "disalbed" })
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("lblNascimentoCliente", "Data de Nascimento:")
+                        @Html.TextBox("txtNascimentoCliente", null, new { @class = "form-control", placeholder = "preenchimento automático", disabled = "disalbed", type = "date", onfocusout = "ValidaDataNasimento()" })
+                        @Html.Raw("<div id='validaNascimento'></div>")
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("lblTelefoneCliente", "Telefone:")
+                        @Html.TextBox("txtTelefoneCliente", null, new { @class = "form-control", placeholder = "preenchimento automático", disabled = "disalbed" })
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("lblSituacaoCliente", "Qual é a Situação do Cliente?")
+                        @Html.Raw("<select id='selSituacaoCliente' name='selSituacaoCliente' class='form-control' required><option value='A'>Ativo</option><option value='B'>Bloqueado</option></select>")
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("lblUltimaAtualizacaoCliente", "Última Atualização:")
+                        @Html.TextBox("txtUltimaAtualizacaoCliente", null, new { @class = "form-control", placeholder = "Auditoria do registro é automática", disabled = "disalbed" })
+                    </div>
+                </fieldset>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <fieldset id="documentosCliente">
+                    <legend>Documentação</legend>
+                    <br />
+                    <div class="form-group">
+                        @Html.Label("lblRgCliente", "Registro Geral:")
+                        @Html.TextBox("txtRgCliente", null, new { @class = "form-control", placeholder = "preenchimento automático", disabled = "disalbed" })
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("lblCpfCliente", "Cpf:")
+                        @Html.TextBox("txtCpfCliente", null, new { @class = "form-control", placeholder = "preenchimento automático", required = "required", disabled = "disalbed" })
+                        @Html.Raw("<div id='validaCpf'></div>")
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("lblHabilitacaoCliente", "Habilitação:")
+                        @Html.TextBox("txtHabilitacaoCliente", null, new { @class = "form-control", placeholder = "preenchimento automático", required = "required", disabled = "disalbed" })
+                        @Html.Raw("<div id='validaHabilitacao'></div>")
+                    </div>
+                </fieldset>
+                <br />
+                <fieldset id="enderecoContato">
+                    <legend>Endereço</legend>
+                    <br />
+                    <div class="form-group">
+                        @Html.Label("lblEnderecoCliente", "Logadouro:")
+                        @Html.TextBox("txtEnderecoCliente", null, new { @class = "form-control", placeholder = "preenchimento automático", disabled = "disalbed" })
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("lblCidadeCliente", "Cidade:")
+                        @Html.TextBox("txtCidadeCliente", null, new { @class = "form-control", placeholder = "preenchimento automático", disabled = "disalbed" })
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("lblEstadoCliente", "Estado:")
+                        @Html.Raw("<select id='selEstadoCliente' name='selEstadoCliente' class='form-control' disabled><option value='AC'>Acre</option><option value='AL'>Alagoas</option><option value='AP'>Amapá</option><option value='AM'>Amazonas</option><option value='BA'>Bahia</option><option value='CE'>Ceará</option><option value='DF'>Distrito Federal</option><option value='ES'>Espírito Santo</option><option value='GO'>Goiás</option><option value='MA'>Maranhão</option><option value='MT'>Mato Grosso</option><option value='MS'>Mato Grosso do Sul</option><option value='MG'>Minas Gerais</option><option value='PA'>Pará</option><option value='PB'>Paraíba</option><option value='PR'>Paraná</option><option value='PE'>Pernambuco</option><option value='PI'>Piauí</option><option value='RJ'>Rio de Janeiro</option><option value='RN'>Rio Grande do Norte</option><option value='RS'>Rio Grande do Sul</option><option value='RO'>Rondônia</option><option value='RR'>Roraima</option><option value='SC'>Santa Catarina</option><option value='SP'>São Paulo</option><option value='SE'>Sergipe</option><option value='TO'>Tocantins</option><option value='EX'>Estrangeiro</option></select>")
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("lblCepCliente", "CEP:")
+                        @Html.TextBox("txtCepCliente", null, new { @class = "form-control", placeholder = "preenchimento automático", disabled = "disalbed" })
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-success form-group" type="submit"><i class="fa fa-check"></i> Confirmar</button>
+            <button class="btn btn-danger form-group" type="reset" onclick="LimparObrigatoriosCliente()"><i class="fa fa-trash"></i> Limpar</button>
+            <a href="@Url.Action("Index", "Inicio")" class="btn btn-primary form-group"><i class="fa fa-reply"></i> Voltar</a>
+        </div>
+    }
+</div>
+<div id="listarClientes" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-sm modal-md modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-danger"><strong>Cliente não encontrado!</strong><br /></h4>
+                <p class="lead">Consulte a lista abaixo e clique para selecionar um Cliente:</p>
+            </div>
+            <div class="modal-body text-center" 5>
+                <hr />
+                @foreach (var model in Model.Cliente)
+                {
+                    <div class="row" style="margin-top:24px;">
+                        <div class="col-md-1"><Strong>@(model.CodigoCliente)</Strong></div>
+                        <div class="col-md-3"><i class="fa fa-user"></i> @Html.LabelForModel(model.NomeCliente)</div>
+                        <div class="col-md-4"><i class="fa fa-envelope"></i> @Html.LabelForModel(model.EmailCliente)</div>
+                        <div class="col-md-2"><i class="fa fa-calendar"></i> @Html.LabelForModel(model.HoraRegistroCliente)</div>
+                        <div class="col-md-2"><button class="btn btn-success" name="lnkCodigoCliente" id="lnkCodigoCliente-@(model.CodigoCliente)" onclick='SelecionarClienteLinkModal("lnkCodigoCliente-@(model.CodigoCliente)")' value="@(model.CodigoCliente)">Selecione <i class="fa fa-check"></i></button></div>
+                    </div>
+                    <hr />
+                }
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-reply"></i> Voltar</button>
+            </div>
+        </div>
     </div>
-</body>
-</html>
+</div>

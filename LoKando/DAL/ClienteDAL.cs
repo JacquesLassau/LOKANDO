@@ -77,7 +77,7 @@ namespace LoKando.DAL
                 comandoDML.Parameters.Add("@CLCEPLOK", SqlDbType.VarChar, 9);
                 comandoDML.Parameters.Add("@CLSITLOK", SqlDbType.Char, 1);
 
-                comandoDML.Parameters["@CLIDCLLOK"].Value = cliente.CodigoUsuarioCliente;
+                comandoDML.Parameters["@CLIDCLLOK"].Value = cliente.CodigoCliente;
                 comandoDML.Parameters["@CLNOMELOK"].Value = cliente.NomeCliente;                
                 comandoDML.Parameters["@CLRGLOK"].Value = cliente.RgCliente;
                 comandoDML.Parameters["@CLNASCLOK"].Value = cliente.NascimentoCliente;                
@@ -338,11 +338,8 @@ namespace LoKando.DAL
                 SqlCommand comandoDML = new SqlCommand("SP_ExcluirClienteV1", conexao);
                 comandoDML.CommandType = CommandType.StoredProcedure;
 
-                comandoDML.Parameters.Add("@CLIDCLLOK", SqlDbType.Int);
-                comandoDML.Parameters.Add("@CLSITLOK", SqlDbType.Char, 1);
-
-                comandoDML.Parameters["@CLIDCLLOK"].Value = cliente.CodigoCliente;
-                comandoDML.Parameters["@CLSITLOK"].Value = cliente.SituacaoCliente;
+                comandoDML.Parameters.Add("@CLIDCLLOK", SqlDbType.Int);                
+                comandoDML.Parameters["@CLIDCLLOK"].Value = cliente.CodigoCliente;                
 
                 comandoDML.ExecuteNonQuery();
                 conexao.Close();

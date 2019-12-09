@@ -24,4 +24,5 @@
     });
 
     document.getElementById("txtCodigoCliente").value = item;
+
 }
