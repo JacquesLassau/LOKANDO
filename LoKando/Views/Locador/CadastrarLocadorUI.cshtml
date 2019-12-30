@@ -1,0 +1,103 @@
+﻿@{ViewBag.Title = "Cadastro do Locador";}
+@Scripts.Render("~/BLL/LimparObrigatorios/LimparObrigatoriosLocador.js")
+@Scripts.Render("~/BLL/Cnpj/CnpjLocador.js")
+@Scripts.Render("~/BLL/Cpf/CpfLocador.js")
+@Scripts.Render("~/BLL/PesquisaSenha/SenhaLocador.js")
+@Scripts.Render("~/BLL/Mascara/MascaraLocador.js")
+@Scripts.Render("~/BLL/DocumentoLocador/CriarDocumentoLocador.js")
+
+<div class="container">
+    <h2>Cadastro do Locador</h2>
+    <hr />
+    @using (Html.BeginForm("CadastrarLocadorAR", "Locador", FormMethod.Post))
+    {
+        <div class="row">
+            <div class="col-md-4 col-md-4 col-sm-6 col-xs-12">
+                <fieldset id="dadosGerais">
+                    <legend>Dados Gerais</legend>
+                    <br />
+                    <div class="form-group">
+                        @Html.Label("lblRzScLocador", "Razão Social:")
+                        @Html.TextBox("txtRzScLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("lblNmFsLocador", "Nome Fantasia:")
+                        @Html.TextBox("txtNmFsLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("lblEmailLocador", "E-Mail:")
+                        @Html.TextBox("txtEmailLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("lblSenhaLocador", "Senha:")
+                        @Html.TextBox("txtSenhaLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", type = "password", onfocusout = "SenhaLocador()" })
+                        @Html.Raw("<div id='validaSenha'></div>")
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("lblConfirmaSenhaLocador", "Confirme a Senha:")
+                        @Html.TextBox("txtConfirmaSenhaLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", type = "password", onfocusout = "ConfirmaSenhaLocador()" })
+                        @Html.Raw("<div id='confirmaSenha'></div>")
+                    </div>                    
+                    <div class="form-group">
+                        @Html.Label("lblTelefoneLocador", "Telefone:")
+                        @Html.TextBox("txtTelefoneLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("lblSituacaoLocador", "Qual é a Situação do Locador?")
+                        @Html.Raw("<select id='selSituacaoLocador' name='selSituacaoLocador' class='form-control' required><option value='A'>Ativo</option><option value='B'>Bloqueado</option></select>")
+                    </div>
+                </fieldset>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <fieldset id="documentosLocador">
+                    <legend>Documentação</legend>
+                    <br />
+                    <button type="button" class="btn btn-default" onclick="CriarCpf()">
+                        Sou Autônomo
+                    </button>
+                    <button type="button" class="btn btn-default" onclick="CriarCnpj()">
+                        Tenho Locadora
+                    </button>
+                    <hr/>
+                    <!--div class="form-group">
+                        @Html.Label("lblCpfLocador", "Cpf:")
+                        @Html.TextBox("txtCpfLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", onfocusout = "ValidaCpfLocador()" })
+                        @Html.Raw("<div id='validaCpfLocador'></div>")
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("lblCnpjLocador", "CNPJ:")
+                        @Html.TextBox("txtCnpjLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", onfocusout = "ValidaCnpjLocador()" })
+                        @Html.Raw("<div id='validaCnpjLocador'></div>")
+                    </div-->                    
+                </fieldset>
+                <br />
+                <fieldset id="enderecoContato">
+                    <legend>Endereço</legend>
+                    <br />
+                    <div class="form-group">
+                        @Html.Label("lblEnderecoLocador", "Logadouro:")
+                        @Html.TextBox("txtEnderecoLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("lblCidadeLocador", "Cidade:")
+                        @Html.TextBox("txtCidadeLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("lblEstadoLocador", "Estado:")
+                        @Html.Raw("<select id='selEstadoLocador' name='selEstadoLocador' class='form-control' required><option value='AC'>Acre</option><option value='AL'>Alagoas</option><option value='AP'>Amapá</option><option value='AM'>Amazonas</option><option value='BA'>Bahia</option><option value='CE'>Ceará</option><option value='DF'>Distrito Federal</option><option value='ES'>Espírito Santo</option><option value='GO'>Goiás</option><option value='MA'>Maranhão</option><option value='MT'>Mato Grosso</option><option value='MS'>Mato Grosso do Sul</option><option value='MG'>Minas Gerais</option><option value='PA'>Pará</option><option value='PB'>Paraíba</option><option value='PR'>Paraná</option><option value='PE'>Pernambuco</option><option value='PI'>Piauí</option><option value='RJ'>Rio de Janeiro</option><option value='RN'>Rio Grande do Norte</option><option value='RS'>Rio Grande do Sul</option><option value='RO'>Rondônia</option><option value='RR'>Roraima</option><option value='SC'>Santa Catarina</option><option value='SP'>São Paulo</option><option value='SE'>Sergipe</option><option value='TO'>Tocantins</option><option value='EX'>Estrangeiro</option></select>")
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("lblCepLocador", "CEP:")
+                        @Html.TextBox("txtCepLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-success form-group" type="submit"><i class="fa fa-check"></i> Confirmar</button>
+            <button class="btn btn-danger form-group" type="reset" onclick="LimparObrigatoriosLocador()"><i class="fa fa-trash"></i> Limpar</button>
+            <a href="@Url.Action("Index", "Inicio")" class="btn btn-primary form-group"><i class="fa fa-reply"></i> Voltar</a>
+        </div>
+    }
+</div>
+

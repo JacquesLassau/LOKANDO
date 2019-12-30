@@ -85,13 +85,47 @@ namespace LoKando.DAL
             }
         }
 
-        public void SituacaoLocador(Locador locador){
+        public Locador SelecionarLocadorEmail(string emailLocador)
+        {
+            using (SqlConnection conexao = Conexao.ConexaoDatabase())
+            {
+                conexao.Open();
+
+                Locador locador = new Locador();
+                locador.EmailLocador = emailLocador;
+
+                SqlCommand comandoDML = new SqlCommand("SP_SelecionarLocadorEmailV1", conexao);
+                comandoDML.CommandType = CommandType.StoredProcedure;
+
+                comandoDML.Parameters.Add("@LCEMAILLOK", SqlDbType.VarChar, 100);
+                comandoDML.Parameters["@LCEMAILLOK"].Value = locador.EmailLocador;
+
+                SqlDataReader dr = comandoDML.ExecuteReader();
+
+                bool consultarEmailLocaor = dr.HasRows;
+
+                if (consultarEmailLocaor == false)
+                {
+                    locador.EmailLocador = null;
+                }
+                else
+                {
+                    while (dr.Read())
+                    {
+                        // TERMINAR CONSULTA DAL
+                    }
+
+                }
+            }
+        }
+
+        public void ExcluirLocador(Locador locador){
 
             using (SqlConnection conexao = Conexao.ConexaoDatabase())
             {
                 conexao.Open();
 
-                SqlCommand comandoDML = new SqlCommand("SituacaoLocadorV1", conexao);
+                SqlCommand comandoDML = new SqlCommand("SP_ExcluirLocadorV1", conexao);
                 comandoDML.CommandType = CommandType.StoredProcedure;
 
                 comandoDML.Parameters.Add("@LCIDLOCLOK", SqlDbType.Int);                

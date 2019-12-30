@@ -15,8 +15,8 @@
     @using (Html.BeginForm("ExcluirClienteAR", "Cliente", FormMethod.Post))
     {
         <div class="row">
-            <div class="col-md-4 col-md-4 col-sm-4 col-xs-12">
-                <fieldset id="dadosGerais">
+            <div class="col-md-4 col-md-4 col-sm-6 col-xs-12">
+                <fieldset id="pesquisaCodigoCliente">
                     <legend>Código do Cliente</legend>
                     <div class="input-group">
                         @Html.TextBox("txtCodigoCliente", null, new { @class = "form-control", onfocusout = "PesquisarCliente()", placeholder = "Pesquise o Código do Cliente", required = "required" })
@@ -46,7 +46,7 @@
                     </div>
                     <div class="form-group">
                         @Html.Label("lblSituacaoCliente", "Qual é a Situação do Cliente?")
-                        @Html.Raw("<select id='selSituacaoCliente' name='selSituacaoCliente' class='form-control' required><option value='A'>Ativo</option><option value='B'>Bloqueado</option></select>")
+                        @Html.Raw("<select id='selSituacaoCliente' name='selSituacaoCliente' class='form-control' disabled><option value='A'>Ativo</option><option value='B'>Bloqueado</option></select>")
                     </div>
                     <div class="form-group">
                         @Html.Label("lblUltimaAtualizacaoCliente", "Última Atualização:")
@@ -54,7 +54,7 @@
                     </div>
                 </fieldset>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <fieldset id="documentosCliente">
                     <legend>Documentação</legend>
                     <br />

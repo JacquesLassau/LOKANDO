@@ -9,12 +9,12 @@
     @using (Html.BeginForm("AlterarAtendenteAR", "Atendente", FormMethod.Post))
     {
          <div class="row">
-             <div class="col-md-4 col-md-4 col-sm-4 col-xs-12">
-                 <fieldset id="dadosGerais">
+             <div class="col-md-4 col-md-4 col-sm-6 col-xs-12">
+                 <fieldset id="pesquisaCodigoAtendente">
                      <legend>Código do Atendente</legend>
                      <div class="input-group">
                          @Html.TextBox("txtCodigoAtendente", null, new { @class = "form-control", onfocusout = "PesquisarAtendente()", placeholder = "Pesquise o Código do Atendente", required = "required" })
-                         <button class="btn btn-primary" name="pesquisaAtendente" id="pesquisaAtendente" maxlength="5" data-toggle="modal" data-target="#listarAtendentes" onclick="PesquisarAtendente()" style="width:94.75%; margin-top:6px;"><i class="fa fa-search"></i>  Procurar</button>                         
+                         <button class="btn btn-primary" name="pesquisaAtendente" id="pesquisaAtendente" maxlength="5" data-toggle="modal" data-target="#listarAtendentes" onclick="PesquisarAtendente()" style="width:94.75%; margin-top:6px;"><i class="fa fa-search"></i>  Procurar</button>
                      </div>
                  </fieldset>
                  <br />

@@ -9,8 +9,8 @@
         @using (Html.BeginForm("ExcluirAtendenteAR", "Atendente", FormMethod.Post))
         {
             <div class="row">
-                <div class="col-md-4 col-md-4 col-sm-4 col-xs-12">
-                    <fieldset id="dadosGerais">
+                <div class="col-md-4 col-md-4 col-sm-6 col-xs-12">
+                    <fieldset id="pesquisaCodigoAtendente">
                         <legend>Código do Atendente</legend>
                         <div class="input-group">
                             @Html.TextBox("txtCodigoAtendente", null, new { @class = "form-control", onfocusout = "PesquisarAtendente()", placeholder = "Pesquise o Código do Atendente", required = "required" })
