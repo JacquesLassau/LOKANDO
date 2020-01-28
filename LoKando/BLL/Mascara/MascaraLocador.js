@@ -1,9 +1,8 @@
-﻿/*############### Dados Gerais do Cliente ###############*/
+﻿/*############### Dados Gerais do Locador ###############*/
 $("#txtTelefoneLocador").mask("(00)00000-0000");
-
-/*############### Documentação do Locador ###############*/
-$("#txtCnpjLocador").mask("00.000.000/0000-00");
-$("#txtCpfLocador").mask("000.000.000-00");
-
 /*############### Endereço ###############*/
 $("#txtCepLocador").mask("00000-000");
+/*############### Documento Locador CPF ###############*/
+$("#txtCpfLocador").mask("000.000.000-00");
+/*############### Documento Locador CNPJ ###############*/
+$("#txtCnpjLocador").mask("00.000.000/0000-00");

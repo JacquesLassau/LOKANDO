@@ -1,17 +1,28 @@
-﻿@{ViewBag.Title = "Cadastro do Locador";}    
+﻿@{ViewBag.Title = "Alteração do Locador";}
 @Scripts.Render("~/BLL/LimparObrigatorios/LimparObrigatoriosLocador.js")
 @Scripts.Render("~/BLL/PesquisaSenha/SenhaLocador.js")
 @Scripts.Render("~/BLL/Mascara/MascaraLocador.js")
 @Scripts.Render("~/BLL/DocumentoLocador/DocumentoLocador.js")
 @Scripts.Render("~/BLL/DocumentoLocador/MascaraDocumentoLocador.js")
+@Scripts.Render("~/BLL/PesquisaHelperModal/HelperLocador.js")
+@Scripts.Render("~/BLL/LinkHelperModal/LinkLocador.js")
+@model LoKando.Models.ControllerModel.LocadorControllerModel
 
 <div class="container">
-    <h2>Cadastro do Locador</h2>
+    <h2>Alteração do Locador</h2>
     <hr />
-    @using (Html.BeginForm("CadastrarLocadorAR", "Locador", FormMethod.Post))
+    @using (Html.BeginForm("AlterarLocadorAR", "Locador", FormMethod.Post))
     {
         <div class="row">
             <div class="col-md-4 col-md-4 col-sm-6 col-xs-12">
+                <fieldset id="pesquisaCodigoLocador">
+                    <legend>Código do Locador</legend>
+                    <div class="input-group">
+                        @Html.TextBox("txtCodigoLocador", null, new { @class = "form-control", onfocusout = "PesquisarLocador()", placeholder = "Pesquise o Código do Locador", required = "required" })
+                        <button class="btn btn-primary" name="pesquisaLocador" id="pesquisaLocador" maxlength="5" data-toggle="modal" data-target="#listarLocador" onclick="PesquisarLocador()" style="width:94.75%; margin-top:6px;"><i class="fa fa-search"></i>  Procurar</button>
+                    </div>
+                </fieldset>
+                <br />
                 <fieldset id="dadosGerais">
                     <legend>Dados Gerais</legend>
                     <br />
@@ -28,22 +39,16 @@
                         @Html.TextBox("txtEmailLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
                     </div>
                     <div class="form-group">
-                        @Html.Label("lblSenhaLocador", "Senha:")
-                        @Html.TextBox("txtSenhaLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", type = "password", onfocusout = "SenhaLocador()" })
-                        @Html.Raw("<div id='validaSenha'></div>")
-                    </div>
-                    <div class="form-group">
-                        @Html.Label("lblConfirmaSenhaLocador", "Confirme a Senha:")
-                        @Html.TextBox("txtConfirmaSenhaLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", type = "password", onfocusout = "ConfirmaSenhaLocador()" })
-                        @Html.Raw("<div id='confirmaSenha'></div>")
-                    </div>
-                    <div class="form-group">
                         @Html.Label("lblTelefoneLocador", "Telefone:")
                         @Html.TextBox("txtTelefoneLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
                     </div>
                     <div class="form-group">
                         @Html.Label("lblSituacaoLocador", "Qual é a Situação do Locador?")
                         @Html.Raw("<select id='selSituacaoLocador' name='selSituacaoLocador' class='form-control' required><option value='A'>Ativo</option><option value='B'>Bloqueado</option></select>")
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("lblUltimaAtualizacaoLocador", "Última Atualização:")
+                        @Html.TextBox("txtUltimaAtualizacaoLocador", null, new { @class = "form-control", placeholder = "Auditoria do registro é automática", disabled = "disalbed" })
                     </div>
                 </fieldset>
             </div>
@@ -55,7 +60,7 @@
                             <input type="radio" name="cpf"> Cpf
                         </label>
                         <label class="btn btn-primary" id="cnpjLocador" name="cnpjLocador" onclick="CnpjLocador()">
-                            <input type="radio" name="cnpj" > Cnpj
+                            <input type="radio" name="cnpj"> Cnpj
                         </label>
                     </div>
                     <hr />
@@ -91,5 +96,34 @@
             <a href="@Url.Action("Index", "Inicio")" class="btn btn-primary form-group"><i class="fa fa-reply"></i> Voltar</a>
         </div>
     }
+</div>
+
+<div id="listarLocador" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-sm modal-md modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-danger"><strong>Locador não encontrado!</strong><br /></h4>
+                <p class="lead">Consulte a lista abaixo e clique para selecionar um Cliente:</p>
+            </div>
+            <div class="modal-body text-center">
+                <hr />
+                @foreach (var model in Model.Locador)
+                {
+                    <div class="row" style="margin-top:24px;">
+                        <div class="col-md-1"><Strong>@(model.CodigoLocador)</Strong></div>
+                        <div class="col-md-3"><i class="fa fa-user"></i> @Html.LabelForModel(model.NomeFantasiaLocador)</div>
+                        <div class="col-md-4"><i class="fa fa-envelope"></i> @Html.LabelForModel(model.EmailLocador)</div>
+                        <div class="col-md-2"><i class="fa fa-calendar"></i> @Html.LabelForModel(model.HoraRegistroLocador)</div>
+                        <div class="col-md-2"><button class="btn btn-success" name="lnkCodigoLocador" id="lnkCodigoLocador-@(model.CodigoLocador)" onclick='SelecionarLocadorLinkModal("lnkCodigoLocador-@(model.CodigoLocador)")' value="@(model.CodigoLocador)">Selecione <i class="fa fa-check"></i></button></div>
+                    </div>
+                    <hr />
+                }
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-reply"></i> Voltar</button>
+            </div>
+        </div>
+    </div>
 </div>
 

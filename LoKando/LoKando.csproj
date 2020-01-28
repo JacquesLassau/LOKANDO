@@ -150,20 +150,21 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BLL\Cnpj\CnpjLocador.js" />
-    <Content Include="BLL\Cpf\CpfLocador.js" />
+    <Content Include="BLL\DocumentoLocador\DocumentoLocador.js" />
     <Content Include="BLL\Cpf\CpfCliente.js" />
     <Content Include="BLL\DataNascimento\DataNascimentoCliente.js" />
-    <Content Include="BLL\DocumentoLocador\CriarDocumentoLocador.js" />
+    <Content Include="BLL\DocumentoLocador\MascaraDocumentoLocador.js" />
     <Content Include="BLL\Habilitacao\HabilitacaoCliente.js" />
     <Content Include="BLL\LimparObrigatorios\LimparObrigatoriosLocador.js" />
     <Content Include="BLL\LimparObrigatorios\LimparObrigatoriosAtendente.js" />
     <Content Include="BLL\LimparObrigatorios\LimparObrigatoriosCliente.js" />
     <Content Include="BLL\LinkHelperModal\LinkAtendente.js" />
+    <Content Include="BLL\LinkHelperModal\LinkLocador .js" />
     <Content Include="BLL\LinkHelperModal\LinkCliente.js" />
     <Content Include="BLL\Mascara\MascaraLocador.js" />
     <Content Include="BLL\Mascara\MascaraCliente.js" />
     <Content Include="BLL\PesquisaHelperModal\HelperAtendente.js" />
+    <Content Include="BLL\PesquisaHelperModal\HelperLocador .js" />
     <Content Include="BLL\PesquisaHelperModal\HelperCliente.js" />
     <Content Include="BLL\PesquisaSenha\SenhaLocador.js" />
     <Content Include="BLL\PesquisaSenha\SenhaCliente.js" />
@@ -212,6 +213,7 @@
     <Content Include="Views\Cliente\AlterarClienteUI.cshtml" />
     <Content Include="Views\Cliente\ConsultarClienteUI.cshtml" />
     <Content Include="Views\Cliente\ExcluirClienteUI.cshtml" />
+    <Content Include="Views\Locador\AlterarLocadorUI.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
