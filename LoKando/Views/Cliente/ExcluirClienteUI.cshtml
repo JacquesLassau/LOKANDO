@@ -19,7 +19,7 @@
                 <fieldset id="pesquisaCodigoCliente">
                     <legend>Código do Cliente</legend>
                     <div class="input-group">
-                        @Html.TextBox("txtCodigoCliente", null, new { @class = "form-control", onfocusout = "PesquisarCliente()", placeholder = "Pesquise o Código do Cliente", required = "required" })
+                        @Html.TextBox("txtCodigoCliente", null, new { @class = "form-control", onfocusout = "PesquisarCliente()", placeholder = "Pesquise pelo Código do Cliente", required = "required" })
                         <button class="btn btn-primary" name="pesquisaCliente" id="pesquisaCliente" maxlength="5" data-toggle="modal" data-target="#listarCliente" onclick="PesquisarCliente()" style="width:94.75%; margin-top:6px;"><i class="fa fa-search"></i>  Procurar</button>
                     </div>
                 </fieldset>
@@ -103,7 +103,7 @@
         </div>
     }
 </div>
-<div id="listarClientes" class="modal fade" role="dialog">
+<div id="listarCliente" class="modal fade" role="dialog">
     <div class="modal-dialog modal-sm modal-md modal-lg">
         <div class="modal-content">
             <div class="modal-header">

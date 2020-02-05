@@ -5,7 +5,7 @@ using System.Web;
 
 namespace LoKando.Models
 {
-    public class Veiculo: Locador
+    public class Veiculo
     {
         public int CodigoVeiculo { get; set; }
         public int CodigoLocadorVeiculo { get; set; }

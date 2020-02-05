@@ -77,9 +77,23 @@ namespace LoKando.Controllers
             return View(locadorViewModel);
         }
 
-        public ActionResult AlterarLocadorAR()
+        public ActionResult AlterarLocadorAR(string txtCodigoLocador, string txtRzScLocador, string txtNmFsLocador, string txtEmailLocador, string txtTelefoneLocador, string selSituacaoLocador, string txtEnderecoLocador, string txtCidadeLocador, string selEstadoLocador, string txtCepLocador)
         {
-            return RedirectToAction("Index", "Inicio");
+            LocadorDAL locadorDAL = new LocadorDAL();
+            Locador locador = locadorDAL.SelecionarLocadorId(Convert.ToInt32(txtCodigoLocador));              
+
+            if (locador.CodigoLocador == 0)
+            {
+                TempData[Constantes.MensagemAlerta] = "Não existe Locador para o código digitado... Tente novamente!";
+                return View("AlterarLocadorUI");
+            }            
+            else
+            {                
+                locador = new Locador(Convert.ToInt32(txtCodigoLocador), txtRzScLocador, txtNmFsLocador, txtTelefoneLocador, txtEnderecoLocador, txtCidadeLocador, selEstadoLocador, txtCepLocador, Convert.ToChar(selSituacaoLocador));
+                locadorDAL.AlterarLocador(locador);
+                TempData[Constantes.MensagemAlerta] = "Locador alterado com sucesso!";
+                return RedirectToAction("Index", "Inicio");
+            }
         }
 
         [HttpGet]
@@ -88,6 +102,42 @@ namespace LoKando.Controllers
             LocadorDAL locadorDAL = new LocadorDAL();
             Locador locador = locadorDAL.SelecionarLocadorId(codigoLocador);
             return Json(locador, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult ConsultarLocadorUI()
+        {
+            LocadorDAL locadorDAL = new LocadorDAL();
+            LocadorControllerModel locadorViewModel = ConvertToModel(locadorDAL.ListarLocador());
+            return View(locadorViewModel);
+        }
+
+        [HttpGet]
+        public ActionResult ExcluirLocadorUI()
+        {
+            LocadorDAL locadorDAL = new LocadorDAL();
+            LocadorControllerModel locadorViewModel = ConvertToModel(locadorDAL.ListarLocador());
+            return View(locadorViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult ExcluirLocadorAR(string txtCodigoLocador)
+        {
+            LocadorDAL locadorDAL = new LocadorDAL();
+            Locador locador = locadorDAL.SelecionarLocadorId(Convert.ToInt32(txtCodigoLocador));
+
+            if (locador.CodigoLocador == 0)
+            {
+                TempData[Constantes.MensagemAlerta] = "Não existe Locador para o código digitado... Tente novamente!";
+                return View("AlterarLocadorUI");
+            }
+            else
+            {
+                locador = new Locador(Convert.ToInt32(txtCodigoLocador));
+                locadorDAL.ExcluirLocador(locador);
+                TempData[Constantes.MensagemAlerta] = "Locador excluído com sucesso!";
+                return RedirectToAction("Index", "Inicio");
+            }
         }
 
     }

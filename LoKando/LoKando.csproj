@@ -139,6 +139,7 @@
     <Compile Include="Models\Atendente.cs" />
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\ControllerModel\LocadorControllerModel.cs" />
+    <Compile Include="Models\ControllerModel\VeiculoControllerModel.cs" />
     <Compile Include="Models\Locador.cs" />
     <Compile Include="Models\Orcamento.cs" />
     <Compile Include="Models\Pedido.cs" />
@@ -159,12 +160,13 @@
     <Content Include="BLL\LimparObrigatorios\LimparObrigatoriosAtendente.js" />
     <Content Include="BLL\LimparObrigatorios\LimparObrigatoriosCliente.js" />
     <Content Include="BLL\LinkHelperModal\LinkAtendente.js" />
-    <Content Include="BLL\LinkHelperModal\LinkLocador .js" />
+    <Content Include="BLL\LinkHelperModal\LinkLocador.js" />
     <Content Include="BLL\LinkHelperModal\LinkCliente.js" />
+    <Content Include="BLL\Mascara\MascaraAtendente.js" />
     <Content Include="BLL\Mascara\MascaraLocador.js" />
     <Content Include="BLL\Mascara\MascaraCliente.js" />
     <Content Include="BLL\PesquisaHelperModal\HelperAtendente.js" />
-    <Content Include="BLL\PesquisaHelperModal\HelperLocador .js" />
+    <Content Include="BLL\PesquisaHelperModal\HelperLocador.js" />
     <Content Include="BLL\PesquisaHelperModal\HelperCliente.js" />
     <Content Include="BLL\PesquisaSenha\SenhaLocador.js" />
     <Content Include="BLL\PesquisaSenha\SenhaCliente.js" />
@@ -214,10 +216,12 @@
     <Content Include="Views\Cliente\ConsultarClienteUI.cshtml" />
     <Content Include="Views\Cliente\ExcluirClienteUI.cshtml" />
     <Content Include="Views\Locador\AlterarLocadorUI.cshtml" />
+    <Content Include="Views\Locador\ConsultarLocadorUI.cshtml" />
+    <Content Include="Views\Locador\ExcluirLocadorUI.cshtml" />
+    <Content Include="Views\Veiculo\CadastrarVeiculoUI.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Veiculo\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

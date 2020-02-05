@@ -1,4 +1,4 @@
-﻿@{ViewBag.Title = "Alteração do Locador";}
+﻿@{ViewBag.Title = "Consulta do Locador";}
 @Scripts.Render("~/BLL/LimparObrigatorios/LimparObrigatoriosLocador.js")
 @Scripts.Render("~/BLL/PesquisaSenha/SenhaLocador.js")
 @Scripts.Render("~/BLL/Mascara/MascaraLocador.js")
@@ -9,16 +9,16 @@
 @model LoKando.Models.ControllerModel.LocadorControllerModel
 
 <div class="container">
-    <h2>Alteração do Locador</h2>
+    <h2>Exclusão de Locador</h2>
     <hr />
-    @using (Html.BeginForm("AlterarLocadorAR", "Locador", FormMethod.Post))
+    @using (Html.BeginForm("ExcluirLocadorAR", "Locador", FormMethod.Post))
     {
         <div class="row">
             <div class="col-md-4 col-md-4 col-sm-6 col-xs-12">
                 <fieldset id="pesquisaCodigoLocador">
                     <legend>Código do Locador</legend>
                     <div class="input-group">
-                        @Html.TextBox("txtCodigoLocador", null, new { @class = "form-control", onfocusout = "PesquisarLocador()", placeholder = "Pesquise pelo Código do Locador", required = "required" })
+                        @Html.TextBox("txtCodigoLocador", null, new { @class = "form-control", onfocusout = "PesquisarLocador()", placeholder = "Pesquise pelo Código do Locador" })
                         <button class="btn btn-primary" name="pesquisaLocador" id="pesquisaLocador" maxlength="5" data-toggle="modal" data-target="#listarLocador" onclick="PesquisarLocador()" style="width:94.75%; margin-top:6px;"><i class="fa fa-search"></i>  Procurar</button>
                     </div>
                 </fieldset>
@@ -28,23 +28,23 @@
                     <br />
                     <div class="form-group">
                         @Html.Label("lblRzScLocador", "Razão Social:")
-                        @Html.TextBox("txtRzScLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
+                        @Html.TextBox("txtRzScLocador", null, new { @class = "form-control", placeholder = "preenchimento automático", disabled = "disalbed" })
                     </div>
                     <div class="form-group">
                         @Html.Label("lblNmFsLocador", "Nome Fantasia:")
-                        @Html.TextBox("txtNmFsLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
+                        @Html.TextBox("txtNmFsLocador", null, new { @class = "form-control", placeholder = "preenchimento automático", disabled = "disalbed" })
                     </div>
                     <div class="form-group">
                         @Html.Label("lblEmailLocador", "E-Mail:")
-                        @Html.TextBox("txtEmailLocador", null, new { @class = "form-control", placeholder = "preencha aqui", disabled = "disabled" })
+                        @Html.TextBox("txtEmailLocador", null, new { @class = "form-control", placeholder = "preenchimento automático", disabled = "disalbed" })
                     </div>
                     <div class="form-group">
                         @Html.Label("lblTelefoneLocador", "Telefone:")
-                        @Html.TextBox("txtTelefoneLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
+                        @Html.TextBox("txtTelefoneLocador", null, new { @class = "form-control", placeholder = "preenchimento automático", disabled = "disalbed" })
                     </div>
                     <div class="form-group">
                         @Html.Label("lblSituacaoLocador", "Qual é a Situação do Locador?")
-                        @Html.Raw("<select id='selSituacaoLocador' name='selSituacaoLocador' class='form-control' required><option value='A'>Ativo</option><option value='B'>Bloqueado</option></select>")
+                        @Html.Raw("<select id='selSituacaoLocador' name='selSituacaoLocador' class='form-control' disabled><option value='A'>Ativo</option><option value='B'>Bloqueado</option></select>")
                     </div>
                     <div class="form-group">
                         @Html.Label("lblUltimaAtualizacaoLocador", "Última Atualização:")
@@ -54,9 +54,9 @@
             </div>
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <fieldset id="documentoLocador">
-                    <legend>Documentação</legend>
+                    <legend>Documentação</legend>                    
                     <hr />
-                    <input type="text" class="form-control" name="txtDocumentoLocador" id="txtDocumentoLocador" placeholder="preenchimento automático" disabled/>
+                    <input type="text" class="form-control" name="txtDocumentoLocador" id="txtDocumentoLocador" placeholder = "preenchimento automático" disabled/>                    
                 </fieldset>
                 <br />
                 <fieldset id="enderecoContato">
@@ -64,24 +64,24 @@
                     <br />
                     <div class="form-group">
                         @Html.Label("lblEnderecoLocador", "Logadouro:")
-                        @Html.TextBox("txtEnderecoLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
+                        @Html.TextBox("txtEnderecoLocador", null, new { @class = "form-control", placeholder = "preenchimento automático", disabled = "disalbed" })
                     </div>
                     <div class="form-group">
                         @Html.Label("lblCidadeLocador", "Cidade:")
-                        @Html.TextBox("txtCidadeLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
+                        @Html.TextBox("txtCidadeLocador", null, new { @class = "form-control", placeholder = "preenchimento automático", disabled = "disalbed" })
                     </div>
                     <div class="form-group">
                         @Html.Label("lblEstadoLocador", "Estado:")
-                        @Html.Raw("<select id='selEstadoLocador' name='selEstadoLocador' class='form-control' required><option value='AC'>Acre</option><option value='AL'>Alagoas</option><option value='AP'>Amapá</option><option value='AM'>Amazonas</option><option value='BA'>Bahia</option><option value='CE'>Ceará</option><option value='DF'>Distrito Federal</option><option value='ES'>Espírito Santo</option><option value='GO'>Goiás</option><option value='MA'>Maranhão</option><option value='MT'>Mato Grosso</option><option value='MS'>Mato Grosso do Sul</option><option value='MG'>Minas Gerais</option><option value='PA'>Pará</option><option value='PB'>Paraíba</option><option value='PR'>Paraná</option><option value='PE'>Pernambuco</option><option value='PI'>Piauí</option><option value='RJ'>Rio de Janeiro</option><option value='RN'>Rio Grande do Norte</option><option value='RS'>Rio Grande do Sul</option><option value='RO'>Rondônia</option><option value='RR'>Roraima</option><option value='SC'>Santa Catarina</option><option value='SP'>São Paulo</option><option value='SE'>Sergipe</option><option value='TO'>Tocantins</option><option value='EX'>Estrangeiro</option></select>")
+                        @Html.Raw("<select id='selEstadoLocador' name='selEstadoLocador' class='form-control' disabled><option value='AC'>Acre</option><option value='AL'>Alagoas</option><option value='AP'>Amapá</option><option value='AM'>Amazonas</option><option value='BA'>Bahia</option><option value='CE'>Ceará</option><option value='DF'>Distrito Federal</option><option value='ES'>Espírito Santo</option><option value='GO'>Goiás</option><option value='MA'>Maranhão</option><option value='MT'>Mato Grosso</option><option value='MS'>Mato Grosso do Sul</option><option value='MG'>Minas Gerais</option><option value='PA'>Pará</option><option value='PB'>Paraíba</option><option value='PR'>Paraná</option><option value='PE'>Pernambuco</option><option value='PI'>Piauí</option><option value='RJ'>Rio de Janeiro</option><option value='RN'>Rio Grande do Norte</option><option value='RS'>Rio Grande do Sul</option><option value='RO'>Rondônia</option><option value='RR'>Roraima</option><option value='SC'>Santa Catarina</option><option value='SP'>São Paulo</option><option value='SE'>Sergipe</option><option value='TO'>Tocantins</option><option value='EX'>Estrangeiro</option></select>")
                     </div>
                     <div class="form-group">
                         @Html.Label("lblCepLocador", "CEP:")
-                        @Html.TextBox("txtCepLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
+                        @Html.TextBox("txtCepLocador", null, new { @class = "form-control", placeholder = "preenchimento automático", disabled = "disalbed" })
                     </div>
                 </fieldset>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group"> 
             <button class="btn btn-success form-group" type="submit"><i class="fa fa-check"></i> Confirmar</button>
             <button class="btn btn-danger form-group" type="reset" onclick="LimparObrigatoriosLocador()"><i class="fa fa-trash"></i> Limpar</button>
             <a href="@Url.Action("Index", "Inicio")" class="btn btn-primary form-group"><i class="fa fa-reply"></i> Voltar</a>

@@ -18,7 +18,7 @@
 
             $(function () {
 
-                $("#listarClientes").modal("hide");
+                $("#listarCliente").modal("hide");
                 $("#txtNomeCliente").val(data.NomeCliente);
                 $("#txtHabilitacaoCliente").val(data.HabilitacaoCliente);
                 $("#txtCpfCliente").val(data.CpfCliente);
@@ -52,7 +52,7 @@
                 $("#txtCepCliente").val(null);
                 $("#selSituacaoCliente").val(null);
                 $("#txtUltimaAtualizacaoCliente").val(null);
-                $("#listarClientes").modal("show");
+                $("#listarCliente").modal("show");
 
             });
         }

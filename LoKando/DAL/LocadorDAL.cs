@@ -59,7 +59,7 @@ namespace LoKando.DAL
             {
                 conexao.Open();
 
-                SqlCommand comandoDML = new SqlCommand("AlterarLocadorV1", conexao);
+                SqlCommand comandoDML = new SqlCommand("SP_AlterarLocadorV1", conexao);
                 comandoDML.CommandType = CommandType.StoredProcedure;
 
                 comandoDML.Parameters.Add("@LCIDLOCLOK", SqlDbType.Int);                
@@ -78,7 +78,7 @@ namespace LoKando.DAL
                 comandoDML.Parameters["@LCNMLOK"].Value = locador.TelefoneLocador;
                 comandoDML.Parameters["@LCLOGLOK"].Value = locador.EnderecoLocador;
                 comandoDML.Parameters["@LCCIDLOK"].Value = locador.CidadeLocador;
-                comandoDML.Parameters["@LCUFLOK"].Value = locador.CidadeLocador;
+                comandoDML.Parameters["@LCUFLOK"].Value = locador.EstadoLocador;
                 comandoDML.Parameters["@LCCEPLOK"].Value = locador.CepLocador;
                 comandoDML.Parameters["@LCSITLOK"].Value = locador.SituacaoLocador;
 
@@ -112,9 +112,10 @@ namespace LoKando.DAL
                     string cidadeLocador = Convert.ToString(dr["LCCIDLOK"]);
                     string estadoLocador = Convert.ToString(dr["LCUFLOK"]);
                     string cepLocador = Convert.ToString(dr["LCCEPLOK"]);
+                    string situacaoLocador = Convert.ToString(dr["LCSITLOK"]);
                     string ultimaAtualizaoLocador = Convert.ToString(dr["LCUHRREG"]);
 
-                    locador.Add(new Locador(idLocador, mlLocador, razaoScLocador, fantasiaLocador, telefoneLocador, documentoLocador, enderecoLocador, cidadeLocador, estadoLocador, cepLocador, ultimaAtualizaoLocador));
+                    locador.Add(new Locador(idLocador, mlLocador, razaoScLocador, fantasiaLocador, documentoLocador, telefoneLocador, enderecoLocador, cidadeLocador, estadoLocador, cepLocador, Convert.ToChar(situacaoLocador), ultimaAtualizaoLocador));
                 }
                 conexao.Close();
                 return locador;
@@ -153,14 +154,15 @@ namespace LoKando.DAL
                         string razaoScLocador = Convert.ToString(dr["LCRZSLOK"]);
                         string fantasiaLocador = Convert.ToString(dr["LCFANTLOK"]);
                         string documentoLocador = Convert.ToString(dr["LCPFPJLOK"]);
-                        string telefoneLocador = Convert.ToString(dr["LCNMLOK"]);                                             
+                        string telefoneLocador = Convert.ToString(dr["LCNMLOK"]);
                         string enderecoLocador = Convert.ToString(dr["LCLOGLOK"]);
                         string cidadeLocador = Convert.ToString(dr["LCCIDLOK"]);
                         string estadoLocador = Convert.ToString(dr["LCUFLOK"]);
                         string cepLocador = Convert.ToString(dr["LCCEPLOK"]);
+                        string situacaoLocador = Convert.ToString(dr["LCSITLOK"]);
                         string ultimaAtualizaoLocador = Convert.ToString(dr["LCUHRREG"]);
 
-                        locador = new Locador(idLocador, mlLocador, razaoScLocador, fantasiaLocador, telefoneLocador, documentoLocador, enderecoLocador, cidadeLocador, estadoLocador, cepLocador, ultimaAtualizaoLocador);
+                        locador = new Locador(idLocador, mlLocador, razaoScLocador, fantasiaLocador, documentoLocador, telefoneLocador, enderecoLocador, cidadeLocador, estadoLocador, cepLocador, Convert.ToChar(situacaoLocador), ultimaAtualizaoLocador);
                     }
 
                 }
@@ -207,9 +209,10 @@ namespace LoKando.DAL
                         string cidadeLocador = Convert.ToString(dr["LCCIDLOK"]);
                         string estadoLocador = Convert.ToString(dr["LCUFLOK"]);
                         string cepLocador = Convert.ToString(dr["LCCEPLOK"]);
+                        string situacaoLocador = Convert.ToString(dr["LCSITLOK"]);
                         string ultimaAtualizaoLocador = Convert.ToString(dr["LCUHRREG"]);
 
-                        locador = new Locador(idLocador, mlLocador, razaoScLocador, fantasiaLocador, telefoneLocador, documentoLocador, enderecoLocador, cidadeLocador, estadoLocador, cepLocador, ultimaAtualizaoLocador);
+                        locador = new Locador(idLocador, mlLocador, razaoScLocador, fantasiaLocador, documentoLocador, telefoneLocador, enderecoLocador, cidadeLocador, estadoLocador, cepLocador, Convert.ToChar(situacaoLocador), ultimaAtualizaoLocador);
                     }
                 }
 
@@ -255,9 +258,10 @@ namespace LoKando.DAL
                         string cidadeLocador = Convert.ToString(dr["LCCIDLOK"]);
                         string estadoLocador = Convert.ToString(dr["LCUFLOK"]);
                         string cepLocador = Convert.ToString(dr["LCCEPLOK"]);
+                        string situacaoLocador = Convert.ToString(dr["LCSITLOK"]);
                         string ultimaAtualizaoLocador = Convert.ToString(dr["LCUHRREG"]);
 
-                        locador = new Locador(idLocador, mlLocador, razaoScLocador, fantasiaLocador, telefoneLocador, documentoLocador, enderecoLocador, cidadeLocador, estadoLocador, cepLocador, ultimaAtualizaoLocador);
+                        locador = new Locador(idLocador, mlLocador, razaoScLocador, fantasiaLocador, documentoLocador, telefoneLocador, enderecoLocador, cidadeLocador, estadoLocador, cepLocador, Convert.ToChar(situacaoLocador), ultimaAtualizaoLocador);
                     }
                 }
 
@@ -275,14 +279,11 @@ namespace LoKando.DAL
                 SqlCommand comandoDML = new SqlCommand("SP_ExcluirLocadorV1", conexao);
                 comandoDML.CommandType = CommandType.StoredProcedure;
 
-                comandoDML.Parameters.Add("@LCIDLOCLOK", SqlDbType.Int);                
-                comandoDML.Parameters.Add("@LCSITLOK", SqlDbType.Char, 1);
-
-                comandoDML.Parameters["@LCIDLOCLOK"].Value = locador.CodigoLocador;                
-                comandoDML.Parameters["@LCSITLOK"].Value = locador.SituacaoLocador;
+                comandoDML.Parameters.Add("@LCIDLOCLOK", SqlDbType.Int); 
+                comandoDML.Parameters["@LCIDLOCLOK"].Value = locador.CodigoLocador;                 
 
                 comandoDML.ExecuteNonQuery();
-                conexao.Close();
+                conexao.Close();                
             }
         }
     }

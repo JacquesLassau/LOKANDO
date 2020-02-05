@@ -6,12 +6,11 @@
 
     $.get("/Locador/SelecionarLocadorJR?codigoLocador=" + item, function (data) {
         
-        $("#txtNomeLocador").val(data.NomeLocador);
-        $("#txtHabilitacaoLocador").val(data.HabilitacaoLocador);
-        $("#txtCpfLocador").val(data.CpfLocador);
-        $("#txtRgLocador").val(data.RgLocador);
-        $("#txtNascimentoLocador").val(data.NascimentoLocadorStr);
+        $("#listarLocador").modal("hide");
+        $("#txtRzScLocador").val(data.RazaoSocialLocador);
+        $("#txtNmFsLocador").val(data.NomeFantasiaLocador);
         $("#txtEmailLocador").val(data.EmailLocador);
+        $("#txtDocumentoLocador").val(data.CpfCnpjLocador);
         $("#txtTelefoneLocador").val(data.TelefoneLocador);
         $("#txtEnderecoLocador").val(data.EnderecoLocador);
         $("#txtCidadeLocador").val(data.CidadeLocador);
@@ -19,7 +18,6 @@
         $("#txtCepLocador").val(data.CepLocador);
         $("#selSituacaoLocador").val(data.SituacaoLocador);
         $("#txtUltimaAtualizacaoLocador").val(data.HoraRegistroLocador);
-        $("#listarLocadors").modal("hide");
 
     });
 

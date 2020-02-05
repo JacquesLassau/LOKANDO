@@ -24,6 +24,13 @@ namespace LoKando.Models
             this.EmailUsuario = emailUsuario;
         }
 
+        public Usuario(string emailUsuario, char situacaoLocador)
+        {
+            this.EmailUsuario = emailUsuario;
+            this.SituacaoUsuario = situacaoLocador;
+        }
+
+
         public Usuario(int codigoUsuario, string emailUsuario, string senhaUsuario, char situacaoUsuario)
         {
             this.CodigoUsuario = codigoUsuario;

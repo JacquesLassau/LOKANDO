@@ -19,7 +19,7 @@
         $("#txtCepCliente").val(data.CepCliente);
         $("#selSituacaoCliente").val(data.SituacaoCliente);
         $("#txtUltimaAtualizacaoCliente").val(data.HoraRegistroCliente);
-        $("#listarClientes").modal("hide");
+        $("#listarCliente").modal("hide");
 
     });
 

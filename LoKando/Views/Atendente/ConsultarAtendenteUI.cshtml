@@ -1,77 +1,77 @@
 ﻿@{ViewBag.Title = "Consulta do Atendente";}
 @Scripts.Render("~/BLL/PesquisaHelperModal/HelperAtendente.js")
 @Scripts.Render("~/BLL/LinkHelperModal/LinkAtendente.js")
+@Scripts.Render("~/BLL/Mascara/MascaraAtendente.js")
 @model LoKando.Models.ControllerModel.AtendenteControllerModel
 
-    <div class="container">
-        <h2>Consulta do Atendente</h2>
-        <hr />
-        @using (Html.BeginForm("ConsultarAtendenteAR", "Atendente", FormMethod.Post))
-        {
-            <div class="row">
-                <div class="col-md-4 col-md-4 col-sm-6 col-xs-12">
-                    <fieldset id="pesquisaCodigoAtendente">
-                        <legend>Código do Atendente</legend>
-                        <div class="input-group">
-                            @Html.TextBox("txtCodigoAtendente", null, new { @class = "form-control", onfocusout = "PesquisarAtendente()", placeholder = "Pesquise o Código do Atendente", required = "required" })
-                            <button class="btn btn-primary" name="pesquisaAtendente" id="pesquisaAtendente" maxlength="5" data-toggle="modal" data-target="#listarAtendentes" onclick="PesquisarAtendente()" style="width:94.75%; margin-top:6px;"><i class="fa fa-search"></i>  Procurar</button>
-                        </div>
-                    </fieldset>
-                    <br />
-                    <fieldset id="dadosGerais">
-                        <legend>Dados Gerais do Atendente</legend>
-                        <div class="form-group">
-                            @Html.Label("lblNomeAtendente", "Nome:")
-                            @Html.TextBox("txtNomeAtendente", null, new { @class = "form-control", placeholder = "preenchimento automático", disabled = "disabled" })
-                        </div>
-                        <div class="form-group">
-                            @Html.Label("lblEmailAtendente", "E-Mail:")
-                            @Html.TextBox("txtEmailAtendente", null, new { @class = "form-control", placeholder = "preenchimento automático", disabled = "disabled", type = "email" })
-                        </div>
-                        <div class="form-group">
-                            @Html.Label("lblSituacaoAtendente", "Qual é a Situação do Atendente?")
-                            @Html.Raw("<select id='selSituacaoAtendente' name='selSituacaoAtendente' class='form-control' disabled><option value='A'>Ativo</option><option value='B'>Bloqueado</option></select>")
-                        </div>
-                        <div class="form-group">
-                            @Html.Label("lblUltimaAtualizacao", "Última Atualização:")
-                            @Html.TextBox("txtUltimaAtualizacao", null, new { @class = "form-control", placeholder = "Auditoria do registro é automática", disabled = "disabled" })
-                        </div>
-                        <div class="form-group">                            
-                            <button class="btn btn-danger form-group" type="reset"><i class="fa fa-trash"></i> Limpar</button>
-                            <a href="@Url.Action("Index", "Inicio")" class="btn btn-primary form-group"><i class="fa fa-reply"></i> Voltar</a>
-                        </div>
-                    </fieldset>
-                </div>
+<div class="container">
+    <h2>Consulta do Atendente</h2>
+    <hr />
+    
+        <div class="row">
+            <div class="col-md-4 col-md-4 col-sm-6 col-xs-12">
+                <fieldset id="pesquisaCodigoAtendente">
+                    <legend>Código do Atendente</legend>
+                    <div class="input-group">
+                        @Html.TextBox("txtCodigoAtendente", null, new { @class = "form-control", onfocusout = "PesquisarAtendente()", placeholder = "Pesquise pelo Código do Atendente", required = "required" })
+                        <button class="btn btn-primary" name="pesquisaAtendente" id="pesquisaAtendente" maxlength="5" data-toggle="modal" data-target="#listarAtendentes" onclick="PesquisarAtendente()" style="width:94.75%; margin-top:6px;"><i class="fa fa-search"></i>  Procurar</button>
+                    </div>
+                </fieldset>
+                <br />
+                <fieldset id="dadosGerais">
+                    <legend>Dados Gerais do Atendente</legend>
+                    <div class="form-group">
+                        @Html.Label("lblNomeAtendente", "Nome:")
+                        @Html.TextBox("txtNomeAtendente", null, new { @class = "form-control", placeholder = "preenchimento automático", disabled = "disabled" })
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("lblEmailAtendente", "E-Mail:")
+                        @Html.TextBox("txtEmailAtendente", null, new { @class = "form-control", placeholder = "preenchimento automático", disabled = "disabled", type = "email" })
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("lblSituacaoAtendente", "Qual é a Situação do Atendente?")
+                        @Html.Raw("<select id='selSituacaoAtendente' name='selSituacaoAtendente' class='form-control' disabled><option value='A'>Ativo</option><option value='B'>Bloqueado</option></select>")
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("lblUltimaAtualizacao", "Última Atualização:")
+                        @Html.TextBox("txtUltimaAtualizacao", null, new { @class = "form-control", placeholder = "Auditoria do registro é automática", disabled = "disabled" })
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-danger form-group" type="reset"><i class="fa fa-trash"></i> Limpar</button>
+                        <a href="@Url.Action("Index", "Inicio")" class="btn btn-primary form-group"><i class="fa fa-reply"></i> Voltar</a>
+                    </div>
+                </fieldset>
             </div>
-        }
-    </div>
-    <div id="listarAtendentes" class="modal fade" role="dialog">
-        <div class="modal-dialog modal-sm modal-md modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title text-danger"><strong>Atendente não encontrado!</strong><br /></h4>
-                    <p class="lead">Consulte a lista abaixo e clique para selecionar um Atendente:</p>
-                </div>
-                <div class="modal-body">
+        </div>
+    
+</div>
+<div id="listarAtendentes" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg modal-md modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-danger"><strong>Atendente não encontrado!</strong><br /></h4>
+                <p class="lead">Consulte a lista abaixo e clique para selecionar um Atendente:</p>
+            </div>
+            <div class="modal-body text-center">
+                <hr />
+                @foreach (var model in Model.Atendente)
+                {
+                    <div class="row" style="margin-top:24px;">
+                        <div class="col-md-1"><Strong>@(model.CodigoAtendente)</Strong></div>
+                        <div class="col-md-3"><i class="fa fa-user"></i> @Html.LabelForModel(model.NomeAtendente)</div>
+                        <div class="col-md-4"><i class="fa fa-envelope"></i> @Html.LabelForModel(model.EmailAtendente)</div>
+                        <div class="col-md-2"><i class="fa fa-calendar"></i> @Html.LabelForModel(model.HoraRegistroAtendente)</div>
+                        <div class="col-md-2"><button class="btn btn-success" name="lnkCodigoAtendente" id="lnkCodigoAtendente-@(model.CodigoAtendente)" onclick='SelecionarAtendenteLinkModal("lnkCodigoAtendente-@(model.CodigoAtendente)")' value="@(model.CodigoAtendente)">Selecione <i class="fa fa-check"></i></button></div>
+                    </div>
                     <hr />
-                    @foreach (var model in Model.Atendente)
-                    {
-                        <div class="row" style="margin-top:24px;">
-                            <div class="col-md-1"><Strong>@(model.CodigoAtendente)</Strong></div>
-                            <div class="col-md-3"><i class="fa fa-user"></i> @Html.LabelForModel(model.NomeAtendente)</div>
-                            <div class="col-md-4"><i class="fa fa-envelope"></i> @Html.LabelForModel(model.EmailAtendente)</div>
-                            <div class="col-md-2"><i class="fa fa-calendar"></i> @Html.LabelForModel(model.HoraRegistroAtendente)</div>
-                            <div class="col-md-2"><button class="btn btn-success" name="lnkCodigoAtendente" id="lnkCodigoAtendente-@(model.CodigoAtendente)" onclick='SelecionarAtendenteLinkModal("lnkCodigoAtendente-@(model.CodigoAtendente)")' value="@(model.CodigoAtendente)">Selecione <i class="fa fa-check"></i></button></div>
-                        </div>
-                        <hr />
-                    }
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-reply"></i> Voltar</button>
-                </div>
+                }
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-reply"></i> Voltar</button>
             </div>
         </div>
     </div>
+</div>
 
 

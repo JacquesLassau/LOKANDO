@@ -1,4 +1,4 @@
-﻿function LimparObrigatoriosAtendente() {
+﻿function LimparObrigatoriosLocador() {
     $("#validaSenha").remove();
     $("#confirmaSenha").remove();
 }

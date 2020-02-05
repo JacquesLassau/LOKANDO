@@ -21,7 +21,7 @@ namespace LoKando.DAL
             {
                 conexao.Open();
 
-                SqlCommand comandoDML = new SqlCommand("CadastrarVeiculoV1", conexao);
+                SqlCommand comandoDML = new SqlCommand("SP_CadastrarVeiculoV1", conexao);
                 comandoDML.CommandType = CommandType.StoredProcedure;
 
                 comandoDML.Parameters.Add("@VCCODLCDLOK", SqlDbType.Int);
@@ -59,7 +59,7 @@ namespace LoKando.DAL
             {
                 conexao.Open();
 
-                SqlCommand comandoDML = new SqlCommand("AlterarVeiculoV1", conexao);
+                SqlCommand comandoDML = new SqlCommand("SP_AlterarVeiculoV1", conexao);
                 comandoDML.CommandType = CommandType.StoredProcedure;
 
                 comandoDML.Parameters.Add("@VCIDLOK", SqlDbType.Int);                
@@ -85,7 +85,7 @@ namespace LoKando.DAL
             {
                 conexao.Open();
 
-                SqlCommand comandoDML = new SqlCommand("SituacaoVeiculoV1", conexao);
+                SqlCommand comandoDML = new SqlCommand("SP_SituacaoVeiculoV1", conexao);
                 comandoDML.CommandType = CommandType.StoredProcedure;
 
                 comandoDML.Parameters.Add("@VCIDLOK", SqlDbType.Int);

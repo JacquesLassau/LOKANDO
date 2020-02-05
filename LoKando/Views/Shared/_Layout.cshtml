@@ -14,6 +14,8 @@
 
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")    
+
+    <!-- CArregar Scripts Render dentro do arquivo BundleConfig-->
 </head>
 <body style="background-image: url('../img/fundo.png');background-repeat:no-repeat;">
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -51,7 +53,17 @@
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("Cadastro", "CadastrarLocadorUI", "Locador")</li>
                             <li>@Html.ActionLink("Alterar", "AlterarLocadorUI", "Locador")</li>
-
+                            <li>@Html.ActionLink("Consultar", "ConsultarLocadorUI", "Locador")</li>
+                            <li>@Html.ActionLink("Excluir", "ExcluirLocadorUI", "Locador")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-car" style="font-size:24px"> </i> Veículo</a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Cadastro", "CadastrarVeiculoUI", "Veiculo")</li>
+                            <li>@Html.ActionLink("Alterar", "AlterarVeiculoUI", "Veiculo")</li>
+                            <li>@Html.ActionLink("Consultar", "ConsultarVeiculoUI", "Veiculo")</li>
+                            <li>@Html.ActionLink("Excluir", "ExcluirVeiculoUI", "Veiculo")</li>
                         </ul>
                     </li>
                 </ul>
@@ -79,10 +91,7 @@
                     alert('@Html.Raw(HttpUtility.JavaScriptStringEncode(TempData[Constantes.MensagemAlerta].ToString()))');
                 });
             </script>
-
-
         }
-
     }  
 
 </body>

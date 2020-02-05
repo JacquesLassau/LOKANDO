@@ -16,10 +16,13 @@ namespace LoKando.Controllers
             ClienteControllerModel clienteControllerModel = new ClienteControllerModel();
             if(listaCliente != null)
             {
-                foreach(var cliente in listaCliente)
-                {
-                    clienteControllerModel.Cliente.Add(cliente);
-                }
+                clienteControllerModel.Cliente = listaCliente;
+                
+                //Utilizar em caso de validação
+                //foreach(var cliente in listaCliente)
+                //{
+                //    clienteControllerModel.Cliente.Add(cliente);
+                //}
             }
 
             return clienteControllerModel;

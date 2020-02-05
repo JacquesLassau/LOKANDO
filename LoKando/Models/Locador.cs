@@ -22,6 +22,11 @@ namespace LoKando.Models
 
         public Locador() { }
 
+        public Locador(int codigoLocador)
+        {
+            this.CodigoLocador = codigoLocador;
+        }
+
         public Locador(string mlLocador, string razaoScLocador, string fantasiaLocador, string documentoLocador, string telefoneLocador, string enderecoLocador, string cidadeLocador, string estadoLocador, string cepLocador, char situacaoLocador)
         {
             this.EmailLocador = mlLocador;
@@ -36,7 +41,20 @@ namespace LoKando.Models
             this.SituacaoLocador = situacaoLocador;
         }
 
-        public Locador(int idLocador, string mlLocador, string razaoScLocador, string fantasiaLocador, string documentoLocador, string telefoneLocador, string enderecoLocador, string cidadeLocador, string estadoLocador, string cepLocador, string ultimaAtualizaoLocador)
+        public Locador(int idLocador, string razaoScLocador, string fantasiaLocador, string telefoneLocador, string enderecoLocador, string cidadeLocador, string estadoLocador, string cepLocador, char situacaoLocador)
+        {
+            this.CodigoLocador = idLocador;
+            this.RazaoSocialLocador = razaoScLocador;
+            this.NomeFantasiaLocador = fantasiaLocador;            
+            this.TelefoneLocador = telefoneLocador;
+            this.EnderecoLocador = enderecoLocador;
+            this.CidadeLocador = cidadeLocador;
+            this.EstadoLocador = estadoLocador;
+            this.CepLocador = cepLocador;
+            this.SituacaoLocador = situacaoLocador;
+        }
+
+        public Locador(int idLocador, string mlLocador, string razaoScLocador, string fantasiaLocador, string documentoLocador, string telefoneLocador, string enderecoLocador, string cidadeLocador, string estadoLocador, string cepLocador, char situacaoLocador, string ultimaAtualizaoLocador)
         {
             this.CodigoLocador = idLocador;
             this.EmailLocador = mlLocador;
@@ -48,6 +66,7 @@ namespace LoKando.Models
             this.CidadeLocador = cidadeLocador;
             this.EstadoLocador = estadoLocador;
             this.CepLocador = cepLocador;
+            this.SituacaoLocador = situacaoLocador;
             this.HoraRegistroLocador = ultimaAtualizaoLocador;
         }
     }

@@ -1,4 +1,7 @@
-﻿/*############### Dados Gerais do Cliente ###############*/
+﻿/*############### Código do Cliente ###############*/
+$("#txtCodigoCliente").mask("000000");
+
+/*############### Dados Gerais do Cliente ###############*/
 $("#txtTelefoneCliente").mask("(00)00000-0000");
 
 /*############### Documentação do Cliente ###############*/
