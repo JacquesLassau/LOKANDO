@@ -16,6 +16,7 @@ namespace LoKando.Controllers
             AtendenteControllerModel atendenteControllerModel = new AtendenteControllerModel();
             if(listaAtendente != null)
             {
+                // for está sendo usado para CASO deseje incluir validação no carregamento dos registros via controller
                 foreach (var atendente in listaAtendente)
                 {
                     atendenteControllerModel.Atendente.Add(atendente);

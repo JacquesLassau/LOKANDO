@@ -1,7 +1,8 @@
 ﻿@{ViewBag.Title = "Cadastro de Veículo";}
-@Scripts.Render("~/BLL/LimparObrigatorios/LimparObrigatoriosLocador.js")
-@Scripts.Render("~/BLL/PesquisaSenha/SenhaLocador.js")
+@Scripts.Render("~/BLL/Mascara/MascaraVeiculo.js")
+@Scripts.Render("~/BLL/Mascara/MascaraDinheiro.js")
 @Scripts.Render("~/BLL/Mascara/MascaraLocador.js")
+@Scripts.Render("~/BLL/PlacaVeiculo/PlacaVeiculo.js")
 @Scripts.Render("~/BLL/DocumentoLocador/DocumentoLocador.js")
 @Scripts.Render("~/BLL/DocumentoLocador/MascaraDocumentoLocador.js")
 @Scripts.Render("~/BLL/PesquisaHelperModal/HelperLocador.js")
@@ -11,18 +12,16 @@
 <div class="container">
     <h2>Cadastro do Veículo</h2>
     <hr />
-    @using (Html.BeginForm("CadastrarVeículoAR", "Locador", FormMethod.Post))
+    @using (Html.BeginForm("CadastrarVeiculoAR", "Veiculo", FormMethod.Post))
     {
         <div class="row">
             <div class="col-md-4 col-md-4 col-sm-6 col-xs-12">
                 <fieldset id="pesquisaCodigoLocador">
                     <legend>Informações do Locador</legend>
                     <div class="input-group">
-                        @Html.TextBox("txtCodigoLocador", null, new { @class = "form-control", onfocusout = "PesquisarLocador()", placeholder = "Pesquise pelpelo Código do Locador", required = "required" })
-                        @Html.TextBox("txtRzScLocador", null, new { @class = "form-control", placeholder = "Preenchimento Automático", disabled = "disabled", style = "margin-top:6px" })
-                    </div>
-                    <div class="input-group">
-                        <button class="btn btn-primary" name="pesquisaLocador" id="pesquisaLocador" maxlength="5" data-toggle="modal" data-target="#listarLocador" onclick="PesquisarLocador()" style="margin-top:6px;"><i class="fa fa-search"></i> Procurar</button>
+                        @Html.TextBox("txtCodigoLocador", null, new { @class = "form-control", placeholder = "Código do Locador", @readonly = "readonly" })
+                        @Html.TextBox("txtNmFsLocador", null, new { @class = "form-control", placeholder = "Razão Social do Locador", style = "margin-top:6px;", @readonly = "readonly" })
+                        <a class="btn btn-primary" name="pesquisaLocador" id="pesquisaLocador" data-toggle="modal" data-target="#listarLocador" style="margin-top:6px;"><i class="fa fa-search"></i> Clique aqui pesquise pelo Locador</a>
                     </div>
                 </fieldset>
                 <br />
@@ -42,26 +41,26 @@
                         @Html.TextBox("txtModeloVeiculo", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
                     </div>
                     <div class="form-group">
-                        @Html.Label("lblCorVeiculo", "Modelo:")
+                        @Html.Label("lblCorVeiculo", "Cor:")
                         @Html.TextBox("txtCorVeiculo", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
                     </div>
                     <div class="form-group">
                         @Html.Label("lblCombustivelVeiculo", "Combustível:")
-                        @Html.Raw("<select id='selCombustivelVeiculo' name='selCombustivelVeiculo' class='form-control' required><option value='GASOLINA'>Gasolina</option><option value='ALCOOL'>Alcool</option><option value='GAS'>Gás</option><option value='ELETRICO'>Elétrico</option><option value='FLEX'>Flex</option><option value='HIBRIDO'>Híbrido</option><option value='OUTROS'>Outro Tipo</option></select>")
+                        @Html.Raw("<select id='selCombustivelVeiculo' name='selCombustivelVeiculo' class='form-control' required><option value='GASOLINA'>Gasolina</option><option value='ALCOOL'>Álcool</option><option value='GAS'>Gás</option><option value='ELETRICO'>Elétrico</option><option value='FLEX'>Flex</option><option value='HIBRIDO'>Híbrido</option><option value='DIESEL'>Diesel</option><option value='DIESEL_S10'>Diesel-S10</option><option value='ETANOL'>Etanol</option><option value='OUTRO'>Outro</option></select>")
                     </div>
                     <div class="form-group">
                         @Html.Label("lblSituacaoLocador", "Qual é a Situação do Veículo?")
-                        @Html.Raw("<select id='selSituacaoVeiculo' name='selSituacaoVeiculo' class='form-control' required><option value='A'>Ativo</option><option value='B'>Bloqueado</option></select>")
-                    </div>                    
+                        @Html.Raw("<select id='selSituacaoVeiculo' name='selSituacaoVeiculo' class='form-control' required><option value='D'>Disponível</option><option value='B'>Bloqueado</option></select>")
+                    </div>
                 </fieldset>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">                
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <fieldset id="documentoDiariaVeiculo">
                     <legend>Documentação e Diárias</legend>
                     <br />
                     <div class="form-group">
                         @Html.Label("lblPlacaVeiculo", "Placa:")
-                        @Html.TextBox("txtPlacaVeiculo", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
+                        @Html.TextBox("txtPlacaVeiculo", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", onfocusout = "ValidaPlaca()" })
                     </div>
                     <div class="form-group">
                         @Html.Label("lblRenavamVeiculo", "Renavam:")
@@ -69,11 +68,10 @@
                     </div>
                     <div class="form-group">
                         @Html.Label("lblValorDiariaVeiculo", "Diária R$:")
-                        @Html.TextBox("txtValorDiariaVeiculo", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
-                    </div>                    
+                        @Html.TextBox("txtValorDiariaVeiculo", null, new { @class = "form-control", maxlength = "6", onkeydown = "FormataMoeda(this,5,event)", onkeypress = "return maskKeyPress(event)", placeholder = "preencha aqui", required = "required" })
+                    </div>
                 </fieldset>
             </div>
-            <!-- PESQUISAR SE APOLICES DE SEGURO PODEM SER CONSULTADAS APENAS PELO NUMERO, OU NECESSARIO UPLOAD DE DOCUMENTO-->
         </div>
         <div class="form-group">
             <button class="btn btn-success form-group" type="submit"><i class="fa fa-check"></i> Confirmar</button>

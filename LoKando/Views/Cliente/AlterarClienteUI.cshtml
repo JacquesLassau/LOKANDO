@@ -33,7 +33,7 @@
                     </div>
                     <div class="form-group">
                         @Html.Label("lblEmailCliente", "E-Mail:")
-                        @Html.TextBox("txtEmailCliente", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", disabled = "disalbed" })
+                        @Html.TextBox("txtEmailCliente", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", @readonly = "readonly" })
                     </div>
                     <div class="form-group">
                         @Html.Label("lblNascimentoCliente", "Data de Nascimento:")
@@ -50,7 +50,7 @@
                     </div>
                     <div class="form-group">
                         @Html.Label("lblUltimaAtualizacaoCliente", "Última Atualização:")
-                        @Html.TextBox("txtUltimaAtualizacaoCliente", null, new { @class = "form-control", placeholder = "Auditoria do registro é automática", disabled = "disalbed" })
+                        @Html.TextBox("txtUltimaAtualizacaoCliente", null, new { @class = "form-control", placeholder = "Auditoria do registro é automática", @readonly = "readonly" })
                     </div>
                 </fieldset>
             </div>
@@ -64,12 +64,12 @@
                     </div>
                     <div class="form-group">
                         @Html.Label("lblCpfCliente", "Cpf:")
-                        @Html.TextBox("txtCpfCliente", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", disabled = "disalbed" })
+                        @Html.TextBox("txtCpfCliente", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", @readonly = "readonly" })
                         @Html.Raw("<div id='validaCpf'></div>")
                     </div>
                     <div class="form-group">
                         @Html.Label("lblHabilitacaoCliente", "Habilitação:")
-                        @Html.TextBox("txtHabilitacaoCliente", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", disabled = "disalbed" })
+                        @Html.TextBox("txtHabilitacaoCliente", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", @readonly = "readonly" })
                         @Html.Raw("<div id='validaHabilitacao'></div>")
                     </div>
                 </fieldset>

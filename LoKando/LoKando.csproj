@@ -163,6 +163,8 @@
     <Content Include="BLL\LinkHelperModal\LinkLocador.js" />
     <Content Include="BLL\LinkHelperModal\LinkCliente.js" />
     <Content Include="BLL\Mascara\MascaraAtendente.js" />
+    <Content Include="BLL\Mascara\MascaraDinheiro.js" />
+    <Content Include="BLL\Mascara\MascaraVeiculo.js" />
     <Content Include="BLL\Mascara\MascaraLocador.js" />
     <Content Include="BLL\Mascara\MascaraCliente.js" />
     <Content Include="BLL\PesquisaHelperModal\HelperAtendente.js" />
@@ -171,6 +173,7 @@
     <Content Include="BLL\PesquisaSenha\SenhaLocador.js" />
     <Content Include="BLL\PesquisaSenha\SenhaCliente.js" />
     <Content Include="BLL\PesquisaSenha\SenhaAtendente.js" />
+    <Content Include="BLL\PlacaVeiculo\PlacaVeiculo.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />

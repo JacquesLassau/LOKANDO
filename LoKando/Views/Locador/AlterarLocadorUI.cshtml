@@ -19,7 +19,7 @@
                     <legend>Código do Locador</legend>
                     <div class="input-group">
                         @Html.TextBox("txtCodigoLocador", null, new { @class = "form-control", onfocusout = "PesquisarLocador()", placeholder = "Pesquise pelo Código do Locador", required = "required" })
-                        <button class="btn btn-primary" name="pesquisaLocador" id="pesquisaLocador" maxlength="5" data-toggle="modal" data-target="#listarLocador" onclick="PesquisarLocador()" style="width:94.75%; margin-top:6px;"><i class="fa fa-search"></i>  Procurar</button>
+                        <button class="btn btn-primary" name="pesquisaLocador" id="pesquisaLocador" data-toggle="modal" data-target="#listarLocador" onclick="PesquisarLocador()" style="width:94.75%; margin-top:6px;"><i class="fa fa-search"></i>  Procurar</button>
                     </div>
                 </fieldset>
                 <br />
@@ -28,7 +28,7 @@
                     <br />
                     <div class="form-group">
                         @Html.Label("lblRzScLocador", "Razão Social:")
-                        @Html.TextBox("txtRzScLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
+                        @Html.TextBox("txtRzScLocado", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
                     </div>
                     <div class="form-group">
                         @Html.Label("lblNmFsLocador", "Nome Fantasia:")
@@ -36,7 +36,7 @@
                     </div>
                     <div class="form-group">
                         @Html.Label("lblEmailLocador", "E-Mail:")
-                        @Html.TextBox("txtEmailLocador", null, new { @class = "form-control", placeholder = "preencha aqui", disabled = "disabled" })
+                        @Html.TextBox("txtEmailLocador", null, new { @class = "form-control", placeholder = "preencha aqui", @readonly="readonly" })
                     </div>
                     <div class="form-group">
                         @Html.Label("lblTelefoneLocador", "Telefone:")
@@ -56,7 +56,7 @@
                 <fieldset id="documentoLocador">
                     <legend>Documentação</legend>
                     <hr />
-                    <input type="text" class="form-control" name="txtDocumentoLocador" id="txtDocumentoLocador" placeholder="preenchimento automático" disabled/>
+                    <input type="text" class="form-control" name="txtDocumentoLocador" id="txtDocumentoLocador" placeholder="preenchimento automático" readonly/>
                 </fieldset>
                 <br />
                 <fieldset id="enderecoContato">

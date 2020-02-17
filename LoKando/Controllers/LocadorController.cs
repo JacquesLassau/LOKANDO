@@ -16,6 +16,7 @@ namespace LoKando.Controllers
             LocadorControllerModel locadorControllerModel = new LocadorControllerModel();
             if (listaLocador != null)
             {
+                // for está sendo usado para CASO deseje incluir validação no carregamento dos registros via controller
                 foreach (var locador in listaLocador)
                 {
                     locadorControllerModel.Locador.Add(locador);
