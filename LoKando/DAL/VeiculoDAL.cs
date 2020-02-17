@@ -127,6 +127,90 @@ namespace LoKando.DAL
             }
         }
 
+        public Veiculo SelecionarVeiculoRenavam(string renavamVeiculo)
+        {
+            using (SqlConnection conexao = Conexao.ConexaoDatabase())
+            {
+                conexao.Open();
+
+                Veiculo veiculo = new Veiculo();
+                veiculo.RenavamVeiculo = renavamVeiculo;
+
+                SqlCommand comandoDML = new SqlCommand("SP_SelecionarVeiculoRenavamV1", conexao);
+                comandoDML.CommandType = CommandType.StoredProcedure;
+
+                comandoDML.Parameters.Add("@VCRNVLOK", SqlDbType.VarChar, 100);
+                comandoDML.Parameters["@VCRNVLOK"].Value = veiculo.RenavamVeiculo;
+
+                SqlDataReader dr = comandoDML.ExecuteReader();
+
+                bool consultarRenavamVeiculo = dr.HasRows;
+
+                if (consultarRenavamVeiculo == false)
+                {
+                    veiculo.RenavamVeiculo = null;
+                }
+                else
+                {
+                    while (dr.Read())
+                    {
+                        int idVeiculo = Convert.ToInt32(dr["VCIDLOK"]);
+                        string idLocadorVeiculo = Convert.ToString(dr["VCCODLCDLOK"]);
+                        string tipoVeiculo = Convert.ToString(dr["VCTPLOK"]);
+                        string marcaVeiculo = Convert.ToString(dr["VCMARCALOK"]);
+                        string modeloVeiculo = Convert.ToString(dr["VCMODELOK"]);
+                        string plcVeiculo = Convert.ToString(dr["VCPLACALOK"]);
+                        string rnvVeiculo = Convert.ToString(dr["VCRNVLOK"]);
+                        string combustivelVeiculo = Convert.ToString(dr["VCCOMBLOK"]);
+                        string corVeiculo = Convert.ToString(dr["VCCORLOK"]);
+                        string vlrDiaVeiculo = Convert.ToString(dr["VCVLRDIA"]);
+                        string situacaoVeiculo = Convert.ToString(dr["VCSITLOK"]);
+                        string ultimaAtualizaoVeiculo = Convert.ToString(dr["VCHRREGLOK"]);
+
+                        veiculo = new Veiculo(idVeiculo, Convert.ToInt32(idLocadorVeiculo), tipoVeiculo, marcaVeiculo, modeloVeiculo, plcVeiculo, rnvVeiculo, combustivelVeiculo, corVeiculo, Convert.ToDecimal(vlrDiaVeiculo), Convert.ToChar(situacaoVeiculo), ultimaAtualizaoVeiculo);
+                    }
+                }
+
+                conexao.Close();
+                return veiculo;
+            }
+        }
+
+        public List<Veiculo> ListarVeiculo()
+        {
+            using (SqlConnection conexao = Conexao.ConexaoDatabase())
+            {
+                conexao.Open();
+
+                List<Veiculo> veiculo = new List<Veiculo>();
+
+                SqlCommand comandoDML = new SqlCommand("SP_ListarVeiculoV1", conexao);
+                comandoDML.CommandType = CommandType.StoredProcedure;
+
+                SqlDataReader dr = comandoDML.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    string codigoVeiculo = Convert.ToString(dr["VCIDLOK"]);
+                    string codigoLocadorVeiculo = Convert.ToString(dr["VCCODLCDLOK"]);
+                    string tipoVeiculo = Convert.ToString(dr["VCTPLOK"]);
+                    string marcaVeiculo = Convert.ToString(dr["VCMARCALOK"]);
+                    string modeloVeiculo = Convert.ToString(dr["VCMODELOK"]);
+                    string placaVeiculo = Convert.ToString(dr["VCPLACALOK"]);
+                    string renavamVeiculo = Convert.ToString(dr["VCRNVLOK"]);
+                    string combustivelVeiculo = Convert.ToString(dr["VCCOMBLOK"]);
+                    string corVeiculo = Convert.ToString(dr["VCCORLOK"]);
+                    string valorDiaVeiculo = Convert.ToString(dr["VCVLRDIA"]);
+                    string situacaoVeiculo = Convert.ToString(dr["VCSITLOK"]);
+                    string ultimaAtualizaoVeiculo = Convert.ToString(dr["VCHRREGLOK"]);
+
+                    veiculo.Add(new Veiculo(Convert.ToInt32(codigoVeiculo), Convert.ToInt32(codigoLocadorVeiculo), tipoVeiculo, marcaVeiculo, modeloVeiculo, placaVeiculo, renavamVeiculo, combustivelVeiculo, corVeiculo, Convert.ToDecimal(valorDiaVeiculo), Convert.ToChar(situacaoVeiculo), ultimaAtualizaoVeiculo);
+                }
+                conexao.Close();
+                return veiculo;
+            }
+        }
+
         public void ExcluirVeiculo(Veiculo veiculo){
 
             using (SqlConnection conexao = Conexao.ConexaoDatabase())

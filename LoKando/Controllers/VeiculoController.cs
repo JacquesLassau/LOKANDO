@@ -11,7 +11,7 @@ namespace LoKando.Controllers
 {
     public class VeiculoController : Controller
     {
-        public LocadorControllerModel ConvertToModel(List<Locador> listaLocador)
+        public LocadorControllerModel LocadorConvertToModel(List<Locador> listaLocador)
         {
             LocadorControllerModel locadorControllerModel = new LocadorControllerModel();
             if (listaLocador != null)
@@ -26,11 +26,26 @@ namespace LoKando.Controllers
             return locadorControllerModel;
         }
 
+        public VeiculoControllerModel VeiculoConvertToModel(List<Veiculo> listaVeiculo)
+        {
+            VeiculoControllerModel veiculoControllerModel = new VeiculoControllerModel();
+            if (listaVeiculo != null)
+            {
+                // for está sendo usado para CASO deseje incluir validação no carregamento dos registros via controller
+                foreach (var veiculo in listaVeiculo)
+                {
+                    veiculoControllerModel.Veiculo.Add(veiculo);
+                }
+            }
+
+            return veiculoControllerModel;
+        }
+
         [HttpGet]
         public ActionResult CadastrarVeiculoUI()
         {
             LocadorDAL locadorDAL = new LocadorDAL();
-            LocadorControllerModel locadorViewModel = ConvertToModel(locadorDAL.ListarLocador());
+            LocadorControllerModel locadorViewModel = LocadorConvertToModel(locadorDAL.ListarLocador());
             return View(locadorViewModel);
         }
 
@@ -61,6 +76,7 @@ namespace LoKando.Controllers
             {
                 Locador codigoLocador = locadorDAL.SelecionarLocadorId(Convert.ToInt32(txtCodigoLocador));
                 Veiculo placaVeiculo = veiculoDAL.SelecionarVeiculoPlaca(txtPlacaVeiculo);
+                Veiculo renavamVeiculo = veiculoDAL.SelecionarVeiculoRenavam(txtRenavamVeiculo);
 
                 if (codigoLocador.CodigoLocador == 0)
                 {
@@ -70,6 +86,11 @@ namespace LoKando.Controllers
                 else if (placaVeiculo.PlacaVeiculo != null)
                 {
                     TempData[Constantes.MensagemAlerta] = "Esta placa de veículo já existe no sistema! Tente novamente... ";
+                    return RedirectToAction("CadastrarVeiculoUI", "Veiculo");
+                }
+                else if (renavamVeiculo.RenavamVeiculo != null)
+                {
+                    TempData[Constantes.MensagemAlerta] = "Este RENAVAM já existe no sistema! Tente novamente... ";
                     return RedirectToAction("CadastrarVeiculoUI", "Veiculo");
                 }
                 else
@@ -82,6 +103,18 @@ namespace LoKando.Controllers
                 }
             }               
 
+        }
+
+        public ActionResult AlterarVeiculoUI()
+        {
+
+            LocadorDAL locadorDAL = new LocadorDAL();
+            LocadorControllerModel locadorViewModel = LocadorConvertToModel(locadorDAL.ListarLocador());
+            return View(locadorViewModel);
+
+            VeiculoDAL veiculoDAL = new VeiculoDAL();
+            VeiculoControllerModel veiculoViewModel = VeiculoConvertToModel(veiculoDAL.ListarVeiculo());
+            return View(veiculoViewModel);
         }
     }
 }

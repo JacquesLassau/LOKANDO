@@ -222,6 +222,7 @@
     <Content Include="Views\Locador\ConsultarLocadorUI.cshtml" />
     <Content Include="Views\Locador\ExcluirLocadorUI.cshtml" />
     <Content Include="Views\Veiculo\CadastrarVeiculoUI.cshtml" />
+    <Content Include="Views\Veiculo\AlterarVeiculoUI.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
