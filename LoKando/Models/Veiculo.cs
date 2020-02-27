@@ -9,6 +9,7 @@ namespace LoKando.Models
     {
         public int CodigoVeiculo { get; set; }
         public int CodigoLocadorVeiculo { get; set; }
+        public string NmFsVeiculoLocador { get; set; }
         public string TipoVeiculo { get; set; }
         public string MarcaVeiculo { get; set; }
         public string ModeloVeiculo { get; set; }
@@ -22,6 +23,11 @@ namespace LoKando.Models
         public string HoraRegistroVeiculo { get; }
 
         public Veiculo() { }
+
+        public Veiculo(string placaVeiculo) 
+        {
+            this.PlacaVeiculo = placaVeiculo;
+        }
 
         public Veiculo(int codigoVeiculo, int codigoLocadorVeiculo, string tipoVeiculo, string marcaVeiculo, string modeloVeiculo, string placaVeiculo, string renavamVeiculo, string combustivelVeiculo, string corVeiculo, decimal valorDiaVeiculo, char situacaoVeiculo, string ultimaAtualizaoVeiculo)
         {
@@ -41,11 +47,12 @@ namespace LoKando.Models
             this.HoraRegistroVeiculo = ultimaAtualizaoVeiculo;
         }
 
-        public Veiculo(int codigoLocadorVeiculo, string tipoVeiculo, string marcaVeiculo, string modeloVeiculo, string placaVeiculo, string renavamVeiculo, string combustivelVeiculo, string corVeiculo, decimal valorDiaVeiculo, char situacaoVeiculo, string ultimaAtualizaoVeiculo)
+        public Veiculo(int codigoLocadorVeiculo, string nmFsLocador, string tipoVeiculo, string marcaVeiculo, string modeloVeiculo, string placaVeiculo, string renavamVeiculo, string combustivelVeiculo, string corVeiculo, decimal valorDiaVeiculo, char situacaoVeiculo, string ultimaAtualizaoVeiculo)
         {
             this.ValorDiaVeiculoStrEntrada = Convert.ToString(valorDiaVeiculo).Replace(',', '.');
                         
             this.CodigoLocadorVeiculo = codigoLocadorVeiculo;
+            this.NmFsVeiculoLocador = nmFsLocador;
             this.TipoVeiculo = tipoVeiculo;
             this.MarcaVeiculo = marcaVeiculo;
             this.ModeloVeiculo = modeloVeiculo;
@@ -73,5 +80,21 @@ namespace LoKando.Models
             this.ValorDiaVeiculo = valorDiaVeiculo;
             this.SituacaoVeiculo = situacaoVeiculo;            
         }
+        
+        public Veiculo(int codigoLocadorVeiculo, string tipoVeiculo, string marcaVeiculo, string modeloVeiculo, string placaVeiculo, string combustivelVeiculo, string corVeiculo, decimal valorDiaVeiculo, char situacaoVeiculo)
+        {
+            this.ValorDiaVeiculoStrEntrada = Convert.ToString(valorDiaVeiculo).Replace(',', '.');
+
+            this.CodigoLocadorVeiculo = codigoLocadorVeiculo;
+            this.TipoVeiculo = tipoVeiculo;
+            this.MarcaVeiculo = marcaVeiculo;
+            this.ModeloVeiculo = modeloVeiculo;
+            this.PlacaVeiculo = placaVeiculo;
+            this.CombustivelVeiculo = combustivelVeiculo;
+            this.CorVeiculo = corVeiculo;
+            this.ValorDiaVeiculo = valorDiaVeiculo;
+            this.SituacaoVeiculo = situacaoVeiculo;
+        }
+
     }
 }

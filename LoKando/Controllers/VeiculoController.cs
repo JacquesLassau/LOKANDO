@@ -49,14 +49,6 @@ namespace LoKando.Controllers
             return View(locadorViewModel);
         }
 
-        [HttpGet]
-        public JsonResult SelecionarLocadorJR(int codigoLocador)
-        {
-            LocadorDAL locadorDAL = new LocadorDAL();
-            Locador locador = locadorDAL.SelecionarLocadorId(codigoLocador);
-            return Json(locador, JsonRequestBehavior.AllowGet);
-        }
-
         [HttpPost]
         public ActionResult CadastrarVeiculoAR(string txtCodigoLocador, string selTipoVeiculo, string txtMarcaVeiculo, string txtModeloVeiculo, string txtCorVeiculo, string selCombustivelVeiculo, string selSituacaoVeiculo, string txtPlacaVeiculo, string txtRenavamVeiculo, string txtValorDiariaVeiculo)
         {            
@@ -105,16 +97,102 @@ namespace LoKando.Controllers
 
         }
 
+        [HttpGet]
         public ActionResult AlterarVeiculoUI()
         {
-
-            LocadorDAL locadorDAL = new LocadorDAL();
-            LocadorControllerModel locadorViewModel = LocadorConvertToModel(locadorDAL.ListarLocador());
-            return View(locadorViewModel);
-
             VeiculoDAL veiculoDAL = new VeiculoDAL();
-            VeiculoControllerModel veiculoViewModel = VeiculoConvertToModel(veiculoDAL.ListarVeiculo());
+            VeiculoControllerModel veiculoViewModel = VeiculoConvertToModel(veiculoDAL.ListarVeiculoLocador());
+            return View(veiculoViewModel);            
+        }
+
+        [HttpGet]
+        public ActionResult ConsultarVeiculoUI()
+        {
+            VeiculoDAL veiculoDAL = new VeiculoDAL();
+            VeiculoControllerModel veiculoViewModel = VeiculoConvertToModel(veiculoDAL.ListarVeiculoLocador());
             return View(veiculoViewModel);
         }
+
+        public ActionResult ExcluirVeiculoUI()
+        {
+            VeiculoDAL veiculoDAL = new VeiculoDAL();
+            VeiculoControllerModel veiculoViewModel = VeiculoConvertToModel(veiculoDAL.ListarVeiculoLocador());
+            return View(veiculoViewModel);
+        }
+
+        [HttpGet]
+        public JsonResult SelecionarLocadorJR(int codigoLocador)
+        {
+            LocadorDAL locadorDAL = new LocadorDAL();
+            Locador locador = locadorDAL.SelecionarLocadorId(codigoLocador);
+            return Json(locador, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult SelecionarVeiculoLocadorJR(string placaVeiculo)
+        {
+            VeiculoDAL veiculoDAL = new VeiculoDAL();
+            Veiculo veiculo = veiculoDAL.SelecionarVeiculoPlaca(placaVeiculo);
+            return Json(veiculo, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult AlterarVeiculoAR(string txtCodigoLocador, string selTipoVeiculo, string txtMarcaVeiculo, string txtModeloVeiculo, string txtPlacaVeiculo, string txtCorVeiculo, string selCombustivelVeiculo, string selSituacaoVeiculo, string txtValorDiariaVeiculo)
+        {
+            LocadorDAL locadorDAL = new LocadorDAL();
+            VeiculoDAL veiculoDAL = new VeiculoDAL();
+
+            Locador locador = new Locador();
+            Veiculo veiculo = new Veiculo();
+
+            if (txtCodigoLocador == "" || txtCodigoLocador == null)
+            {
+                TempData[Constantes.MensagemAlerta] = "Acesso Negado! Não é possível alterar um veículo sem o código do locador. Tente novamente... ";
+                return RedirectToAction("AlterarVeiculoUI", "Veiculo");
+
+            }
+            else
+            {
+                Locador codigoLocador = locadorDAL.SelecionarLocadorId(Convert.ToInt32(txtCodigoLocador));                
+
+                if (codigoLocador.CodigoLocador == 0)
+                {
+                    TempData[Constantes.MensagemAlerta] = "Código do Locador inválido! Tente novamente... ";
+                    return RedirectToAction("AlterarVeiculoUI", "Veiculo");
+                }                
+                else
+                {
+                    veiculo = new Veiculo(Convert.ToInt32(txtCodigoLocador), selTipoVeiculo, txtMarcaVeiculo, txtModeloVeiculo, txtPlacaVeiculo, selCombustivelVeiculo, txtCorVeiculo, Convert.ToDecimal(txtValorDiariaVeiculo), Convert.ToChar(selSituacaoVeiculo));
+                    veiculoDAL.AlterarVeiculo(veiculo);
+
+                    TempData[Constantes.MensagemAlerta] = "Veiculo Alterado com sucesso!";
+                    return RedirectToAction("Index", "Inicio");
+                }
+            }
+
+        }
+
+        [HttpPost]
+        public ActionResult ExcluirVeiculoAR(string txtPlacaVeiculo)
+        {
+            VeiculoDAL veiculoDAL = new VeiculoDAL();
+            Veiculo veiculo = new Veiculo();
+            Veiculo placaVeiculo = veiculoDAL.SelecionarVeiculoPlaca(txtPlacaVeiculo);
+
+            if (placaVeiculo.PlacaVeiculo == null)
+            {
+                TempData[Constantes.MensagemAlerta] = "Acesso Negado! Não Existe o veículo no sistema! Tente novamente... ";
+                return RedirectToAction("ExcluirVeiculoUI", "Veiculo");
+            }
+            else
+            {
+                veiculo = new Veiculo(txtPlacaVeiculo);
+                veiculoDAL.ExcluirVeiculo(veiculo);
+                TempData[Constantes.MensagemAlerta] = "Veiculo excluído com sucesso!";
+                return RedirectToAction("Index", "Inicio");
+                
+            }
+        }
+
     }
 }

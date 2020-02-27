@@ -17,10 +17,9 @@
         <div class="row">
             <div class="col-md-4 col-md-4 col-sm-6 col-xs-12">
                 <fieldset id="pesquisaCodigoLocador">
-                    <legend>Informações do Locador</legend>
+                    <legend>Código do Locador</legend>
                     <div class="input-group">
-                        @Html.TextBox("txtCodigoLocador", null, new { @class = "form-control", placeholder = "Código do Locador", @readonly = "readonly" })
-                        @Html.TextBox("txtNmFsLocador", null, new { @class = "form-control", placeholder = "Razão Social do Locador", style = "margin-top:6px;", @readonly = "readonly" })
+                        @Html.TextBox("txtCodigoLocador", null, new { @class = "form-control", placeholder = "Código do Locador", @readonly = "readonly" })                        
                         <a class="btn btn-primary" name="pesquisaLocador" id="pesquisaLocador" data-toggle="modal" data-target="#listarLocador" style="margin-top:6px;"><i class="fa fa-search"></i> Clique aqui pesquise pelo Locador</a>
                     </div>
                 </fieldset>
@@ -86,7 +85,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title text-danger"><strong>Locador não encontrado!</strong><br /></h4>
+                <h4 class="modal-title text-danger"><strong>Selecione um Locador!</strong><br /></h4>
                 <p class="lead">Consulte a lista abaixo e clique para selecionar um Locador:</p>
             </div>
             <div class="modal-body text-center">

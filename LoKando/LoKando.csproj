@@ -160,6 +160,7 @@
     <Content Include="BLL\LimparObrigatorios\LimparObrigatoriosAtendente.js" />
     <Content Include="BLL\LimparObrigatorios\LimparObrigatoriosCliente.js" />
     <Content Include="BLL\LinkHelperModal\LinkAtendente.js" />
+    <Content Include="BLL\LinkHelperModal\LinkVeiculoLocador.js" />
     <Content Include="BLL\LinkHelperModal\LinkLocador.js" />
     <Content Include="BLL\LinkHelperModal\LinkCliente.js" />
     <Content Include="BLL\Mascara\MascaraAtendente.js" />
@@ -223,6 +224,8 @@
     <Content Include="Views\Locador\ExcluirLocadorUI.cshtml" />
     <Content Include="Views\Veiculo\CadastrarVeiculoUI.cshtml" />
     <Content Include="Views\Veiculo\AlterarVeiculoUI.cshtml" />
+    <Content Include="Views\Veiculo\ConsultarVeiculoUI.cshtml" />
+    <Content Include="Views\Veiculo\ExcluirVeiculoUI.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -7,6 +7,6 @@ namespace LoKando
 {
     public class Constantes
     {
-        public const string MensagemAlerta = "AlertaController";
+        public const string MensagemAlerta = "AlertaController";        
     }
 }
