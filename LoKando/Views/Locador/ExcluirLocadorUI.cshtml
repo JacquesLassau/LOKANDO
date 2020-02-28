@@ -54,9 +54,8 @@
             </div>
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <fieldset id="documentoLocador">
-                    <legend>Documentação</legend>                    
-                    <hr />
-                    <input type="text" class="form-control" name="txtDocumentoLocador" id="txtDocumentoLocador" placeholder = "preenchimento automático" readonly/>                    
+                    <legend>Documentação</legend>
+                    @Html.TextBox("txtDocumentoLocador", null, new { @class = "form-control", placeholder = "preenchimento automático", @readonly = "readonly" })
                 </fieldset>
                 <br />
                 <fieldset id="enderecoContato">

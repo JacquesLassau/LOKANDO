@@ -17,10 +17,10 @@
         <div class="row">
             <div class="col-md-4 col-md-4 col-sm-6 col-xs-12">
                 <fieldset id="pesquisaCodigoLocador">
-                    <legend>Código do Locador</legend>
+                    <legend>Selecione um Veículo:</legend>
                     <div class="input-group">
                         @Html.TextBox("txtCodigoLocador", null, new { @class = "form-control", placeholder = "Código do Locador", @readonly = "readonly" })                        
-                        <a class="btn btn-primary" name="pesquisaVeiculoLocador" id="pesquisaVeiculoLocador" data-toggle="modal" data-target="#listarVeiculoLocador" style="margin-top:6px;"><i class="fa fa-search"></i> Clique aqui pesquise pelo Locador</a>
+                        <a class="btn btn-primary" name="pesquisaVeiculoLocador" id="pesquisaVeiculoLocador" data-toggle="modal" data-target="#listarVeiculoLocador" style="margin-top:6px;"><i class="fa fa-search"></i> Clique aqui pesquise pelo Veículo</a>
                     </div>
                 </fieldset>
                 <br />
@@ -59,7 +59,7 @@
             </div>
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <fieldset id="documentoDiariaVeiculo">
-                    <legend>Documentação e Diárias</legend>
+                    <legend>Identificação e Diárias</legend>
                     <br />
                     <div class="form-group">
                         @Html.Label("lblPlacaVeiculo", "Placa:")
@@ -88,7 +88,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title text-danger"><strong>Selecione um Veículo!</strong><br /></h4>
+                <h4 class="modal-title text-success"><strong>Selecione um Veículo:</strong><br /></h4>
                 <p class="lead">Consulte a lista abaixo e clique para selecionar um Veículo:</p>
             </div>
             <div class="modal-body text-center">

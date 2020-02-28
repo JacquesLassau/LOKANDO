@@ -1,4 +1,5 @@
 ﻿function LimparObrigatoriosCliente() {
-    $("#validaSenha").remove();
-    $("#confirmaSenha").remove();
+    $("#senha").remove();
+    $("#senhaConfirma").remove();
+    $("#valCpf").remove();
 }

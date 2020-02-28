@@ -19,7 +19,7 @@
                     <legend>Código do Locador</legend>
                     <div class="input-group">
                         @Html.TextBox("txtCodigoLocador", null, new { @class = "form-control", onfocusout = "PesquisarLocador()", placeholder = "Pesquise pelo Código do Locador" })
-                        <button class="btn btn-primary" name="pesquisaLocador" id="pesquisaLocador" maxlength="5" data-toggle="modal" data-target="#listarLocador" onclick="PesquisarLocador()" style="width:94.75%; margin-top:6px;"><i class="fa fa-search"></i>  Procurar</button>
+                        <a class="btn btn-primary" name="pesquisaLocador" id="pesquisaLocador" maxlength="5" data-toggle="modal" data-target="#listarLocador" onclick="PesquisarLocador()" style="width:94.75%; margin-top:6px;"><i class="fa fa-search"></i>  Procurar</a>
                     </div>
                 </fieldset>
                 <br />
@@ -54,8 +54,7 @@
             </div>
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <fieldset id="documentoLocador">
-                    <legend>Documentação</legend>
-                    <hr />                    
+                    <legend>Documentação</legend>                                      
                     @Html.TextBox("txtDocumentoLocador", null, new { @class = "form-control", placeholder = "preenchimento automático", @readonly = "readonly" })
                 </fieldset>
                 <br />

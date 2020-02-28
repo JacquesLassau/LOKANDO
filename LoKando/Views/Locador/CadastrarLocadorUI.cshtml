@@ -51,12 +51,8 @@
                 <fieldset id="documentoLocador">
                     <legend>Documentação</legend>
                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                        <label class="btn btn-primary active" id="cpfLocador" name="cpfLocador" onclick="CpfLocador()">
-                            <input type="radio" name="cpf"> Cpf
-                        </label>
-                        <label class="btn btn-primary" id="cnpjLocador" name="cnpjLocador" onclick="CnpjLocador()">
-                            <input type="radio" name="cnpj" > Cnpj
-                        </label>
+                        @Html.Raw("<label class='btn btn-primary active' id='cpfLocador' name='cpfLocador' onclick='CpfLocador()'><input type='radio' name='cpf'> Cpf</label>")
+                        @Html.Raw("<label class='btn btn-primary' id='cnpjLocador' name='cnpjLocador' onclick='CnpjLocador()'><input type='radio' name='cnpj'> Cnpj</label>")
                     </div>
                     <hr />
                     <input type="text" class="form-control" name="txtDocumentoLocador" id="txtDocumentoLocador" placeholder="000.000.000-00" onfocusout="ValidaDocumentoLocador()" />

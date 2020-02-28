@@ -12,7 +12,7 @@
 <div class="container">
     <h2>Consulta do Cliente</h2>
     <hr />
-    @using (Html.BeginForm("ConsultarClienteAR", "Cliente", FormMethod.Post))
+    @using (Html.BeginForm("ConsultarClienteAR", "Cliente", FormMethod.Get))
     {
         <div class="row">
             <div class="col-md-4 col-md-4 col-sm-6 col-xs-12">
@@ -20,7 +20,7 @@
                     <legend>Código do Cliente</legend>
                     <div class="input-group">
                         @Html.TextBox("txtCodigoCliente", null, new { @class = "form-control", onfocusout = "PesquisarCliente()", placeholder = "Pesquise pelo Código do Cliente", required = "required" })
-                        <button class="btn btn-primary" name="pesquisaCliente" id="pesquisaCliente" maxlength="5" data-toggle="modal" data-target="#listarCliente" onclick="PesquisarCliente()" style="width:94.75%; margin-top:6px;"><i class="fa fa-search"></i>  Procurar</button>
+                        <a class="btn btn-primary" name="pesquisaCliente" id="pesquisaCliente" maxlength="5" data-toggle="modal" data-target="#listarCliente" onclick="PesquisarCliente()" style="width:94.75%; margin-top:6px;"><i class="fa fa-search"></i>  Procurar</a>
                     </div>
                 </fieldset>
                 <br />

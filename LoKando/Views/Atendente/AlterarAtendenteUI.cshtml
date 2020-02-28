@@ -15,7 +15,7 @@
                     <legend>Código do Atendente</legend>
                     <div class="input-group">
                         @Html.TextBox("txtCodigoAtendente", null, new { @class = "form-control", onfocusout = "PesquisarAtendente()", placeholder = "Pesquise pelo Código do Atendente", required = "required" })
-                        <button class="btn btn-primary" name="pesquisaAtendente" id="pesquisaAtendente" maxlength="5" data-toggle="modal" data-target="#listarAtendentes" onclick="PesquisarAtendente()" style="width:94.75%; margin-top:6px;"><i class="fa fa-search"></i>  Procurar</button>
+                        <a class="btn btn-primary" name="pesquisaAtendente" id="pesquisaAtendente" maxlength="5" data-toggle="modal" data-target="#listarAtendentes" onclick="PesquisarAtendente()" style="width:94.75%; margin-top:6px;"><i class="fa fa-search"></i>  Procurar</a>
                     </div>
                 </fieldset>
                 <br />
