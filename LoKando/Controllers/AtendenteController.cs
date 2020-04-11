@@ -26,13 +26,14 @@ namespace LoKando.Controllers
             return atendenteControllerModel;
         }
 
-        [HttpGet]
+        [HttpGet]        
         public ActionResult CadastrarAtendenteUI()
         {
             return View("CadastrarAtendenteUI");
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult CadastrarAtendenteAR(string txtNomeAtendente, string txtEmailAtendente, string txtSenhaAtendente, string selSituacaoAtendente)
         {
            
@@ -69,6 +70,7 @@ namespace LoKando.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult AlterarAtendenteAR(string txtCodigoAtendente, string txtNomeAtendente, string selSituacaoAtendente)
         {
             AtendenteDAL atendenteDAL = new AtendenteDAL();
@@ -114,6 +116,7 @@ namespace LoKando.Controllers
         }
                 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult ExcluirAtendenteAR(string txtCodigoAtendente)
         {            
             AtendenteDAL atendenteDAL = new AtendenteDAL();

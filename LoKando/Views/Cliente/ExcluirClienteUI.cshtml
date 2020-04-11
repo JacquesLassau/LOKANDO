@@ -101,6 +101,7 @@
             <button class="btn btn-danger form-group" type="reset" onclick="LimparObrigatoriosCliente()"><i class="fa fa-trash"></i> Limpar</button>
             <a href="@Url.Action("Index", "Inicio")" class="btn btn-primary form-group"><i class="fa fa-reply"></i> Voltar</a>
         </div>
+        @Html.AntiForgeryToken()
     }
 </div>
 <div id="listarCliente" class="modal fade" role="dialog">

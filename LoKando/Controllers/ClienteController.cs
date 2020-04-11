@@ -33,7 +33,8 @@ namespace LoKando.Controllers
         }
 
 
-        [HttpPost]                                                                                                                                                                                                              
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult CadastrarClienteAR(string txtNomeCliente, string txtHabilitacaoCliente, string txtCpfCliente, string txtRgCliente, string txtNascimentoCliente,string txtEmailCliente, string txtTelefoneCliente, string txtEnderecoCliente, string txtCidadeCliente, string selEstadoCliente, string txtCepCliente,string selSituacaoCliente, string txtSenhaCliente)
         {
             ClienteDAL clienteDAL = new ClienteDAL();
@@ -83,6 +84,7 @@ namespace LoKando.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult AlterarClienteAR(string txtCodigoCliente, string txtNomeCliente, string txtRgCliente, string txtNascimentoCliente, string txtTelefoneCliente, string txtEnderecoCliente, string txtCidadeCliente, string selEstadoCliente, string txtCepCliente, string selSituacaoCliente)
         {
             ClienteDAL clienteDAL = new ClienteDAL();
@@ -128,6 +130,7 @@ namespace LoKando.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult ExcluirClienteAR(string txtCodigoCliente)
         {
             ClienteDAL clienteDAL = new ClienteDAL();

@@ -34,6 +34,7 @@ namespace LoKando.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult CadastrarLocadorAR(string txtRzScLocador, string txtNmFsLocador, string txtEmailLocador, string txtSenhaLocador, string txtTelefoneLocador, string selSituacaoLocador, string txtDocumentoLocador, string txtEnderecoLocador, string txtCidadeLocador, string selEstadoLocador, string txtCepLocador)
         {
 
@@ -78,6 +79,8 @@ namespace LoKando.Controllers
             return View(locadorViewModel);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult AlterarLocadorAR(string txtCodigoLocador, string txtRzScLocador, string txtNmFsLocador, string txtEmailLocador, string txtTelefoneLocador, string selSituacaoLocador, string txtEnderecoLocador, string txtCidadeLocador, string selEstadoLocador, string txtCepLocador)
         {
             LocadorDAL locadorDAL = new LocadorDAL();
@@ -122,6 +125,7 @@ namespace LoKando.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult ExcluirLocadorAR(string txtCodigoLocador)
         {
             LocadorDAL locadorDAL = new LocadorDAL();

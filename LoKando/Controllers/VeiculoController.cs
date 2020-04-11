@@ -50,6 +50,7 @@ namespace LoKando.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult CadastrarVeiculoAR(string txtCodigoLocador, string selTipoVeiculo, string txtMarcaVeiculo, string txtModeloVeiculo, string txtCorVeiculo, string selCombustivelVeiculo, string selSituacaoVeiculo, string txtPlacaVeiculo, string txtRenavamVeiculo, string txtValorDiariaVeiculo)
         {            
             LocadorDAL locadorDAL = new LocadorDAL();            
@@ -137,6 +138,7 @@ namespace LoKando.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult AlterarVeiculoAR(string txtCodigoLocador, string selTipoVeiculo, string txtMarcaVeiculo, string txtModeloVeiculo, string txtPlacaVeiculo, string txtCorVeiculo, string selCombustivelVeiculo, string selSituacaoVeiculo, string txtValorDiariaVeiculo)
         {
             LocadorDAL locadorDAL = new LocadorDAL();
@@ -173,6 +175,7 @@ namespace LoKando.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult ExcluirVeiculoAR(string txtPlacaVeiculo)
         {
             VeiculoDAL veiculoDAL = new VeiculoDAL();

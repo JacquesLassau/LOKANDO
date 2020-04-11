@@ -7,7 +7,7 @@
     <h2>Cadastro do Atendente</h2>
     <hr />
     @using (Html.BeginForm("CadastrarAtendenteAR", "Atendente", FormMethod.Post))
-    {
+    {        
          <div class="row">
              <div class="col-md-4 col-md-4 col-sm-6 col-xs-12">
                  <fieldset id="dadosGerais">
@@ -43,5 +43,6 @@
              <button class="btn btn-danger form-group" type="reset" onclick="LimparObrigatoriosAtendente()"><i class="fa fa-trash"></i> Limpar</button>
              <a href="@Url.Action("Index", "Inicio")" class="btn btn-primary form-group"><i class="fa fa-reply"></i> Voltar</a>
          </div>
+         @Html.AntiForgeryToken()
     }
 </div>
