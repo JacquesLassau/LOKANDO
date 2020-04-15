@@ -55,6 +55,32 @@
                 </fieldset>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <fieldset id="enderecoContato">
+                    <legend>Endereço</legend>
+                    <br />
+                    <div class="form-group">
+                        @Html.Label("lblEnderecoCliente", "Logadouro:")
+                        @Html.TextBox("txtEnderecoCliente", null, new { @class = "form-control", placeholder = "preenchimento automático", @readonly = "readonly" })
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("lblBairroCliente", "Bairro:")
+                        @Html.TextBox("txtBairroCliente", null, new { @class = "form-control", placeholder = "preenchimento automático", @readonly = "readonly" })
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("lblCidadeCliente", "Cidade:")
+                        @Html.TextBox("txtCidadeCliente", null, new { @class = "form-control", placeholder = "preenchimento automático", @readonly = "readonly" })
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("lblEstadoCliente", "Estado:")
+                        @Html.Raw("<select id='selEstadoCliente' name='selEstadoCliente' class='form-control' disabled><option value='AC'>Acre</option><option value='AL'>Alagoas</option><option value='AP'>Amapá</option><option value='AM'>Amazonas</option><option value='BA'>Bahia</option><option value='CE'>Ceará</option><option value='DF'>Distrito Federal</option><option value='ES'>Espírito Santo</option><option value='GO'>Goiás</option><option value='MA'>Maranhão</option><option value='MT'>Mato Grosso</option><option value='MS'>Mato Grosso do Sul</option><option value='MG'>Minas Gerais</option><option value='PA'>Pará</option><option value='PB'>Paraíba</option><option value='PR'>Paraná</option><option value='PE'>Pernambuco</option><option value='PI'>Piauí</option><option value='RJ'>Rio de Janeiro</option><option value='RN'>Rio Grande do Norte</option><option value='RS'>Rio Grande do Sul</option><option value='RO'>Rondônia</option><option value='RR'>Roraima</option><option value='SC'>Santa Catarina</option><option value='SP'>São Paulo</option><option value='SE'>Sergipe</option><option value='TO'>Tocantins</option><option value='EX'>Estrangeiro</option></select>")
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("lblCepCliente", "CEP:")
+                        @Html.TextBox("txtCepCliente", null, new { @class = "form-control", placeholder = "preenchimento automático", @readonly = "readonly" })
+                    </div>
+                </fieldset>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <fieldset id="documentosCliente">
                     <legend>Documentação</legend>
                     <br />
@@ -73,28 +99,7 @@
                         @Html.Raw("<div id='validaHabilitacao'></div>")
                     </div>
                 </fieldset>
-                <br />
-                <fieldset id="enderecoContato">
-                    <legend>Endereço</legend>
-                    <br />
-                    <div class="form-group">
-                        @Html.Label("lblEnderecoCliente", "Logadouro:")
-                        @Html.TextBox("txtEnderecoCliente", null, new { @class = "form-control", placeholder = "preenchimento automático", @readonly="readonly" })
-                    </div>
-                    <div class="form-group">
-                        @Html.Label("lblCidadeCliente", "Cidade:")
-                        @Html.TextBox("txtCidadeCliente", null, new { @class = "form-control", placeholder = "preenchimento automático", @readonly="readonly" })
-                    </div>
-                    <div class="form-group">
-                        @Html.Label("lblEstadoCliente", "Estado:")
-                        @Html.Raw("<select id='selEstadoCliente' name='selEstadoCliente' class='form-control' disabled><option value='AC'>Acre</option><option value='AL'>Alagoas</option><option value='AP'>Amapá</option><option value='AM'>Amazonas</option><option value='BA'>Bahia</option><option value='CE'>Ceará</option><option value='DF'>Distrito Federal</option><option value='ES'>Espírito Santo</option><option value='GO'>Goiás</option><option value='MA'>Maranhão</option><option value='MT'>Mato Grosso</option><option value='MS'>Mato Grosso do Sul</option><option value='MG'>Minas Gerais</option><option value='PA'>Pará</option><option value='PB'>Paraíba</option><option value='PR'>Paraná</option><option value='PE'>Pernambuco</option><option value='PI'>Piauí</option><option value='RJ'>Rio de Janeiro</option><option value='RN'>Rio Grande do Norte</option><option value='RS'>Rio Grande do Sul</option><option value='RO'>Rondônia</option><option value='RR'>Roraima</option><option value='SC'>Santa Catarina</option><option value='SP'>São Paulo</option><option value='SE'>Sergipe</option><option value='TO'>Tocantins</option><option value='EX'>Estrangeiro</option></select>")
-                    </div>
-                    <div class="form-group">
-                        @Html.Label("lblCepCliente", "CEP:")
-                        @Html.TextBox("txtCepCliente", null, new { @class = "form-control", placeholder = "preenchimento automático", @readonly="readonly" })
-                    </div>
-                </fieldset>
-            </div>
+            </div>            
         </div>
         <div class="form-group">
             <button class="btn btn-success form-group" type="submit"><i class="fa fa-check"></i> Confirmar</button>

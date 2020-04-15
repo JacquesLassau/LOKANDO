@@ -27,6 +27,7 @@
                 $("#txtEmailCliente").val(data.EmailCliente);
                 $("#txtTelefoneCliente").val(data.TelefoneCliente);
                 $("#txtEnderecoCliente").val(data.EnderecoCliente);
+                $("#txtBairroCliente").val(data.BairroCliente);
                 $("#txtCidadeCliente").val(data.CidadeCliente);
                 $("#selEstadoCliente").val(data.EstadoCliente);
                 $("#txtCepCliente").val(data.CepCliente);
@@ -47,6 +48,7 @@
                 $("#txtEmailCliente").val(null);
                 $("#txtTelefoneCliente").val(null);
                 $("#txtEnderecoCliente").val(null);
+                $("#txtBairroCliente").val(null);
                 $("#txtCidadeCliente").val(null);
                 $("#selEstadoCliente").val(null);
                 $("#txtCepCliente").val(null);

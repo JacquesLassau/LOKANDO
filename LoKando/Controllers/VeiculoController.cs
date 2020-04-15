@@ -51,7 +51,7 @@ namespace LoKando.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CadastrarVeiculoAR(string txtCodigoLocador, string selTipoVeiculo, string txtMarcaVeiculo, string txtModeloVeiculo, string txtCorVeiculo, string selCombustivelVeiculo, string selSituacaoVeiculo, string txtPlacaVeiculo, string txtRenavamVeiculo, string txtValorDiariaVeiculo)
+        public ActionResult CadastrarVeiculoAR(string txtCodigoLocador, string selTipoVeiculo, string txtMarcaVeiculo, string txtModeloVeiculo, string txtCorVeiculo, string selCombustivelVeiculo, string txtAnoVeiculo, string selSituacaoVeiculo, string txtPlacaVeiculo, string txtRenavamVeiculo, string txtValorDiariaVeiculo)
         {            
             LocadorDAL locadorDAL = new LocadorDAL();            
             VeiculoDAL veiculoDAL = new VeiculoDAL();
@@ -88,7 +88,7 @@ namespace LoKando.Controllers
                 }
                 else
                 {
-                    veiculo = new Veiculo(Convert.ToInt32(txtCodigoLocador), selTipoVeiculo, txtMarcaVeiculo, txtModeloVeiculo, txtPlacaVeiculo, txtRenavamVeiculo, selCombustivelVeiculo, txtCorVeiculo, Convert.ToDecimal(txtValorDiariaVeiculo), Convert.ToChar(selSituacaoVeiculo));
+                    veiculo = new Veiculo(Convert.ToInt32(txtCodigoLocador), selTipoVeiculo, txtMarcaVeiculo, txtModeloVeiculo, txtPlacaVeiculo, txtRenavamVeiculo, selCombustivelVeiculo, txtCorVeiculo, txtAnoVeiculo, Convert.ToDecimal(txtValorDiariaVeiculo), Convert.ToChar(selSituacaoVeiculo));
                     veiculoDAL.CadastrarVeiculo(veiculo);
 
                     TempData[Constantes.MensagemAlerta] = "Veiculo cadastrado com sucesso!";
@@ -139,7 +139,7 @@ namespace LoKando.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AlterarVeiculoAR(string txtCodigoLocador, string selTipoVeiculo, string txtMarcaVeiculo, string txtModeloVeiculo, string txtPlacaVeiculo, string txtCorVeiculo, string selCombustivelVeiculo, string selSituacaoVeiculo, string txtValorDiariaVeiculo)
+        public ActionResult AlterarVeiculoAR(string txtCodigoLocador, string selTipoVeiculo, string txtMarcaVeiculo, string txtModeloVeiculo, string txtPlacaVeiculo, string txtCorVeiculo, string selCombustivelVeiculo, string txtAnoVeiculo, string selSituacaoVeiculo, string txtValorDiariaVeiculo)
         {
             LocadorDAL locadorDAL = new LocadorDAL();
             VeiculoDAL veiculoDAL = new VeiculoDAL();
@@ -164,7 +164,7 @@ namespace LoKando.Controllers
                 }                
                 else
                 {
-                    veiculo = new Veiculo(Convert.ToInt32(txtCodigoLocador), selTipoVeiculo, txtMarcaVeiculo, txtModeloVeiculo, txtPlacaVeiculo, selCombustivelVeiculo, txtCorVeiculo, Convert.ToDecimal(txtValorDiariaVeiculo), Convert.ToChar(selSituacaoVeiculo));
+                    veiculo = new Veiculo(Convert.ToInt32(txtCodigoLocador), selTipoVeiculo, txtMarcaVeiculo, txtModeloVeiculo, txtPlacaVeiculo, selCombustivelVeiculo, txtCorVeiculo, txtAnoVeiculo, Convert.ToDecimal(txtValorDiariaVeiculo), Convert.ToChar(selSituacaoVeiculo));
                     veiculoDAL.AlterarVeiculo(veiculo);
 
                     TempData[Constantes.MensagemAlerta] = "Veiculo Alterado com sucesso!";

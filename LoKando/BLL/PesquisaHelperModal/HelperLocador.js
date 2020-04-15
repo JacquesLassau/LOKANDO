@@ -32,6 +32,7 @@
                 $("#txtDocumentoLocador").val(data.CpfCnpjLocador);               
                 $("#txtTelefoneLocador").val(data.TelefoneLocador);
                 $("#txtEnderecoLocador").val(data.EnderecoLocador);
+                $("#txtBairroLocador").val(data.BairroLocador);
                 $("#txtCidadeLocador").val(data.CidadeLocador);
                 $("#selEstadoLocador").val(data.EstadoLocador);
                 $("#txtCepLocador").val(data.CepLocador);
@@ -52,6 +53,7 @@
                 $("#txtEmailLocador").val(null);
                 $("#txtTelefoneLocador").val(null);
                 $("#txtEnderecoLocador").val(null);
+                $("#txtBairroLocador").val(null);
                 $("#txtCidadeLocador").val(null);
                 $("#selEstadoLocador").val(null);
                 $("#txtCepLocador").val(null);

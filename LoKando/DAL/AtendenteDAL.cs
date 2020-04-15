@@ -182,7 +182,7 @@ namespace LoKando.DAL
                 comandoDML.CommandType = CommandType.StoredProcedure;
 
                 comandoDML.Parameters.Add("@ATIDATLOK", SqlDbType.Int);
-                comandoDML.Parameters["@ATIDATLOK"].Value = atendente.CodigoUsuarioAtendente;                
+                comandoDML.Parameters["@ATIDATLOK"].Value = atendente.CodigoAtendente;                
 
                 comandoDML.ExecuteNonQuery();
                 conexao.Close();

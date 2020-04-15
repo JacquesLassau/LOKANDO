@@ -15,6 +15,7 @@ namespace LoKando.Models
         public string ModeloVeiculo { get; set; }
         public string PlacaVeiculo { get; set; }
         public string RenavamVeiculo { get; set; }
+        public string AnoVeiculo { get; set; }
         public string CombustivelVeiculo { get; set; }
         public string CorVeiculo { get; set; }
         public decimal ValorDiaVeiculo { get; set; }
@@ -29,7 +30,7 @@ namespace LoKando.Models
             this.PlacaVeiculo = placaVeiculo;
         }
 
-        public Veiculo(int codigoVeiculo, int codigoLocadorVeiculo, string tipoVeiculo, string marcaVeiculo, string modeloVeiculo, string placaVeiculo, string renavamVeiculo, string combustivelVeiculo, string corVeiculo, decimal valorDiaVeiculo, char situacaoVeiculo, string ultimaAtualizaoVeiculo)
+        public Veiculo(int codigoVeiculo, int codigoLocadorVeiculo, string tipoVeiculo, string marcaVeiculo, string modeloVeiculo, string placaVeiculo, string renavamVeiculo, string combustivelVeiculo, string corVeiculo, string anoVeiculo, decimal valorDiaVeiculo, char situacaoVeiculo, string ultimaAtualizaoVeiculo)
         {
             this.ValorDiaVeiculoStrEntrada = Convert.ToString(valorDiaVeiculo).Replace(',', '.');
 
@@ -43,11 +44,12 @@ namespace LoKando.Models
             this.CombustivelVeiculo = combustivelVeiculo;
             this.CorVeiculo = corVeiculo;
             this.ValorDiaVeiculo = valorDiaVeiculo;
+            this.AnoVeiculo = anoVeiculo;
             this.SituacaoVeiculo = situacaoVeiculo;
             this.HoraRegistroVeiculo = ultimaAtualizaoVeiculo;
         }
 
-        public Veiculo(int codigoLocadorVeiculo, string nmFsLocador, string tipoVeiculo, string marcaVeiculo, string modeloVeiculo, string placaVeiculo, string renavamVeiculo, string combustivelVeiculo, string corVeiculo, decimal valorDiaVeiculo, char situacaoVeiculo, string ultimaAtualizaoVeiculo)
+        public Veiculo(int codigoLocadorVeiculo, string nmFsLocador, string tipoVeiculo, string marcaVeiculo, string modeloVeiculo, string placaVeiculo, string renavamVeiculo, string combustivelVeiculo, string corVeiculo, string anoVeiculo, decimal valorDiaVeiculo, char situacaoVeiculo, string ultimaAtualizaoVeiculo)
         {
             this.ValorDiaVeiculoStrEntrada = Convert.ToString(valorDiaVeiculo).Replace(',', '.');
                         
@@ -61,11 +63,12 @@ namespace LoKando.Models
             this.CombustivelVeiculo = combustivelVeiculo;
             this.CorVeiculo = corVeiculo;
             this.ValorDiaVeiculo = valorDiaVeiculo;
+            this.AnoVeiculo = anoVeiculo;
             this.SituacaoVeiculo = situacaoVeiculo;
             this.HoraRegistroVeiculo = ultimaAtualizaoVeiculo;
         }
 
-        public Veiculo(int codigoLocadorVeiculo, string tipoVeiculo, string marcaVeiculo, string modeloVeiculo, string placaVeiculo, string renavamVeiculo, string combustivelVeiculo, string corVeiculo, decimal valorDiaVeiculo, char situacaoVeiculo)
+        public Veiculo(int codigoLocadorVeiculo, string tipoVeiculo, string marcaVeiculo, string modeloVeiculo, string placaVeiculo, string renavamVeiculo, string combustivelVeiculo, string corVeiculo, string anoVeiculo, decimal valorDiaVeiculo, char situacaoVeiculo)
         {
             this.ValorDiaVeiculoStrEntrada = Convert.ToString(valorDiaVeiculo).Replace(',', '.');
 
@@ -77,11 +80,12 @@ namespace LoKando.Models
             this.RenavamVeiculo = renavamVeiculo;
             this.CombustivelVeiculo = combustivelVeiculo;
             this.CorVeiculo = corVeiculo;
+            this.AnoVeiculo = anoVeiculo;
             this.ValorDiaVeiculo = valorDiaVeiculo;
             this.SituacaoVeiculo = situacaoVeiculo;            
         }
         
-        public Veiculo(int codigoLocadorVeiculo, string tipoVeiculo, string marcaVeiculo, string modeloVeiculo, string placaVeiculo, string combustivelVeiculo, string corVeiculo, decimal valorDiaVeiculo, char situacaoVeiculo)
+        public Veiculo(int codigoLocadorVeiculo, string tipoVeiculo, string marcaVeiculo, string modeloVeiculo, string placaVeiculo, string combustivelVeiculo, string corVeiculo, string anoVeiculo, decimal valorDiaVeiculo, char situacaoVeiculo)
         {
             this.ValorDiaVeiculoStrEntrada = Convert.ToString(valorDiaVeiculo).Replace(',', '.');
 
@@ -92,6 +96,7 @@ namespace LoKando.Models
             this.PlacaVeiculo = placaVeiculo;
             this.CombustivelVeiculo = combustivelVeiculo;
             this.CorVeiculo = corVeiculo;
+            this.AnoVeiculo = anoVeiculo;
             this.ValorDiaVeiculo = valorDiaVeiculo;
             this.SituacaoVeiculo = situacaoVeiculo;
         }

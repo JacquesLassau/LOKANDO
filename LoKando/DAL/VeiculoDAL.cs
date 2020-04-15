@@ -33,7 +33,8 @@ namespace LoKando.DAL
                 comandoDML.Parameters.Add("@VCCORLOK", SqlDbType.VarChar, 100);
                 comandoDML.Parameters.Add("@VCCOMBLOK", SqlDbType.VarChar, 100);
                 comandoDML.Parameters.Add("@VCPLACALOK", SqlDbType.VarChar, 7);
-                comandoDML.Parameters.Add("@VCRNVLOK", SqlDbType.VarChar, 100);               
+                comandoDML.Parameters.Add("@VCRNVLOK", SqlDbType.VarChar, 100);
+                comandoDML.Parameters.Add("@VCANOLOK", SqlDbType.VarChar, 4);
                 comandoDML.Parameters.Add("@VCVLRDIA", SqlDbType.Decimal);                
                 comandoDML.Parameters.Add("@VCSITLOK", SqlDbType.Char, 1);
 
@@ -44,7 +45,8 @@ namespace LoKando.DAL
                 comandoDML.Parameters["@VCCORLOK"].Value = veiculo.CorVeiculo;
                 comandoDML.Parameters["@VCCOMBLOK"].Value = veiculo.CombustivelVeiculo;
                 comandoDML.Parameters["@VCPLACALOK"].Value = veiculo.PlacaVeiculo;
-                comandoDML.Parameters["@VCRNVLOK"].Value = veiculo.RenavamVeiculo;                
+                comandoDML.Parameters["@VCRNVLOK"].Value = veiculo.RenavamVeiculo;
+                comandoDML.Parameters["@VCANOLOK"].Value = veiculo.AnoVeiculo;
                 comandoDML.Parameters["@VCVLRDIA"].Value = veiculo.ValorDiaVeiculo;                
                 comandoDML.Parameters["@VCSITLOK"].Value = veiculo.SituacaoVeiculo;                
 
@@ -69,6 +71,7 @@ namespace LoKando.DAL
                 comandoDML.Parameters.Add("@VCCOMBLOK", SqlDbType.VarChar, 100);
                 comandoDML.Parameters.Add("@VCPLACALOK", SqlDbType.VarChar, 7);
                 comandoDML.Parameters.Add("@VCCORLOK", SqlDbType.VarChar, 100);
+                comandoDML.Parameters.Add("@VCANOLOK", SqlDbType.VarChar, 4);
                 comandoDML.Parameters.Add("@VCVLRDIA", SqlDbType.Decimal);
                 comandoDML.Parameters.Add("@VCSITLOK", SqlDbType.Char, 1);
                 
@@ -79,6 +82,7 @@ namespace LoKando.DAL
                 comandoDML.Parameters["@VCCOMBLOK"].Value = veiculo.CombustivelVeiculo;
                 comandoDML.Parameters["@VCPLACALOK"].Value = veiculo.PlacaVeiculo;
                 comandoDML.Parameters["@VCCORLOK"].Value = veiculo.CorVeiculo;
+                comandoDML.Parameters["@VCANOLOK"].Value = veiculo.AnoVeiculo;
                 comandoDML.Parameters["@VCVLRDIA"].Value = veiculo.ValorDiaVeiculo;
                 comandoDML.Parameters["@VCSITLOK"].Value = veiculo.SituacaoVeiculo;
 
@@ -123,11 +127,12 @@ namespace LoKando.DAL
                         string renavamVeiculo = Convert.ToString(dr["VCRNVLOK"]);
                         string combustivelVeiculo = Convert.ToString(dr["VCCOMBLOK"]);                        
                         string corVeiculo = Convert.ToString(dr["VCCORLOK"]);
+                        string anoVeiculo = Convert.ToString(dr["VCANOLOK"]);
                         string vlrDiaVeiculo = Convert.ToString(dr["VCVLRDIA"]);
                         string situacaoVeiculo = Convert.ToString(dr["VCSITLOK"]);
                         string ultimaAtualizaoVeiculo = Convert.ToString(dr["VCHRREGLOK"]);
 
-                        veiculo = new Veiculo(idVeiculo, Convert.ToInt32(idLocadorVeiculo), tipoVeiculo, marcaVeiculo, modeloVeiculo, plcVeiculo, renavamVeiculo, combustivelVeiculo, corVeiculo, Convert.ToDecimal(vlrDiaVeiculo), Convert.ToChar(situacaoVeiculo), ultimaAtualizaoVeiculo);
+                        veiculo = new Veiculo(idVeiculo, Convert.ToInt32(idLocadorVeiculo), tipoVeiculo, marcaVeiculo, modeloVeiculo, plcVeiculo, renavamVeiculo, combustivelVeiculo, corVeiculo, anoVeiculo, Convert.ToDecimal(vlrDiaVeiculo), Convert.ToChar(situacaoVeiculo), ultimaAtualizaoVeiculo);
                     }
                 }
 
@@ -172,11 +177,12 @@ namespace LoKando.DAL
                         string rnvVeiculo = Convert.ToString(dr["VCRNVLOK"]);
                         string combustivelVeiculo = Convert.ToString(dr["VCCOMBLOK"]);
                         string corVeiculo = Convert.ToString(dr["VCCORLOK"]);
+                        string anoVeiculo = Convert.ToString(dr["VCANOLOK"]);
                         string vlrDiaVeiculo = Convert.ToString(dr["VCVLRDIA"]);
                         string situacaoVeiculo = Convert.ToString(dr["VCSITLOK"]);
                         string ultimaAtualizaoVeiculo = Convert.ToString(dr["VCHRREGLOK"]);
 
-                        veiculo = new Veiculo(idVeiculo, Convert.ToInt32(idLocadorVeiculo), tipoVeiculo, marcaVeiculo, modeloVeiculo, plcVeiculo, rnvVeiculo, combustivelVeiculo, corVeiculo, Convert.ToDecimal(vlrDiaVeiculo), Convert.ToChar(situacaoVeiculo), ultimaAtualizaoVeiculo);
+                        veiculo = new Veiculo(idVeiculo, Convert.ToInt32(idLocadorVeiculo), tipoVeiculo, marcaVeiculo, modeloVeiculo, plcVeiculo, rnvVeiculo, combustivelVeiculo, corVeiculo, anoVeiculo, Convert.ToDecimal(vlrDiaVeiculo), Convert.ToChar(situacaoVeiculo), ultimaAtualizaoVeiculo);
                     }
                 }
 
@@ -214,11 +220,12 @@ namespace LoKando.DAL
                     string renavamVeiculo = Convert.ToString(dr["VCRNVLOK"]);
                     string combustivelVeiculo = Convert.ToString(dr["VCCOMBLOK"]);
                     string corVeiculo = Convert.ToString(dr["VCCORLOK"]);
+                    string anoVeiculo = Convert.ToString(dr["VCANOLOK"]);
                     string valorDiaVeiculo = Convert.ToString(dr["VCVLRDIA"]);
                     string situacaoVeiculo = Convert.ToString(dr["VCSITLOK"]);
                     string ultimaAtualizaoVeiculo = Convert.ToString(dr["VCHRREGLOK"]);
 
-                    veiculo.Add(new Veiculo(Convert.ToInt32(codigoVeiculo), Convert.ToInt32(codigoLocadorVeiculo), tipoVeiculo, marcaVeiculo, modeloVeiculo, placaVeiculo, renavamVeiculo, combustivelVeiculo, corVeiculo, Convert.ToDecimal(valorDiaVeiculo), Convert.ToChar(situacaoVeiculo), ultimaAtualizaoVeiculo));
+                    veiculo.Add(new Veiculo(Convert.ToInt32(codigoVeiculo), Convert.ToInt32(codigoLocadorVeiculo), tipoVeiculo, marcaVeiculo, modeloVeiculo, placaVeiculo, renavamVeiculo, combustivelVeiculo, corVeiculo, anoVeiculo, Convert.ToDecimal(valorDiaVeiculo), Convert.ToChar(situacaoVeiculo), ultimaAtualizaoVeiculo));
                 }
                 conexao.Close();
                 return veiculo;
@@ -250,11 +257,12 @@ namespace LoKando.DAL
                     string renavamVeiculo = Convert.ToString(dr["VCRNVLOK"]);
                     string combustivelVeiculo = Convert.ToString(dr["VCCOMBLOK"]);
                     string corVeiculo = Convert.ToString(dr["VCCORLOK"]);
+                    string anoVeiculo = Convert.ToString(dr["VCANOLOK"]);
                     string vlrDiaVeiculo = Convert.ToString(dr["VCVLRDIA"]);
                     string situacaoVeiculo = Convert.ToString(dr["VCSITLOK"]);
                     string ultimaAtualizaoVeiculo = Convert.ToString(dr["VCHRREGLOK"]);
 
-                    veiculo.Add(new Veiculo(Convert.ToInt32(idLocador), fantasiaLocador, tipoVeiculo, marcaVeiculo, modeloVeiculo, placaVeiculo, renavamVeiculo, combustivelVeiculo, corVeiculo, Convert.ToDecimal(vlrDiaVeiculo), Convert.ToChar(situacaoVeiculo), ultimaAtualizaoVeiculo));
+                    veiculo.Add(new Veiculo(Convert.ToInt32(idLocador), fantasiaLocador, tipoVeiculo, marcaVeiculo, modeloVeiculo, placaVeiculo, renavamVeiculo, combustivelVeiculo, corVeiculo, anoVeiculo, Convert.ToDecimal(vlrDiaVeiculo), Convert.ToChar(situacaoVeiculo), ultimaAtualizaoVeiculo));
                 }
                 conexao.Close();
                 return veiculo;

@@ -35,7 +35,7 @@ namespace LoKando.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CadastrarLocadorAR(string txtRzScLocador, string txtNmFsLocador, string txtEmailLocador, string txtSenhaLocador, string txtTelefoneLocador, string selSituacaoLocador, string txtDocumentoLocador, string txtEnderecoLocador, string txtCidadeLocador, string selEstadoLocador, string txtCepLocador)
+        public ActionResult CadastrarLocadorAR(string txtRzScLocador, string txtNmFsLocador, string txtEmailLocador, string txtSenhaLocador, string txtTelefoneLocador, string selSituacaoLocador, string txtDocumentoLocador, string txtEnderecoLocador, string txtBairroLocador, string txtCidadeLocador, string selEstadoLocador, string txtCepLocador)
         {
 
             LocadorDAL locadorDAL = new LocadorDAL();
@@ -60,7 +60,7 @@ namespace LoKando.Controllers
             else
             {
                 usuario = new Usuario(txtEmailLocador, txtSenhaLocador, Convert.ToChar(selSituacaoLocador));
-                locador = new Locador(txtEmailLocador, txtRzScLocador, txtNmFsLocador, txtDocumentoLocador, txtTelefoneLocador, txtEnderecoLocador, txtCidadeLocador, selEstadoLocador, txtCepLocador, Convert.ToChar(selSituacaoLocador));
+                locador = new Locador(txtEmailLocador, txtRzScLocador, txtNmFsLocador, txtDocumentoLocador, txtTelefoneLocador, txtEnderecoLocador, txtBairroLocador, txtCidadeLocador, selEstadoLocador, txtCepLocador, Convert.ToChar(selSituacaoLocador));
 
                 usuarioDAL.CadastrarUsuario(usuario);
                 locadorDAL.CadastrarLocador(locador);
@@ -81,7 +81,7 @@ namespace LoKando.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AlterarLocadorAR(string txtCodigoLocador, string txtRzScLocador, string txtNmFsLocador, string txtEmailLocador, string txtTelefoneLocador, string selSituacaoLocador, string txtEnderecoLocador, string txtCidadeLocador, string selEstadoLocador, string txtCepLocador)
+        public ActionResult AlterarLocadorAR(string txtCodigoLocador, string txtRzScLocador, string txtNmFsLocador, string txtEmailLocador, string txtTelefoneLocador, string selSituacaoLocador, string txtEnderecoLocador, string txtBairroLocador, string txtCidadeLocador, string selEstadoLocador, string txtCepLocador)
         {
             LocadorDAL locadorDAL = new LocadorDAL();
             Locador locador = locadorDAL.SelecionarLocadorId(Convert.ToInt32(txtCodigoLocador));              
@@ -93,7 +93,7 @@ namespace LoKando.Controllers
             }            
             else
             {                
-                locador = new Locador(Convert.ToInt32(txtCodigoLocador), txtRzScLocador, txtNmFsLocador, txtTelefoneLocador, txtEnderecoLocador, txtCidadeLocador, selEstadoLocador, txtCepLocador, Convert.ToChar(selSituacaoLocador));
+                locador = new Locador(Convert.ToInt32(txtCodigoLocador), txtRzScLocador, txtNmFsLocador, txtTelefoneLocador, txtEnderecoLocador, txtBairroLocador, txtCidadeLocador, selEstadoLocador, txtCepLocador, Convert.ToChar(selSituacaoLocador));
                 locadorDAL.AlterarLocador(locador);
                 TempData[Constantes.MensagemAlerta] = "Locador alterado com sucesso!";
                 return RedirectToAction("Index", "Inicio");
@@ -134,7 +134,8 @@ namespace LoKando.Controllers
             if (locador.CodigoLocador == 0)
             {
                 TempData[Constantes.MensagemAlerta] = "Não existe Locador para o código digitado... Tente novamente!";
-                return View("AlterarLocadorUI");
+                LocadorControllerModel locadorViewModel = ConvertToModel(locadorDAL.ListarLocador());                
+                return View("ExcluirLocadorUI", locadorViewModel);
             }
             else
             {

@@ -14,6 +14,7 @@
         $("#txtEmailCliente").val(data.EmailCliente);
         $("#txtTelefoneCliente").val(data.TelefoneCliente);
         $("#txtEnderecoCliente").val(data.EnderecoCliente);
+        $("#txtBairroCliente").val(data.BairroCliente);
         $("#txtCidadeCliente").val(data.CidadeCliente);
         $("#selEstadoCliente").val(data.EstadoCliente);
         $("#txtCepCliente").val(data.CepCliente);

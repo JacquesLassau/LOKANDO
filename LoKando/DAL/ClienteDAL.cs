@@ -34,6 +34,7 @@ namespace LoKando.DAL
                 comandoDML.Parameters.Add("@CLEMAILLOK", SqlDbType.VarChar, 100);
                 comandoDML.Parameters.Add("@CLNMLOK", SqlDbType.VarChar, 100);
                 comandoDML.Parameters.Add("@CLLOGLOK", SqlDbType.VarChar, 100);
+                comandoDML.Parameters.Add("@CLBAIRROLOK", SqlDbType.VarChar, 100);
                 comandoDML.Parameters.Add("@CLCIDLOK", SqlDbType.VarChar, 100);
                 comandoDML.Parameters.Add("@CLUFLOK", SqlDbType.VarChar, 2);
                 comandoDML.Parameters.Add("@CLCEPLOK", SqlDbType.VarChar, 9);
@@ -47,6 +48,7 @@ namespace LoKando.DAL
                 comandoDML.Parameters["@CLEMAILLOK"].Value = cliente.EmailCliente;
                 comandoDML.Parameters["@CLNMLOK"].Value = cliente.TelefoneCliente;
                 comandoDML.Parameters["@CLLOGLOK"].Value = cliente.EnderecoCliente;
+                comandoDML.Parameters["@CLBAIRROLOK"].Value = cliente.BairroCliente;
                 comandoDML.Parameters["@CLCIDLOK"].Value = cliente.CidadeCliente;
                 comandoDML.Parameters["@CLUFLOK"].Value = cliente.EstadoCliente;
                 comandoDML.Parameters["@CLCEPLOK"].Value = cliente.CepCliente;
@@ -72,6 +74,7 @@ namespace LoKando.DAL
                 comandoDML.Parameters.Add("@CLNASCLOK", SqlDbType.DateTime);                
                 comandoDML.Parameters.Add("@CLNMLOK", SqlDbType.VarChar, 100);
                 comandoDML.Parameters.Add("@CLLOGLOK", SqlDbType.VarChar, 100);
+                comandoDML.Parameters.Add("@CLBAIRROLOK", SqlDbType.VarChar, 100);
                 comandoDML.Parameters.Add("@CLCIDLOK", SqlDbType.VarChar, 100);
                 comandoDML.Parameters.Add("@CLUFLOK", SqlDbType.VarChar, 2);
                 comandoDML.Parameters.Add("@CLCEPLOK", SqlDbType.VarChar, 9);
@@ -83,6 +86,7 @@ namespace LoKando.DAL
                 comandoDML.Parameters["@CLNASCLOK"].Value = cliente.NascimentoCliente;                
                 comandoDML.Parameters["@CLNMLOK"].Value = cliente.TelefoneCliente;
                 comandoDML.Parameters["@CLLOGLOK"].Value = cliente.EnderecoCliente;
+                comandoDML.Parameters["@CLBAIRROLOK"].Value = cliente.BairroCliente;
                 comandoDML.Parameters["@CLCIDLOK"].Value = cliente.CidadeCliente;
                 comandoDML.Parameters["@CLUFLOK"].Value = cliente.EstadoCliente;
                 comandoDML.Parameters["@CLCEPLOK"].Value = cliente.CepCliente;
@@ -117,12 +121,13 @@ namespace LoKando.DAL
                     string emailCliente = Convert.ToString(dr["CLEMAILLOK"]);
                     string telefoneCliente = Convert.ToString(dr["CLNMLOK"]);
                     string logadouroCliente = Convert.ToString(dr["CLLOGLOK"]);
+                    string bairroCliente = Convert.ToString(dr["CLBAIRROLOK"]);
                     string cidadeCliente = Convert.ToString(dr["CLCIDLOK"]);
                     string estadoCliente = Convert.ToString(dr["CLUFLOK"]);
                     string cepCliente = Convert.ToString(dr["CLCEPLOK"]);
                     string ultimaAtualizacaoCliente = Convert.ToString(dr["CLHRREG"]);
 
-                    cliente.Add(new Cliente(idCliente, nomeCliente, habilitacaoCliente, cpfCliente, rgCliente, Convert.ToDateTime(nascimentoCliente), emailCliente, telefoneCliente, logadouroCliente, cidadeCliente, estadoCliente, cepCliente, ultimaAtualizacaoCliente));
+                    cliente.Add(new Cliente(idCliente, nomeCliente, habilitacaoCliente, cpfCliente, rgCliente, Convert.ToDateTime(nascimentoCliente), emailCliente, telefoneCliente, logadouroCliente, bairroCliente, cidadeCliente, estadoCliente, cepCliente, ultimaAtualizacaoCliente));
                 }
                 conexao.Close();
                 return cliente;
@@ -164,13 +169,14 @@ namespace LoKando.DAL
                         string emailCliente = Convert.ToString(dr["CLEMAILLOK"]);
                         string telefoneCliente = Convert.ToString(dr["CLNMLOK"]);
                         string logadouroCliente = Convert.ToString(dr["CLLOGLOK"]);
+                        string bairroCliente = Convert.ToString(dr["CLBAIRROLOK"]);
                         string cidadeCliente = Convert.ToString(dr["CLCIDLOK"]);
                         string estadoCliente = Convert.ToString(dr["CLUFLOK"]);
                         string cepCliente = Convert.ToString(dr["CLCEPLOK"]);
                         string situacaoCliente = Convert.ToString(dr["CLSITLOK"]);
                         string ultimaAtualizacaoCliente = Convert.ToString(dr["CLHRREG"]);
 
-                        cliente = new Cliente(idCliente, nomeCliente, habilitacaoCliente, cpfCliente, rgCliente, nascimentoCliente, emailCliente, telefoneCliente, logadouroCliente, cidadeCliente, estadoCliente, cepCliente, Convert.ToChar(situacaoCliente), ultimaAtualizacaoCliente);
+                        cliente = new Cliente(idCliente, nomeCliente, habilitacaoCliente, cpfCliente, rgCliente, nascimentoCliente, emailCliente, telefoneCliente, logadouroCliente, bairroCliente, cidadeCliente, estadoCliente, cepCliente, Convert.ToChar(situacaoCliente), ultimaAtualizacaoCliente);
                     }
                 }
 
@@ -215,12 +221,13 @@ namespace LoKando.DAL
                         string emailCliente = Convert.ToString(dr["CLEMAILLOK"]);
                         string telefoneCliente = Convert.ToString(dr["CLNMLOK"]);
                         string logadouroCliente = Convert.ToString(dr["CLLOGLOK"]);
+                        string bairroCliente = Convert.ToString(dr["CLBAIRROLOK"]);
                         string cidadeCliente = Convert.ToString(dr["CLCIDLOK"]);
                         string estadoCliente = Convert.ToString(dr["CLUFLOK"]);
                         string cepCliente = Convert.ToString(dr["CLCEPLOK"]);
                         string ultimaAtualizacaoCliente = Convert.ToString(dr["CLHRREG"]);
 
-                        cliente = new Cliente(idCliente, nomeCliente, habilitacaoCliente, cpfCliente, rgCliente, Convert.ToDateTime(nascimentoCliente), emailCliente, telefoneCliente, logadouroCliente, cidadeCliente, estadoCliente, cepCliente, ultimaAtualizacaoCliente);
+                        cliente = new Cliente(idCliente, nomeCliente, habilitacaoCliente, cpfCliente, rgCliente, Convert.ToDateTime(nascimentoCliente), emailCliente, telefoneCliente, logadouroCliente, bairroCliente, cidadeCliente, estadoCliente, cepCliente, ultimaAtualizacaoCliente);
                     }
                 }
 
@@ -264,12 +271,13 @@ namespace LoKando.DAL
                         string emlCliente = Convert.ToString(dr["CLEMAILLOK"]);
                         string telefoneCliente = Convert.ToString(dr["CLNMLOK"]);
                         string logadouroCliente = Convert.ToString(dr["CLLOGLOK"]);
+                        string bairroCliente = Convert.ToString(dr["CLBAIRROLOK"]);
                         string cidadeCliente = Convert.ToString(dr["CLCIDLOK"]);
                         string estadoCliente = Convert.ToString(dr["CLUFLOK"]);
                         string cepCliente = Convert.ToString(dr["CLCEPLOK"]);
                         string ultimaAtualizacaoCliente = Convert.ToString(dr["CLHRREG"]);
 
-                        cliente = new Cliente(idCliente, nomeCliente, habilitacaoCliente, cpfCliente, rgCliente, Convert.ToDateTime(nascimentoCliente), emlCliente, telefoneCliente, logadouroCliente, cidadeCliente, estadoCliente, cepCliente, ultimaAtualizacaoCliente);
+                        cliente = new Cliente(idCliente, nomeCliente, habilitacaoCliente, cpfCliente, rgCliente, Convert.ToDateTime(nascimentoCliente), emlCliente, telefoneCliente, logadouroCliente, bairroCliente, cidadeCliente, estadoCliente, cepCliente, ultimaAtualizacaoCliente);
                     }
                 }
 
@@ -314,12 +322,13 @@ namespace LoKando.DAL
                         string emailCliente = Convert.ToString(dr["CLEMAILLOK"]);
                         string telefoneCliente = Convert.ToString(dr["CLNMLOK"]);
                         string logadouroCliente = Convert.ToString(dr["CLLOGLOK"]);
+                        string bairroCliente = Convert.ToString(dr["CLBAIRROLOK"]);
                         string cidadeCliente = Convert.ToString(dr["CLCIDLOK"]);
                         string estadoCliente = Convert.ToString(dr["CLUFLOK"]);
                         string cepCliente = Convert.ToString(dr["CLCEPLOK"]);
                         string ultimaAtualizacaoCliente = Convert.ToString(dr["CLHRREG"]);
 
-                        cliente = new Cliente(idCliente, nomeCliente, habilitacaoCliente, pfCliente, rgCliente, Convert.ToDateTime(nascimentoCliente), emailCliente, telefoneCliente, logadouroCliente, cidadeCliente, estadoCliente, cepCliente, ultimaAtualizacaoCliente);
+                        cliente = new Cliente(idCliente, nomeCliente, habilitacaoCliente, pfCliente, rgCliente, Convert.ToDateTime(nascimentoCliente), emailCliente, telefoneCliente, logadouroCliente, bairroCliente, cidadeCliente, estadoCliente, cepCliente, ultimaAtualizacaoCliente);
                     }
                 }
 

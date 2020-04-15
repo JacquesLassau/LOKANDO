@@ -35,7 +35,7 @@ namespace LoKando.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CadastrarClienteAR(string txtNomeCliente, string txtHabilitacaoCliente, string txtCpfCliente, string txtRgCliente, string txtNascimentoCliente,string txtEmailCliente, string txtTelefoneCliente, string txtEnderecoCliente, string txtCidadeCliente, string selEstadoCliente, string txtCepCliente,string selSituacaoCliente, string txtSenhaCliente)
+        public ActionResult CadastrarClienteAR(string txtNomeCliente, string txtHabilitacaoCliente, string txtCpfCliente, string txtRgCliente, string txtNascimentoCliente,string txtEmailCliente, string txtTelefoneCliente, string txtEnderecoCliente, string txtBairroCliente, string txtCidadeCliente, string selEstadoCliente, string txtCepCliente,string selSituacaoCliente, string txtSenhaCliente)
         {
             ClienteDAL clienteDAL = new ClienteDAL();
             UsuarioDAL usuarioDAL = new UsuarioDAL();
@@ -65,7 +65,7 @@ namespace LoKando.Controllers
             else
             {
                 usuario = new Usuario(txtEmailCliente, txtSenhaCliente, Convert.ToChar(selSituacaoCliente));
-                cliente = new Cliente(txtNomeCliente, txtHabilitacaoCliente, txtCpfCliente, txtRgCliente, Convert.ToDateTime(txtNascimentoCliente), txtEmailCliente, txtTelefoneCliente, txtEnderecoCliente, txtCidadeCliente, selEstadoCliente, txtCepCliente, Convert.ToChar(selSituacaoCliente));
+                cliente = new Cliente(txtNomeCliente, txtHabilitacaoCliente, txtCpfCliente, txtRgCliente, Convert.ToDateTime(txtNascimentoCliente), txtEmailCliente, txtTelefoneCliente, txtEnderecoCliente, txtBairroCliente, txtCidadeCliente, selEstadoCliente, txtCepCliente, Convert.ToChar(selSituacaoCliente));
 
                 usuarioDAL.CadastrarUsuario(usuario);
                 clienteDAL.CadastrarCliente(cliente);
@@ -85,7 +85,7 @@ namespace LoKando.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AlterarClienteAR(string txtCodigoCliente, string txtNomeCliente, string txtRgCliente, string txtNascimentoCliente, string txtTelefoneCliente, string txtEnderecoCliente, string txtCidadeCliente, string selEstadoCliente, string txtCepCliente, string selSituacaoCliente)
+        public ActionResult AlterarClienteAR(string txtCodigoCliente, string txtNomeCliente, string txtRgCliente, string txtNascimentoCliente, string txtTelefoneCliente, string txtEnderecoCliente, string txtBairroCliente, string txtCidadeCliente, string selEstadoCliente, string txtCepCliente, string selSituacaoCliente)
         {
             ClienteDAL clienteDAL = new ClienteDAL();
             Cliente cliente = clienteDAL.SelecionarClienteId(Convert.ToInt32(txtCodigoCliente));
@@ -98,7 +98,7 @@ namespace LoKando.Controllers
             }
             else
             {
-                cliente = new Cliente(Convert.ToInt32(txtCodigoCliente), txtNomeCliente, txtRgCliente, Convert.ToDateTime(txtNascimentoCliente), txtTelefoneCliente, txtEnderecoCliente, txtCidadeCliente, selEstadoCliente, txtCepCliente, Convert.ToChar(selSituacaoCliente));
+                cliente = new Cliente(Convert.ToInt32(txtCodigoCliente), txtNomeCliente, txtRgCliente, Convert.ToDateTime(txtNascimentoCliente), txtTelefoneCliente, txtEnderecoCliente, txtBairroCliente, txtCidadeCliente, selEstadoCliente, txtCepCliente, Convert.ToChar(selSituacaoCliente));
                 clienteDAL.AlterarCliente(cliente);
                 TempData[Constantes.MensagemAlerta] = "Cliente Alterado com Sucesso!";
                 return RedirectToAction("Index", "Inicio");
@@ -144,7 +144,7 @@ namespace LoKando.Controllers
             }
             else
             {
-                cliente.CodigoUsuarioCliente = Convert.ToInt32(txtCodigoCliente);
+                cliente.CodigoCliente = Convert.ToInt32(txtCodigoCliente);
                 clienteDAL.ExcluirCliente(cliente);
                 TempData[Constantes.MensagemAlerta] = "Cliente Excluído com Sucesso!";
                 return RedirectToAction("Index", "Inicio");

@@ -13,6 +13,7 @@
         $("#txtModeloVeiculo").val(data.ModeloVeiculo);
         $("#txtCorVeiculo").val(data.CorVeiculo);
         $("#selCombustivelVeiculo").val(data.CombustivelVeiculo);
+        $("#txtAnoVeiculo").val(data.AnoVeiculo);
         $("#txtPlacaVeiculo").val(data.PlacaVeiculo);
         $("#txtRenavamVeiculo").val(data.RenavamVeiculo);
         $("#txtValorDiariaVeiculo").val(data.ValorDiaVeiculo);

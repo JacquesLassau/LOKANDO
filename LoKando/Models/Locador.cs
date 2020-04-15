@@ -14,6 +14,7 @@ namespace LoKando.Models
         public string CpfCnpjLocador { get; set; }
         public string TelefoneLocador { get; set; }
         public string EnderecoLocador { get; set; }
+        public string BairroLocador { get; set; }
         public string CidadeLocador { get; set; }
         public string EstadoLocador { get; set; }
         public string CepLocador { get; set; }
@@ -27,7 +28,7 @@ namespace LoKando.Models
             this.CodigoLocador = codigoLocador;
         }
 
-        public Locador(string mlLocador, string razaoScLocador, string fantasiaLocador, string documentoLocador, string telefoneLocador, string enderecoLocador, string cidadeLocador, string estadoLocador, string cepLocador, char situacaoLocador)
+        public Locador(string mlLocador, string razaoScLocador, string fantasiaLocador, string documentoLocador, string telefoneLocador, string enderecoLocador, string bairroLocador, string cidadeLocador, string estadoLocador, string cepLocador, char situacaoLocador)
         {
             this.EmailLocador = mlLocador;
             this.RazaoSocialLocador = razaoScLocador;
@@ -35,26 +36,28 @@ namespace LoKando.Models
             this.CpfCnpjLocador = documentoLocador;
             this.TelefoneLocador = telefoneLocador;
             this.EnderecoLocador = enderecoLocador;
+            this.BairroLocador = bairroLocador;
             this.CidadeLocador = cidadeLocador;
             this.EstadoLocador = estadoLocador;
             this.CepLocador = cepLocador;
             this.SituacaoLocador = situacaoLocador;
         }
 
-        public Locador(int idLocador, string razaoScLocador, string fantasiaLocador, string telefoneLocador, string enderecoLocador, string cidadeLocador, string estadoLocador, string cepLocador, char situacaoLocador)
+        public Locador(int idLocador, string razaoScLocador, string fantasiaLocador, string telefoneLocador, string enderecoLocador, string bairroLocador, string cidadeLocador, string estadoLocador, string cepLocador, char situacaoLocador)
         {
             this.CodigoLocador = idLocador;
             this.RazaoSocialLocador = razaoScLocador;
             this.NomeFantasiaLocador = fantasiaLocador;            
             this.TelefoneLocador = telefoneLocador;
             this.EnderecoLocador = enderecoLocador;
+            this.BairroLocador = bairroLocador;
             this.CidadeLocador = cidadeLocador;
             this.EstadoLocador = estadoLocador;
             this.CepLocador = cepLocador;
             this.SituacaoLocador = situacaoLocador;
         }
 
-        public Locador(int idLocador, string mlLocador, string razaoScLocador, string fantasiaLocador, string documentoLocador, string telefoneLocador, string enderecoLocador, string cidadeLocador, string estadoLocador, string cepLocador, char situacaoLocador, string ultimaAtualizaoLocador)
+        public Locador(int idLocador, string mlLocador, string razaoScLocador, string fantasiaLocador, string documentoLocador, string telefoneLocador, string enderecoLocador, string bairroLocador, string cidadeLocador, string estadoLocador, string cepLocador, char situacaoLocador, string ultimaAtualizaoLocador)
         {
             this.CodigoLocador = idLocador;
             this.EmailLocador = mlLocador;
@@ -63,6 +66,7 @@ namespace LoKando.Models
             this.CpfCnpjLocador = documentoLocador;
             this.TelefoneLocador = telefoneLocador;
             this.EnderecoLocador = enderecoLocador;
+            this.BairroLocador = bairroLocador;
             this.CidadeLocador = cidadeLocador;
             this.EstadoLocador = estadoLocador;
             this.CepLocador = cepLocador;

@@ -18,6 +18,7 @@ namespace LoKando.Models
         public string EmailCliente { get; set; }
         public string TelefoneCliente { get; set; }        
         public string EnderecoCliente { get; set; }
+        public string BairroCliente { get; set; }
         public string CidadeCliente { get; set; }
         public string EstadoCliente { get; set; }
         public string CepCliente { get; set; }
@@ -36,7 +37,7 @@ namespace LoKando.Models
             this.EmailCliente = emailCliente;
         }
 
-        public Cliente(string nomeCliente, string habilitacaoCliente, string cpfCliente, string rgCliente, DateTime nascimentoCliente, string emailCliente, string telefoneCliente, string enderecoCliente, string cidadeCliente, string estadoCliente, string cepCliente, char situacaoCliente)
+        public Cliente(string nomeCliente, string habilitacaoCliente, string cpfCliente, string rgCliente, DateTime nascimentoCliente, string emailCliente, string telefoneCliente, string enderecoCliente, string bairroCliente, string cidadeCliente, string estadoCliente, string cepCliente, char situacaoCliente)
         {
             DateTime nascimentoClienteJson = nascimentoCliente;
             this.NascimentoClienteStr = Convert.ToDateTime(nascimentoClienteJson).ToString("yyyy-MM-dd");
@@ -49,13 +50,14 @@ namespace LoKando.Models
             this.EmailCliente = emailCliente;
             this.TelefoneCliente = telefoneCliente;
             this.EnderecoCliente = enderecoCliente;
+            this.BairroCliente = bairroCliente;
             this.CidadeCliente = cidadeCliente;
             this.EstadoCliente = estadoCliente;
             this.CepCliente = cepCliente;
             this.SituacaoCliente = situacaoCliente;
         }
 
-        public Cliente(int codigoCliente, string nomeCliente, string habilitacaoCliente, string cpfCliente, string rgCliente, DateTime nascimentoCliente, string emailCliente, string telefoneCliente, string enderecoCliente, string cidadeCliente, string estadoCliente, string cepCliente, string horaRegistroCliente)
+        public Cliente(int codigoCliente, string nomeCliente, string habilitacaoCliente, string cpfCliente, string rgCliente, DateTime nascimentoCliente, string emailCliente, string telefoneCliente, string enderecoCliente, string bairroCliente, string cidadeCliente, string estadoCliente, string cepCliente, string horaRegistroCliente)
         {
             this.CodigoCliente = codigoCliente;
             this.NomeCliente = nomeCliente;
@@ -66,13 +68,14 @@ namespace LoKando.Models
             this.EmailCliente = emailCliente;
             this.TelefoneCliente = telefoneCliente;
             this.EnderecoCliente = enderecoCliente;
+            this.BairroCliente = bairroCliente;
             this.CidadeCliente = cidadeCliente;
             this.EstadoCliente = estadoCliente;
             this.CepCliente = cepCliente;
             this.HoraRegistroCliente = horaRegistroCliente;
         }
 
-        public Cliente(int codigoCliente, string nomeCliente, string habilitacaoCliente, string cpfCliente, string rgCliente, DateTime nascimentoCliente, string emailCliente, string telefoneCliente, string enderecoCliente, string cidadeCliente, string estadoCliente, string cepCliente, char situacaoCliente, string horaRegistroCliente)
+        public Cliente(int codigoCliente, string nomeCliente, string habilitacaoCliente, string cpfCliente, string rgCliente, DateTime nascimentoCliente, string emailCliente, string telefoneCliente, string enderecoCliente, string bairroCliente, string cidadeCliente, string estadoCliente, string cepCliente, char situacaoCliente, string horaRegistroCliente)
         {
             DateTime nascimentoClienteJson = nascimentoCliente;
             this.NascimentoClienteStr = Convert.ToDateTime(nascimentoClienteJson).ToString("yyyy-MM-dd");
@@ -86,6 +89,7 @@ namespace LoKando.Models
             this.EmailCliente = emailCliente;
             this.TelefoneCliente = telefoneCliente;
             this.EnderecoCliente = enderecoCliente;
+            this.BairroCliente = bairroCliente;
             this.CidadeCliente = cidadeCliente;
             this.EstadoCliente = estadoCliente;
             this.CepCliente = cepCliente;
@@ -93,7 +97,7 @@ namespace LoKando.Models
             this.HoraRegistroCliente = horaRegistroCliente;
         }
 
-        public Cliente(int codigoCliente, string nomeCliente, string rgCliente, DateTime nascimentoCliente, string telefoneCliente, string enderecoCliente, string cidadeCliente, string estadoCliente, string cepCliente, char situacaoCliente)
+        public Cliente(int codigoCliente, string nomeCliente, string rgCliente, DateTime nascimentoCliente, string telefoneCliente, string enderecoCliente, string bairroCliente, string cidadeCliente, string estadoCliente, string cepCliente, char situacaoCliente)
         {
             this.CodigoCliente = codigoCliente;
             this.NomeCliente = nomeCliente;          
@@ -101,6 +105,7 @@ namespace LoKando.Models
             this.NascimentoCliente = nascimentoCliente;           
             this.TelefoneCliente = telefoneCliente;
             this.EnderecoCliente = enderecoCliente;
+            this.BairroCliente = bairroCliente;
             this.CidadeCliente = cidadeCliente;
             this.EstadoCliente = estadoCliente;
             this.CepCliente = cepCliente;

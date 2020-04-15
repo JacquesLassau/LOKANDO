@@ -130,7 +130,7 @@ namespace LoKando.Controllers
             }
             else
             {                
-                atendente.CodigoUsuarioAtendente = Convert.ToInt32(txtCodigoAtendente);
+                atendente.CodigoAtendente = Convert.ToInt32(txtCodigoAtendente);
                 atendenteDAL.ExcluirAtendente(atendente);
                 TempData[Constantes.MensagemAlerta] = "Atendente Excluído com Sucesso!";
                 return RedirectToAction("Index", "Inicio");

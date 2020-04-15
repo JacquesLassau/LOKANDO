@@ -18,7 +18,7 @@
                 <fieldset id="pesquisaCodigoLocador">
                     <legend>Código do Locador</legend>
                     <div class="input-group">
-                        @Html.TextBox("txtCodigoLocador", null, new { @class = "form-control", onfocusout = "PesquisarLocador()", placeholder = "Pesquise pelo Código do Locador" })
+                        @Html.TextBox("txtCodigoLocador", null, new { @class = "form-control", onfocusout = "PesquisarLocador()", placeholder = "Pesquise pelo Código do Locador", required = "required"})
                         <button class="btn btn-primary" name="pesquisaLocador" id="pesquisaLocador" maxlength="5" data-toggle="modal" data-target="#listarLocador" onclick="PesquisarLocador()" style="width:94.75%; margin-top:6px;"><i class="fa fa-search"></i>  Procurar</button>
                     </div>
                 </fieldset>
@@ -64,6 +64,10 @@
                     <div class="form-group">
                         @Html.Label("lblEnderecoLocador", "Logadouro:")
                         @Html.TextBox("txtEnderecoLocador", null, new { @class = "form-control", placeholder = "preenchimento automático", @readonly = "readonly" })
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("lblBairroLocador", "Bairro:")
+                        @Html.TextBox("txtBairroLocador", null, new { @class = "form-control", placeholder = "preenchimento automático", @readonly = "readonly" })
                     </div>
                     <div class="form-group">
                         @Html.Label("lblCidadeLocador", "Cidade:")

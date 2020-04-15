@@ -48,6 +48,10 @@
                         @Html.Raw("<select id='selCombustivelVeiculo' name='selCombustivelVeiculo' class='form-control' required><option value='GASOLINA'>Gasolina</option><option value='ALCOOL'>Álcool</option><option value='GAS'>Gás</option><option value='ELETRICO'>Elétrico</option><option value='FLEX'>Flex</option><option value='HIBRIDO'>Híbrido</option><option value='DIESEL'>Diesel</option><option value='DIESEL_S10'>Diesel-S10</option><option value='ETANOL'>Etanol</option><option value='OUTRO'>Outro</option></select>")
                     </div>
                     <div class="form-group">
+                        @Html.Label("lblAnoVeiculo", "Ano:")
+                        @Html.TextBox("txtAnoVeiculo", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
+                    </div>
+                    <div class="form-group">
                         @Html.Label("lblSituacaoLocador", "Qual é a Situação do Veículo?")
                         @Html.Raw("<select id='selSituacaoVeiculo' name='selSituacaoVeiculo' class='form-control' required><option value='D'>Disponível</option><option value='B'>Bloqueado</option></select>")
                     </div>
