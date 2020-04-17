@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace LoKando
+﻿namespace LoKando
 {
-    public class Constantes
+    public static class Constantes
     {
-        public const string MensagemAlerta = "AlertaController";        
+        public const string MensagemAlerta = "AlertaController";
+        public const string ADMINISTRADOR = "Administrador";
     }
 }
