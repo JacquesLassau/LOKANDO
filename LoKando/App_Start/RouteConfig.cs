@@ -16,7 +16,7 @@ namespace LoKando
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Inicio", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "AreaRestrita", action = "LoginUI", id = UrlParameter.Optional }
             );
         }
     }
