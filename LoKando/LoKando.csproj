@@ -16,7 +16,7 @@
     <AssemblyName>LoKando</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -170,10 +170,13 @@
     <Compile Include="DAL\TokenDAL.cs" />
     <Compile Include="DAL\UsuarioDAL.cs" />
     <Compile Include="DAL\VeiculoDAL.cs" />
+    <Compile Include="Filters\AlreadySignInAttribute.cs" />
+    <Compile Include="Filters\CustomAuthorizeAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infraestrutura\Constantes.cs" />
+    <Compile Include="Infraestrutura\IdentityUtil.cs" />
     <Compile Include="Migrations\202004162341502_InitDatabase.cs" />
     <Compile Include="Migrations\202004162341502_InitDatabase.Designer.cs">
       <DependentUpon>202004162341502_InitDatabase.cs</DependentUpon>
@@ -182,6 +185,7 @@
     <Compile Include="Models\Atendente.cs" />
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\ControllerModel\LocadorControllerModel.cs" />
+    <Compile Include="Models\ControllerModel\LoginAutenticadorControllerModel.cs" />
     <Compile Include="Models\ControllerModel\VeiculoControllerModel.cs" />
     <Compile Include="Models\Locador.cs" />
     <Compile Include="Models\Orcamento.cs" />
@@ -272,10 +276,11 @@
     <Content Include="Views\Veiculo\AlterarVeiculoUI.cshtml" />
     <Content Include="Views\Veiculo\ConsultarVeiculoUI.cshtml" />
     <Content Include="Views\Veiculo\ExcluirVeiculoUI.cshtml" />
-    <Content Include="Views\AreaRestrita\LoginUI.cshtml" />
+    <Content Include="Views\AreaRestrita\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Autenticador\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -309,7 +314,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>52336</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

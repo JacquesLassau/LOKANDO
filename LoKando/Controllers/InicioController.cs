@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using LoKando.Filters;
 using System.Web.Mvc;
 
 namespace LoKando.Controllers
 {
+    [CustomAuthorize]
     public class InicioController : Controller
     {
         public ActionResult Index()

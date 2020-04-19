@@ -1,9 +1,12 @@
 ﻿using LoKando.DAL.Conn;
+using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
+using Microsoft.Owin.Security.Cookies;
 using Owin;
+using System;
 using System.Configuration;
 using System.Data.Entity;
 
@@ -38,7 +41,20 @@ namespace LoKando
             app.CreatePerOwinContext<UserManager<IdentityUser>>((option, contextoOwin) =>
             {
                 var userStore = contextoOwin.Get<UserStore<IdentityUser>>();
-                return new UserManager<IdentityUser>(userStore);
+                var userManager = new UserManager<IdentityUser>(userStore);
+
+                return userManager;
+            });
+
+            app.CreatePerOwinContext<SignInManager<IdentityUser, string>>((option, contextoOwin) =>
+            {
+                var userManager = contextoOwin.Get<UserManager<IdentityUser>>();
+                return new SignInManager<IdentityUser, string>(userManager, contextoOwin.Authentication);
+            });
+
+            app.UseCookieAuthentication(new CookieAuthenticationOptions()
+            {
+                AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie
             });
 
             using (var dbContext = new EntityContext())
