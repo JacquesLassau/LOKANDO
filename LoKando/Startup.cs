@@ -1,12 +1,11 @@
 ﻿using LoKando.DAL.Conn;
-using Microsoft.Ajax.Utilities;
+using LoKando.Models.Entity;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
-using System;
 using System.Configuration;
 using System.Data.Entity;
 
@@ -20,10 +19,10 @@ namespace LoKando
             // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=316888
             app.CreatePerOwinContext<DbContext>(() => new EntityContext());
 
-            app.CreatePerOwinContext<UserStore<IdentityUser>>((option, contextoOwin) =>
+            app.CreatePerOwinContext<UserStore<CustomIdentityUser>>((option, contextoOwin) =>
             {
                 var dbContext = contextoOwin.Get<DbContext>();
-                return new UserStore<IdentityUser>(dbContext);
+                return new UserStore<CustomIdentityUser>(dbContext);
             });
 
             app.CreatePerOwinContext<RoleStore<IdentityRole>>((option, contextoOwin) =>
@@ -38,18 +37,18 @@ namespace LoKando
                 return new RoleManager<IdentityRole>(roleStore);
             });
 
-            app.CreatePerOwinContext<UserManager<IdentityUser>>((option, contextoOwin) =>
+            app.CreatePerOwinContext<UserManager<CustomIdentityUser>>((option, contextoOwin) =>
             {
-                var userStore = contextoOwin.Get<UserStore<IdentityUser>>();
-                var userManager = new UserManager<IdentityUser>(userStore);
+                var userStore = contextoOwin.Get<UserStore<CustomIdentityUser>>();
+                var userManager = new UserManager<CustomIdentityUser>(userStore);
 
                 return userManager;
             });
 
-            app.CreatePerOwinContext<SignInManager<IdentityUser, string>>((option, contextoOwin) =>
+            app.CreatePerOwinContext<SignInManager<CustomIdentityUser, string>>((option, contextoOwin) =>
             {
-                var userManager = contextoOwin.Get<UserManager<IdentityUser>>();
-                return new SignInManager<IdentityUser, string>(userManager, contextoOwin.Authentication);
+                var userManager = contextoOwin.Get<UserManager<CustomIdentityUser>>();
+                return new SignInManager<CustomIdentityUser, string>(userManager, contextoOwin.Authentication);
             });
 
             app.UseCookieAuthentication(new CookieAuthenticationOptions()
@@ -71,24 +70,44 @@ namespace LoKando
             {
                 if (!roleManager.RoleExists(Constantes.ADMINISTRADOR))
                     roleManager.Create(new IdentityRole(Constantes.ADMINISTRADOR));
+                if (!roleManager.RoleExists(Constantes.ATENDENTE))
+                    roleManager.Create(new IdentityRole(Constantes.ATENDENTE));
             }
         }
 
         private void CriarAdmin(DbContext dbContext)
         {
-            using (var userStore = new UserStore<IdentityUser>(dbContext))
-            using (var userManager = new UserManager<IdentityUser>(userStore))
+            using (var userStore = new UserStore<CustomIdentityUser>(dbContext))
+            using (var userManager = new UserManager<CustomIdentityUser>(userStore))
             {
                 var emailAdmin = ConfigurationManager.AppSettings["admin:email"];
-                if (userManager.FindByEmail(emailAdmin) == null)
+                var userNameAdmin = ConfigurationManager.AppSettings["atendente:username"];
+                
+                if (userManager.FindByEmail(emailAdmin) == null && userManager.FindByName(userNameAdmin) == null)
                 {
-                    IdentityUser identityUser = new IdentityUser();
+                    CustomIdentityUser identityUser = new CustomIdentityUser();
                     identityUser.Email = emailAdmin;
                     identityUser.UserName = ConfigurationManager.AppSettings["admin:username"];
                     identityUser.EmailConfirmed = true;
+                    identityUser.FullName = identityUser.UserName;
 
                     userManager.Create(identityUser, ConfigurationManager.AppSettings["admin:password"]);
                     userManager.AddToRole(identityUser.Id, Constantes.ADMINISTRADOR);
+                }
+
+                var emailAtendente = ConfigurationManager.AppSettings["atendente:email"];
+                var userNameAtendente = ConfigurationManager.AppSettings["atendente:username"];
+
+                if (userManager.FindByEmail(emailAtendente) == null && userManager.FindByName(userNameAtendente) == null)
+                {
+                    CustomIdentityUser identityUser = new CustomIdentityUser();
+                    identityUser.Email = emailAtendente;
+                    identityUser.UserName = ConfigurationManager.AppSettings["atendente:username"];
+                    identityUser.EmailConfirmed = true;
+                    identityUser.FullName = identityUser.UserName;
+
+                    userManager.Create(identityUser, ConfigurationManager.AppSettings["atendente:password"]);
+                    userManager.AddToRole(identityUser.Id, Constantes.ATENDENTE);
                 }
             }
         }

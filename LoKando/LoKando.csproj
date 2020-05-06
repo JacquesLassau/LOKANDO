@@ -181,12 +181,17 @@
     <Compile Include="Migrations\202004162341502_InitDatabase.Designer.cs">
       <DependentUpon>202004162341502_InitDatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005060153430_AddNewColumnUser.cs" />
+    <Compile Include="Migrations\202005060153430_AddNewColumnUser.Designer.cs">
+      <DependentUpon>202005060153430_AddNewColumnUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Atendente.cs" />
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\ControllerModel\LocadorControllerModel.cs" />
     <Compile Include="Models\ControllerModel\LoginAutenticadorControllerModel.cs" />
     <Compile Include="Models\ControllerModel\VeiculoControllerModel.cs" />
+    <Compile Include="Models\Entity\CustomIdentityUser.cs" />
     <Compile Include="Models\Locador.cs" />
     <Compile Include="Models\Orcamento.cs" />
     <Compile Include="Models\Pedido.cs" />
@@ -298,6 +303,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202004162341502_InitDatabase.resx">
       <DependentUpon>202004162341502_InitDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005060153430_AddNewColumnUser.resx">
+      <DependentUpon>202005060153430_AddNewColumnUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

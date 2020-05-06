@@ -1,24 +1,21 @@
-﻿using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
+﻿using LoKando.Models.Entity;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 
 namespace LoKando.Infraestrutura
 {
     public static class IdentityUtil
     {
-        public static UserManager<IdentityUser> UserManager
+        public static UserManager<CustomIdentityUser> UserManager
         {
-            get => HttpContext.Current.GetOwinContext().GetUserManager<UserManager<IdentityUser>>();
+            get => HttpContext.Current.GetOwinContext().GetUserManager<UserManager<CustomIdentityUser>>();
         }
 
-        public static SignInManager<IdentityUser, string> SignInManager
+        public static SignInManager<CustomIdentityUser, string> SignInManager
         {
-            get => HttpContext.Current.GetOwinContext().GetUserManager<SignInManager<IdentityUser, string>>();
+            get => HttpContext.Current.GetOwinContext().GetUserManager<SignInManager<CustomIdentityUser, string>>();
         }
 
         public static IAuthenticationManager AuthenticationManager
