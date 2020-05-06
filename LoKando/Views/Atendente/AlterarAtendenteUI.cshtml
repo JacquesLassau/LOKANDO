@@ -1,53 +1,54 @@
 ﻿@{ViewBag.Title = "Alteração do Atendente";}
+@model LoKando.Models.ControllerModel.AtendenteControllerModel
 @Scripts.Render("~/BLL/PesquisaHelperModal/HelperAtendente.js")
 @Scripts.Render("~/BLL/LinkHelperModal/LinkAtendente.js")
 @Scripts.Render("~/BLL/Mascara/MascaraAtendente.js")
-@model LoKando.Models.ControllerModel.AtendenteControllerModel
+@Scripts.Render("~/BLL/Mascara/MascaraAtendente.js")
 
-    <div class="container">
-        <h2>Alteração do Atendente</h2>
-        <hr />
-        @using (Html.BeginForm("AlterarAtendenteAR", "Atendente", FormMethod.Post))
-        {
-            <div class="row">
-                <div class="col-md-4 col-md-4 col-sm-6 col-xs-12">
-                    <fieldset id="pesquisaCodigoAtendente">
-                        <legend>Código do Atendente</legend>
-                        <div class="input-group">
-                            @Html.TextBox("txtCodigoAtendente", null, new { @class = "form-control", onfocusout = "PesquisarAtendente()", placeholder = "Pesquise pelo Código do Atendente", required = "required" })
-                            <a class="btn btn-primary" name="pesquisaAtendente" id="pesquisaAtendente" maxlength="5" data-toggle="modal" data-target="#listarAtendentes" onclick="PesquisarAtendente()" style="width:94.75%; margin-top:6px;"><i class="fa fa-search"></i>  Procurar</a>
-                        </div>
-                    </fieldset>
-                    <br />
-                    <fieldset id="dadosGerais">
-                        <legend>Dados Gerais do Atendente</legend>
-                        <div class="form-group">
-                            @Html.Label("lblNomeAtendente", "Nome:")
-                            @Html.TextBox("txtNomeAtendente", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
-                        </div>
-                        <div class="form-group">
-                            @Html.Label("lblEmailAtendente", "E-Mail:")
-                            @Html.TextBox("txtEmailAtendente", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", type = "email" })
-                        </div>
-                        <div class="form-group">
-                            @Html.Label("lblSituacaoAtendente", "Qual é a Situação do Atendente?")
-                            @Html.Raw("<select id='selSituacaoAtendente' name='selSituacaoAtendente' class='form-control' required><option value='A'>Ativo</option><option value='B'>Bloqueado</option></select>")
-                        </div>
-                        <div class="form-group">
-                            @Html.Label("lblUltimaAtualizacao", "Última Atualização:")
-                            @Html.TextBox("txtUltimaAtualizacao", null, new { @class = "form-control", placeholder = "Auditoria do registro é automática", @readonly = "readonly" })
-                        </div>
-                        <div class="form-group">
-                            <button class="btn btn-success form-group" type="submit"><i class="fa fa-check"></i> Confirmar</button>
-                            <button class="btn btn-danger form-group" type="reset"><i class="fa fa-trash"></i> Limpar</button>
-                            <a href="@Url.Action("Index", "Inicio")" class="btn btn-primary form-group"><i class="fa fa-reply"></i> Voltar</a>
-                        </div>
-                    </fieldset>
-                </div>
+<div class="container">
+    <h2>Alteração do Atendente</h2>
+    <hr />
+    @using (Html.BeginForm("AlterarAtendenteAR", "Atendente", FormMethod.Post))
+    {
+        <div class="row">
+            <div class="col-md-4 col-md-4 col-sm-6 col-xs-12">
+                <fieldset id="pesquisaCodigoAtendente">
+                    <legend>Código do Atendente</legend>
+                    <div class="input-group">
+                        @Html.TextBox("txtCodigoAtendente", null, new { @class = "form-control", onfocusout = "PesquisarAtendente()", placeholder = "Pesquise pelo Código do Atendente", required = "required" })
+                        <a class="btn btn-primary" name="pesquisaAtendente" id="pesquisaAtendente" maxlength="5" data-toggle="modal" data-target="#listarAtendentes" onclick="PesquisarAtendente()" style="width:94.75%; margin-top:6px;"><i class="fa fa-search"></i>  Procurar</a>
+                    </div>
+                </fieldset>
+                <br />
+                <fieldset id="dadosGerais">
+                    <legend>Dados Gerais do Atendente</legend>
+                    <div class="form-group">
+                        @Html.Label("lblNomeAtendente", "Nome:")
+                        @Html.TextBox("txtNomeAtendente", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("lblEmailAtendente", "E-Mail:")
+                        @Html.TextBox("txtEmailAtendente", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", type = "email" })
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("lblSituacaoAtendente", "Qual é a Situação do Atendente?")
+                        @Html.Raw("<select id='selSituacaoAtendente' name='selSituacaoAtendente' class='form-control' required><option value='A'>Ativo</option><option value='B'>Bloqueado</option></select>")
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("lblUltimaAtualizacao", "Última Atualização:")
+                        @Html.TextBox("txtUltimaAtualizacao", null, new { @class = "form-control", placeholder = "Auditoria do registro é automática", @readonly = "readonly" })
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-success form-group" type="submit"><i class="fa fa-check"></i> Confirmar</button>
+                        <button class="btn btn-danger form-group" type="reset"><i class="fa fa-trash"></i> Limpar</button>
+                        <a href="@Url.Action("Index", "Inicio")" class="btn btn-primary form-group"><i class="fa fa-reply"></i> Voltar</a>
+                    </div>
+                </fieldset>
             </div>
-            @Html.AntiForgeryToken()
-        }
-    </div>
+        </div>
+        @Html.AntiForgeryToken()
+    }
+</div>
 <div id="listarAtendentes" class="modal fade" role="dialog">
     <div class="modal-dialog modal-sm modal-md modal-lg">
         <div class="modal-content">
