@@ -70,6 +70,7 @@ namespace LoKando
             {
                 if (!roleManager.RoleExists(Constantes.ADMINISTRADOR))
                     roleManager.Create(new IdentityRole(Constantes.ADMINISTRADOR));
+
                 if (!roleManager.RoleExists(Constantes.ATENDENTE))
                     roleManager.Create(new IdentityRole(Constantes.ATENDENTE));
             }
@@ -80,10 +81,9 @@ namespace LoKando
             using (var userStore = new UserStore<CustomIdentityUser>(dbContext))
             using (var userManager = new UserManager<CustomIdentityUser>(userStore))
             {
-                var emailAdmin = ConfigurationManager.AppSettings["admin:email"];
-                var userNameAdmin = ConfigurationManager.AppSettings["atendente:username"];
+                var emailAdmin = ConfigurationManager.AppSettings["admin:email"];               
                 
-                if (userManager.FindByEmail(emailAdmin) == null && userManager.FindByName(userNameAdmin) == null)
+                if (userManager.FindByEmail(emailAdmin) == null)
                 {
                     CustomIdentityUser identityUser = new CustomIdentityUser();
                     identityUser.Email = emailAdmin;
@@ -94,22 +94,8 @@ namespace LoKando
                     userManager.Create(identityUser, ConfigurationManager.AppSettings["admin:password"]);
                     userManager.AddToRole(identityUser.Id, Constantes.ADMINISTRADOR);
                 }
-
-                var emailAtendente = ConfigurationManager.AppSettings["atendente:email"];
-                var userNameAtendente = ConfigurationManager.AppSettings["atendente:username"];
-
-                if (userManager.FindByEmail(emailAtendente) == null && userManager.FindByName(userNameAtendente) == null)
-                {
-                    CustomIdentityUser identityUser = new CustomIdentityUser();
-                    identityUser.Email = emailAtendente;
-                    identityUser.UserName = ConfigurationManager.AppSettings["atendente:username"];
-                    identityUser.EmailConfirmed = true;
-                    identityUser.FullName = identityUser.UserName;
-
-                    userManager.Create(identityUser, ConfigurationManager.AppSettings["atendente:password"]);
-                    userManager.AddToRole(identityUser.Id, Constantes.ATENDENTE);
-                }
             }
         }
+        
     }
 }
