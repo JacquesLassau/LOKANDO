@@ -5,6 +5,10 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using LoKando.Models.ControllerModel;
 using LoKando.Filters;
+using LoKando.Infraestrutura;
+using Microsoft.AspNet.Identity;
+using LoKando.Models.Entity;
+using System.Linq;
 
 namespace LoKando.Controllers
 {
@@ -14,7 +18,7 @@ namespace LoKando.Controllers
         public AtendenteControllerModel ConvertToModel(List<Atendente> listaAtendente)
         {
             AtendenteControllerModel atendenteControllerModel = new AtendenteControllerModel();
-            if(listaAtendente != null)
+            if (listaAtendente != null)
             {
                 // for está sendo usado para CASO deseje incluir validação no carregamento dos registros via controller
                 foreach (var atendente in listaAtendente)
@@ -26,7 +30,7 @@ namespace LoKando.Controllers
             return atendenteControllerModel;
         }
 
-        [HttpGet]        
+        [HttpGet]
         public ActionResult CadastrarAtendenteUI()
         {
             return View("CadastrarAtendenteUI");
@@ -36,29 +40,45 @@ namespace LoKando.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CadastrarAtendenteAR(string txtNomeAtendente, string txtEmailAtendente, string txtSenhaAtendente, string selSituacaoAtendente)
         {
-           
-            AtendenteDAL atendenteDAL = new AtendenteDAL();
-            UsuarioDAL usuarioDAL = new UsuarioDAL();            
-
-            Atendente atendente= atendenteDAL.SelecionarAtendenteEmail(txtEmailAtendente);
-            Usuario usuario = usuarioDAL.SelecionarUsuarioEmail(txtEmailAtendente);            
-
-            if((usuario.EmailUsuario != null) || (atendente.EmailAtendente != null))
+            try
             {
-                TempData[Constantes.MensagemAlerta] = "Já existe atendente vinculado a este e-mail!";
-                return View("CadastrarAtendenteUI");
-            }            
-            else
-            {
-                usuario = new Usuario(txtEmailAtendente, txtSenhaAtendente, Convert.ToChar(selSituacaoAtendente));
-                atendente = new Atendente(txtNomeAtendente, txtEmailAtendente, Convert.ToChar(selSituacaoAtendente));
+                var userNameTratado = txtNomeAtendente.Replace(" ", "").ToLower();
 
-                usuarioDAL.CadastrarUsuario(usuario);
-                atendenteDAL.CadastrarAtendente(atendente);
+                if (IdentityUtil.UserManager.FindByEmail(txtEmailAtendente) != null)
+                {
+                    TempData[Constantes.MensagemAlerta] = "Já existe um atendente vinculado a este e-mail!";
+                    return View("CadastrarAtendenteUI");
+                }
+                if (IdentityUtil.UserManager.FindByName(userNameTratado) != null)
+                {
+                    TempData[Constantes.MensagemAlerta] = "Já existe um atendente com esse nome de usuário!";
+                    return View("CadastrarAtendenteUI");
+                }
+
+                CustomIdentityUser customIdentityUser = new CustomIdentityUser();
+                customIdentityUser.FullName = txtNomeAtendente;
+                customIdentityUser.Email = txtEmailAtendente;
+                customIdentityUser.EmailConfirmed = true;
+                customIdentityUser.UserName = userNameTratado;
+
+                var result = IdentityUtil.UserManager.Create(customIdentityUser, txtSenhaAtendente);
+
+                IdentityUtil.UserManager.AddToRole(customIdentityUser.Id, Constantes.ATENDENTE);
+
+                if (!result.Succeeded)
+                {
+                    TempData[Constantes.MensagemAlerta] = result.Errors.FirstOrDefault();
+                    return View("CadastrarAtendenteUI");
+                }
 
                 TempData[Constantes.MensagemAlerta] = "Atendente cadastrado com sucesso!";
                 return RedirectToAction("Index", "Inicio");
-            }                
+            }
+            catch (Exception ex)
+            {
+                TempData[Constantes.MensagemAlerta] = ex.Message;
+                return View("CadastrarAtendenteUI");
+            }
         }
 
         [HttpGet]
@@ -66,7 +86,7 @@ namespace LoKando.Controllers
         {
             AtendenteDAL atendenteDAL = new AtendenteDAL();
             AtendenteControllerModel atendenteControllerModel = ConvertToModel(atendenteDAL.ListarAtendente());
-            return View(atendenteControllerModel);            
+            return View(atendenteControllerModel);
         }
 
         [HttpPost]
@@ -76,7 +96,7 @@ namespace LoKando.Controllers
             AtendenteDAL atendenteDAL = new AtendenteDAL();
             Atendente atendente = atendenteDAL.SelecionarAtendenteId(Convert.ToInt32(txtCodigoAtendente));
 
-            if(atendente.CodigoAtendente == 0)
+            if (atendente.CodigoAtendente == 0)
             {
                 TempData[Constantes.MensagemAlerta] = "Não existe Atendente para o código digitado... Tente novamente!";
                 AtendenteControllerModel atendenteControllerModel = ConvertToModel(atendenteDAL.ListarAtendente());
@@ -88,8 +108,8 @@ namespace LoKando.Controllers
                 atendenteDAL.AlterarAtendente(atendente);
                 TempData[Constantes.MensagemAlerta] = "Atendente Alterado com Sucesso!";
                 return RedirectToAction("Index", "Inicio");
-            }                        
-        }        
+            }
+        }
 
         [HttpGet]
         public JsonResult SelecionarAtendenteJR(int codigoAtendente)
@@ -114,11 +134,11 @@ namespace LoKando.Controllers
             AtendenteControllerModel atendenteControllerModel = ConvertToModel(atendenteDAL.ListarAtendente());
             return View(atendenteControllerModel);
         }
-                
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult ExcluirAtendenteAR(string txtCodigoAtendente)
-        {            
+        {
             AtendenteDAL atendenteDAL = new AtendenteDAL();
             Atendente atendente = atendenteDAL.SelecionarAtendenteId(Convert.ToInt32(txtCodigoAtendente));
 
@@ -129,14 +149,14 @@ namespace LoKando.Controllers
                 return View("ExcluirAtendenteUI", atendenteControllerModel);
             }
             else
-            {                
+            {
                 atendente.CodigoAtendente = Convert.ToInt32(txtCodigoAtendente);
                 atendenteDAL.ExcluirAtendente(atendente);
                 TempData[Constantes.MensagemAlerta] = "Atendente Excluído com Sucesso!";
                 return RedirectToAction("Index", "Inicio");
-            }        
+            }
         }
 
-        
+
     }
 }
