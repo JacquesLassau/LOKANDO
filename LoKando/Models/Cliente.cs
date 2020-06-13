@@ -23,8 +23,8 @@ namespace LoKando.Models
         public string EstadoCliente { get; set; }
         public string CepCliente { get; set; }
         public char SituacaoCliente { get; set; }
-        public string HoraRegistroCliente { get; }    
-        
+        public string HoraRegistroCliente { get; }
+        public readonly char TipoUsuarioCliente = 'C';
         public Cliente() { }
 
         public Cliente(int codigoCliente)

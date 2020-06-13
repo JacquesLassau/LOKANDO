@@ -13,6 +13,7 @@ namespace LoKando.Models
         public string EmailAtendente { get; set; }
         public char SituacaoAtendente { get; set; }
         public string HoraRegistroAtendente { get; }
+        public readonly char TipoUsuarioAtendente = 'A';
 
         public Atendente(List<Atendente> list) { }
 

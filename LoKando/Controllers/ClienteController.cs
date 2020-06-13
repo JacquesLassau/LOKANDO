@@ -64,7 +64,7 @@ namespace LoKando.Controllers
             }
             else
             {
-                usuario = new Usuario(txtEmailCliente, txtSenhaCliente, Convert.ToChar(selSituacaoCliente));
+                usuario = new Usuario(txtEmailCliente, txtSenhaCliente, cliente.TipoUsuarioCliente, Convert.ToChar(selSituacaoCliente));
                 cliente = new Cliente(txtNomeCliente, txtHabilitacaoCliente, txtCpfCliente, txtRgCliente, Convert.ToDateTime(txtNascimentoCliente), txtEmailCliente, txtTelefoneCliente, txtEnderecoCliente, txtBairroCliente, txtCidadeCliente, selEstadoCliente, txtCepCliente, Convert.ToChar(selSituacaoCliente));
 
                 usuarioDAL.CadastrarUsuario(usuario);

@@ -50,7 +50,7 @@ namespace LoKando.Controllers
             }            
             else
             {
-                usuario = new Usuario(txtEmailAtendente, txtSenhaAtendente, Convert.ToChar(selSituacaoAtendente));
+                usuario = new Usuario(txtEmailAtendente, txtSenhaAtendente, atendente.TipoUsuarioAtendente, Convert.ToChar(selSituacaoAtendente));
                 atendente = new Atendente(txtNomeAtendente, txtEmailAtendente, Convert.ToChar(selSituacaoAtendente));
 
                 usuarioDAL.CadastrarUsuario(usuario);

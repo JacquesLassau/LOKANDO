@@ -59,7 +59,7 @@ namespace LoKando.Controllers
             }
             else
             {
-                usuario = new Usuario(txtEmailLocador, txtSenhaLocador, Convert.ToChar(selSituacaoLocador));
+                usuario = new Usuario(txtEmailLocador, txtSenhaLocador, locador.TipoUsuarioLocador, Convert.ToChar(selSituacaoLocador));
                 locador = new Locador(txtEmailLocador, txtRzScLocador, txtNmFsLocador, txtDocumentoLocador, txtTelefoneLocador, txtEnderecoLocador, txtBairroLocador, txtCidadeLocador, selEstadoLocador, txtCepLocador, Convert.ToChar(selSituacaoLocador));
 
                 usuarioDAL.CadastrarUsuario(usuario);

@@ -10,6 +10,7 @@ namespace LoKando.Models
         public int CodigoUsuario { get; set;}
         public string EmailUsuario { get; set; }
         public string SenhaUsuario { get; set; }
+        public char TipoUsuario { get; set; }
         public char SituacaoUsuario { get; set; }
 
         public Usuario() { }
@@ -39,10 +40,11 @@ namespace LoKando.Models
             this.SituacaoUsuario = situacaoUsuario;
         }
 
-        public Usuario(string emailUsuario, string senhaUsuario, char situacaoUsuario)
+        public Usuario(string emailUsuario, string senhaUsuario, char tipoUsuario, char situacaoUsuario)
         {
             this.EmailUsuario = emailUsuario;
             this.SenhaUsuario = senhaUsuario;
+            this.TipoUsuario = tipoUsuario;
             this.SituacaoUsuario = situacaoUsuario;
         }
     }

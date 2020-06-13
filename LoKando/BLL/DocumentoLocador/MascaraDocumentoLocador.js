@@ -1,7 +1,6 @@
 ﻿function CpfLocador() {
     $("#txtDocumentoLocador").val(null);    
     $("#txtDocumentoLocador").attr({ placeholder: "000.000.000-00", maxlength: "14" });    
-    
 }
 
 function CnpjLocador() {

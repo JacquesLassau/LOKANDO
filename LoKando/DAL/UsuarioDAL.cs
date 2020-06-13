@@ -28,10 +28,12 @@ namespace LoKando.DAL
 
                 comandoDML.Parameters.Add("@USEMAILLOK", SqlDbType.VarChar, 100);
                 comandoDML.Parameters.Add("@USSENHALOK", SqlDbType.VarChar, 100);
+                comandoDML.Parameters.Add("@USTPUSULOK", SqlDbType.Char, 1);
                 comandoDML.Parameters.Add("@USSITLOK", SqlDbType.Char, 1);
                 
                 comandoDML.Parameters["@USEMAILLOK"].Value = usuario.EmailUsuario;
                 comandoDML.Parameters["@USSENHALOK"].Value = usuario.SenhaUsuario;
+                comandoDML.Parameters["@USTPUSULOK"].Value = usuario.TipoUsuario;
                 comandoDML.Parameters["@USSITLOK"].Value = usuario.SituacaoUsuario;
 
                 comandoDML.ExecuteNonQuery();                

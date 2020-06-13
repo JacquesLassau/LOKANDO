@@ -20,6 +20,7 @@ namespace LoKando.Models
         public string CepLocador { get; set; }
         public char SituacaoLocador { get; set; }        
         public string HoraRegistroLocador { get; }
+        public readonly char TipoUsuarioLocador = 'L';
 
         public Locador() { }
 
