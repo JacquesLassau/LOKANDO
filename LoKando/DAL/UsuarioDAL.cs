@@ -82,5 +82,47 @@ namespace LoKando.DAL
                 return usuario;
             }
         }
+
+        public Usuario VerificarUsuario(string emailUsuario, string senhaUsuario)
+        {
+
+            using (SqlConnection conexao = Conexao.ConexaoDatabase())
+            {
+                conexao.Open();
+
+                Usuario usuario = new Usuario(emailUsuario, senhaUsuario);
+
+                SqlCommand comandoDML = new SqlCommand("SP_VerificarUsuarioV1", conexao);
+                comandoDML.CommandType = CommandType.StoredProcedure;
+
+                comandoDML.Parameters.Add("@USEMAILLOK", SqlDbType.VarChar, 100);
+                comandoDML.Parameters.Add("@USSENHALOK", SqlDbType.VarChar, 100);
+
+                comandoDML.Parameters["@USEMAILLOK"].Value = usuario.EmailUsuario;
+                comandoDML.Parameters["@USSENHALOK"].Value = usuario.SenhaUsuario;
+
+                SqlDataReader dr = comandoDML.ExecuteReader();
+
+                bool verificarUsuario = dr.HasRows;
+
+                if (verificarUsuario == false)
+                {
+                    usuario.EmailUsuario = null;
+                    usuario.SenhaUsuario = null;
+                }
+                else
+                {
+                    while (dr.Read())
+                    {                        
+                        string emlUsuario = Convert.ToString(dr["USEMAILLOK"]);
+                        string snhUsuario = Convert.ToString(dr["USSENHALOK"]);
+                        usuario = new Usuario(emailUsuario, senhaUsuario);
+                    }
+                }
+
+                conexao.Close();
+                return usuario;
+            }
+        }
     }
 }
