@@ -2,8 +2,6 @@
 {
     public static class Constantes
     {
-        public const string MensagemAlerta = "AlertaController";
-        public const string ADMINISTRADOR = "Administrador";
-        public const string ATENDENTE = "Atendente";
+        public const string MensagemAlerta = "AlertaController";        
     }
 }

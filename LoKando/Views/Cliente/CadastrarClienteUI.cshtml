@@ -26,12 +26,12 @@
                     </div>
                     <div class="form-group">
                         @Html.Label("lblSenhaCliente", "Senha:")
-                        @Html.TextBox("txtSenhaCliente", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", type = "password", onfocusout = "SenhaCliente()", pattern=".{6,}",  title="Mínimo de 6 caracteres" })
+                        @Html.TextBox("txtSenhaCliente", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", type = "password", onfocusout = "SenhaCliente()" })
                         @Html.Raw("<div id='validaSenha'></div>")
                     </div>
                     <div class="form-group">
                         @Html.Label("lblConfirmaSenhaCliente", "Confirme a Senha:")
-                        @Html.TextBox("txtConfirmaSenhaCliente", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", type = "password", onfocusout = "ConfirmaSenhaCliente()", pattern=".{6,}",  title="Mínimo de 6 caracteres" })
+                        @Html.TextBox("txtConfirmaSenhaCliente", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", type = "password", onfocusout = "ConfirmaSenhaCliente()" })
                         @Html.Raw("<div id='confirmaSenha'></div>")
                     </div>
                     <div class="form-group">

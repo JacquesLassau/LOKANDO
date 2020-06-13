@@ -1,6 +1,4 @@
-﻿@model LoKando.Models.ControllerModel.LoginAutenticadorControllerModel
-@{Layout = null;}
-
+﻿@{Layout = null;}
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,24 +41,22 @@
                     </div-->
                 </div>
                 <div class="card-body">
-                    @using (Html.BeginForm("Login", "AreaRestrita", FormMethod.Post))
+                    @using (Html.BeginForm("LoginAR", "AreaRestrita", FormMethod.Post))
                     {
-                        <div class="input-group form-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                            </div>
-
-                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", type = "email", placeholder = "Preencha o e-mail", required = "required" })
-
-                        </div>
-                        <div class="input-group form-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-key"></i></span>
-                            </div>
-                            @Html.TextBoxFor(m => m.Senha, new { @class = "form-control", type = "password", placeholder = "Preencha a senha", required = "required" })
-                        </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                        </div>                        
+                        @Html.TextBox("txtEmailUsuario", null, new { @class = "form-control", placeholder = "preencha aqui", type = "email", required = "required" })
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        </div>                        
+                        @Html.TextBox("txtSenhaUsuario", null, new { @class = "form-control", placeholder = "preencha aqui", type = "password", required = "required" })
+                    </div>
                         <div class="row align-items-center remember">
-                            @Html.EditorFor(m => m.ManterConectador)Lembrar-se
+                            @Html.CheckBox("txtSenhaUsuario", new { @class = "form-control"})Lembrar-se
                         </div>
                         <div class="form-group">
                             <input type="submit" value="Login" class="btn float-right login_btn" />

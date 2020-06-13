@@ -1,6 +1,7 @@
 ﻿using System.Data.SqlClient;
 using LoKando.Models;
 using LoKando.DAL.Conn;
+using LoKando;
 using System.Data;
 using System.Collections.Generic;
 using System;
@@ -151,7 +152,7 @@ namespace LoKando.DAL
 
                 bool consultarCodigoCliente = dr.HasRows;
 
-                if (!consultarCodigoCliente)
+                if (consultarCodigoCliente == false)
                 {
                     cliente.CodigoCliente = 0;
                 }
@@ -203,7 +204,7 @@ namespace LoKando.DAL
 
                 bool consultarHabilitacaoCliente = dr.HasRows;
 
-                if (!consultarHabilitacaoCliente)
+                if (consultarHabilitacaoCliente == false)
                 {
                     cliente.HabilitacaoCliente = null;
                 }
@@ -253,7 +254,7 @@ namespace LoKando.DAL
 
                 bool consultarEmailCliente = dr.HasRows;
 
-                if (!consultarEmailCliente)
+                if (consultarEmailCliente == false)
                 {
                     cliente.EmailCliente = null;
                 }
@@ -304,7 +305,7 @@ namespace LoKando.DAL
 
                 bool consultarCpfCliente = dr.HasRows;
 
-                if (!consultarCpfCliente)
+                if (consultarCpfCliente == false)
                 {
                     cliente.CpfCliente = null;
                 }

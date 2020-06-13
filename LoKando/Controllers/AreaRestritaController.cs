@@ -1,55 +1,35 @@
-﻿using LoKando.Filters;
-using LoKando.Infraestrutura;
-using LoKando.Models.ControllerModel;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
+﻿using System;
+using LoKando.Models;
+using LoKando.DAL;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 using System.Web.Mvc;
+using LoKando.Models.ControllerModel;
 
 namespace LoKando.Controllers
 {
     public class AreaRestritaController : Controller
     {
         // GET: AreaRestrita
-        [AlreadySignIn]
+        
         public ActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        [AlreadySignIn]
-        public ActionResult Login(LoginAutenticadorControllerModel pModel)
+        [ValidateAntiForgeryToken]        
+        public ActionResult LoginAR()
         {
-            var user = IdentityUtil.UserManager.FindByEmail(pModel.Email);
-            if (user == null)
-            {
-                TempData["Error"] = "Não foi possível realizar a autenticação!";
-                pModel.Senha = null;
-                return View(pModel);                
-            }
-            else
-            {
-                var result = IdentityUtil.SignInManager.PasswordSignIn(user.UserName, pModel.Senha, pModel.ManterConectador, shouldLockout: false);
-                switch (result)
-                {
-                    case SignInStatus.Success:
-                        return RedirectToAction("Index", "Inicio");
-                    default:
-                        TempData["Error"] = "Não foi possível realizar a autenticação!";
-                        pModel.Senha = null;
-                        return View(pModel);
-                }
-            }            
+            return RedirectToAction("Index", "Inicio");
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        [CustomAuthorize]
-        public ActionResult Logout()
+        [ValidateAntiForgeryToken]        
+        public ActionResult LogoutAR()
         {
-            IdentityUtil.AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Login");
+            return RedirectToAction("Login", "AreaRestrita");
         }
     }
 }
