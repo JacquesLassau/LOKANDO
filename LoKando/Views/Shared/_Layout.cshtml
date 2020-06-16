@@ -8,6 +8,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 
     <title>@ViewBag.Title - LoKando</title>
     <link rel="shortcut icon" href="~/img/icone.png">
@@ -95,9 +97,16 @@
 
         if (TempData != null && TempData.ContainsKey(Constantes.MensagemAlerta))
         {
-            <script type="text/javascript">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+            <script type="text/javascript">                
                 $(document).ready(function () {
-                    alert('@Html.Raw(HttpUtility.JavaScriptStringEncode(TempData[Constantes.MensagemAlerta].ToString()))');
+                    $.alert({
+                        title: '<p style="text-align:center;padding:16px;width:100%;">@Html.Raw(HttpUtility.JavaScriptStringEncode(TempData[Constantes.MensagemAlerta].ToString()))</p>',
+                        content: '<p style="text-align:center;">Clique em OK para continuar.</p>',
+                        type: 'orange',
+                        typeAnimated: true,                        
+                    });
                 });
             </script>
         }

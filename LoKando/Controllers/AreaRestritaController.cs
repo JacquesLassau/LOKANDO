@@ -20,16 +20,15 @@ namespace LoKando.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]        
+        [ValidateAntiForgeryToken]         
         public ActionResult LoginAR(string txtEmailUsuario, string txtSenhaUsuario)
         {
-            
             UsuarioDAL usuarioDAL = new UsuarioDAL();
             Usuario usuario = usuarioDAL.VerificarUsuario(txtEmailUsuario, txtSenhaUsuario);
 
             if ((usuario.EmailUsuario == txtEmailUsuario) && (usuario.SenhaUsuario == txtSenhaUsuario))
             {
-                return RedirectToAction("Index", "Inicio");
+                return RedirectToAction("Index", "Inicio");                
             }
             else
             {
