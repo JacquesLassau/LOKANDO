@@ -29,114 +29,168 @@ namespace LoKando.Controllers
         [HttpGet]        
         public ActionResult CadastrarAtendenteUI()
         {
-            return View("CadastrarAtendenteUI");
+            if (ValidarAdmin.UsuarioValido())
+            {
+                return View("CadastrarAtendenteUI");
+            }
+            else
+            {
+                return RedirectToAction("Login", "AreaRestrita");
+            }            
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CadastrarAtendenteAR(string txtNomeAtendente, string txtEmailAtendente, string txtSenhaAtendente, string selSituacaoAtendente)
         {
-           
-            AtendenteDAL atendenteDAL = new AtendenteDAL();
-            UsuarioDAL usuarioDAL = new UsuarioDAL();            
-
-            Atendente atendente= atendenteDAL.SelecionarAtendenteEmail(txtEmailAtendente);
-            Usuario usuario = usuarioDAL.SelecionarUsuarioEmail(txtEmailAtendente);            
-
-            if((usuario.EmailUsuario != null) || (atendente.EmailAtendente != null))
+            if (ValidarAdmin.UsuarioValido())
             {
-                TempData[Constantes.MensagemAlerta] = "Já existe atendente vinculado a este e-mail!";
-                return View("CadastrarAtendenteUI");
-            }            
+                AtendenteDAL atendenteDAL = new AtendenteDAL();
+                UsuarioDAL usuarioDAL = new UsuarioDAL();
+
+                Atendente atendente = atendenteDAL.SelecionarAtendenteEmail(txtEmailAtendente);
+                Usuario usuario = usuarioDAL.SelecionarUsuarioEmail(txtEmailAtendente);
+
+                if ((usuario.EmailUsuario != null) || (atendente.EmailAtendente != null))
+                {
+                    TempData[Constantes.MensagemAlerta] = "Já existe atendente vinculado a este e-mail!";
+                    return View("CadastrarAtendenteUI");
+                }
+                else
+                {
+                    usuario = new Usuario(txtEmailAtendente, txtSenhaAtendente, atendente.TipoUsuarioAtendente, Convert.ToChar(selSituacaoAtendente));
+                    atendente = new Atendente(txtNomeAtendente, txtEmailAtendente, Convert.ToChar(selSituacaoAtendente));
+
+                    usuarioDAL.CadastrarUsuario(usuario);
+                    atendenteDAL.CadastrarAtendente(atendente);
+
+                    TempData[Constantes.MensagemAlerta] = "Atendente cadastrado com sucesso!";
+                    return RedirectToAction("Index", "Inicio");
+                }
+            }
             else
             {
-                usuario = new Usuario(txtEmailAtendente, txtSenhaAtendente, atendente.TipoUsuarioAtendente, Convert.ToChar(selSituacaoAtendente));
-                atendente = new Atendente(txtNomeAtendente, txtEmailAtendente, Convert.ToChar(selSituacaoAtendente));
-
-                usuarioDAL.CadastrarUsuario(usuario);
-                atendenteDAL.CadastrarAtendente(atendente);
-
-                TempData[Constantes.MensagemAlerta] = "Atendente cadastrado com sucesso!";
-                return RedirectToAction("Index", "Inicio");
-            }                
+                return RedirectToAction("Login", "AreaRestrita");
+            }                           
         }
 
         [HttpGet]
         public ActionResult AlterarAtendenteUI()
         {
-            AtendenteDAL atendenteDAL = new AtendenteDAL();
-            AtendenteControllerModel atendenteControllerModel = ConvertToModel(atendenteDAL.ListarAtendente());
-            return View(atendenteControllerModel);            
+            if (ValidarAdmin.UsuarioValido())
+            {
+                AtendenteDAL atendenteDAL = new AtendenteDAL();
+                AtendenteControllerModel atendenteControllerModel = ConvertToModel(atendenteDAL.ListarAtendente());
+                return View(atendenteControllerModel);
+            }
+            else
+            {
+                return RedirectToAction("Login", "AreaRestrita");
+            }
+                      
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AlterarAtendenteAR(string txtCodigoAtendente, string txtNomeAtendente, string selSituacaoAtendente)
         {
-            AtendenteDAL atendenteDAL = new AtendenteDAL();
-            Atendente atendente = atendenteDAL.SelecionarAtendenteId(Convert.ToInt32(txtCodigoAtendente));
-
-            if(atendente.CodigoAtendente == 0)
+            if (ValidarAdmin.UsuarioValido())
             {
-                TempData[Constantes.MensagemAlerta] = "Não existe Atendente para o código digitado... Tente novamente!";
-                AtendenteControllerModel atendenteControllerModel = ConvertToModel(atendenteDAL.ListarAtendente());
-                return View("AlterarAtendenteUI", atendenteControllerModel);
+                AtendenteDAL atendenteDAL = new AtendenteDAL();
+                Atendente atendente = atendenteDAL.SelecionarAtendenteId(Convert.ToInt32(txtCodigoAtendente));
+
+                if (atendente.CodigoAtendente == 0)
+                {
+                    TempData[Constantes.MensagemAlerta] = "Não existe Atendente para o código digitado... Tente novamente!";
+                    AtendenteControllerModel atendenteControllerModel = ConvertToModel(atendenteDAL.ListarAtendente());
+                    return View("AlterarAtendenteUI", atendenteControllerModel);
+                }
+                else
+                {
+                    atendente = new Atendente(Convert.ToInt32(txtCodigoAtendente), txtNomeAtendente, Convert.ToChar(selSituacaoAtendente));
+                    atendenteDAL.AlterarAtendente(atendente);
+                    TempData[Constantes.MensagemAlerta] = "Atendente Alterado com Sucesso!";
+                    return RedirectToAction("Index", "Inicio");
+                }
             }
             else
             {
-                atendente = new Atendente(Convert.ToInt32(txtCodigoAtendente), txtNomeAtendente, Convert.ToChar(selSituacaoAtendente));
-                atendenteDAL.AlterarAtendente(atendente);
-                TempData[Constantes.MensagemAlerta] = "Atendente Alterado com Sucesso!";
-                return RedirectToAction("Index", "Inicio");
-            }                        
+                return RedirectToAction("Login", "AreaRestrita");
+            }                                   
         }        
 
         [HttpGet]
         public JsonResult SelecionarAtendenteJR(int codigoAtendente)
         {
-            AtendenteDAL atendenteDAL = new AtendenteDAL();
-            Atendente atendente = atendenteDAL.SelecionarAtendenteId(codigoAtendente);
-            return Json(atendente, JsonRequestBehavior.AllowGet);
+            if (ValidarAdmin.UsuarioValido())
+            {
+                AtendenteDAL atendenteDAL = new AtendenteDAL();
+                Atendente atendente = atendenteDAL.SelecionarAtendenteId(codigoAtendente);
+                return Json(atendente, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json("Esta informação não pode ser solicitada. Por favor, contate o administrador do sistema.", JsonRequestBehavior.AllowGet);
+            }            
         }
 
         [HttpGet]
         public ActionResult ConsultarAtendenteUI()
         {
-            AtendenteDAL atendenteDAL = new AtendenteDAL();
-            AtendenteControllerModel atendenteControllerModel = ConvertToModel(atendenteDAL.ListarAtendente());
-            return View(atendenteControllerModel);
+            if (ValidarAdmin.UsuarioValido())
+            {
+                AtendenteDAL atendenteDAL = new AtendenteDAL();
+                AtendenteControllerModel atendenteControllerModel = ConvertToModel(atendenteDAL.ListarAtendente());
+                return View(atendenteControllerModel);
+            }
+            else
+            {
+                return RedirectToAction("Login", "AreaRestrita");
+            }            
         }
 
         [HttpGet]
         public ActionResult ExcluirAtendenteUI()
         {
-            AtendenteDAL atendenteDAL = new AtendenteDAL();
-            AtendenteControllerModel atendenteControllerModel = ConvertToModel(atendenteDAL.ListarAtendente());
-            return View(atendenteControllerModel);
+            if (ValidarAdmin.UsuarioValido())
+            {
+                AtendenteDAL atendenteDAL = new AtendenteDAL();
+                AtendenteControllerModel atendenteControllerModel = ConvertToModel(atendenteDAL.ListarAtendente());
+                return View(atendenteControllerModel);
+            }
+            else
+            {
+                return RedirectToAction("Login", "AreaRestrita");
+            }            
         }
                 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult ExcluirAtendenteAR(string txtCodigoAtendente)
-        {            
-            AtendenteDAL atendenteDAL = new AtendenteDAL();
-            Atendente atendente = atendenteDAL.SelecionarAtendenteId(Convert.ToInt32(txtCodigoAtendente));
-
-            if (atendente.CodigoAtendente == 0)
+        {
+            if (ValidarAdmin.UsuarioValido())
             {
-                TempData[Constantes.MensagemAlerta] = "Não existe Atendente para o código digitado... Tente novamente!";
-                AtendenteControllerModel atendenteControllerModel = ConvertToModel(atendenteDAL.ListarAtendente());
-                return View("ExcluirAtendenteUI", atendenteControllerModel);
+                AtendenteDAL atendenteDAL = new AtendenteDAL();
+                Atendente atendente = atendenteDAL.SelecionarAtendenteId(Convert.ToInt32(txtCodigoAtendente));
+
+                if (atendente.CodigoAtendente == 0)
+                {
+                    TempData[Constantes.MensagemAlerta] = "Não existe Atendente para o código digitado... Tente novamente!";
+                    AtendenteControllerModel atendenteControllerModel = ConvertToModel(atendenteDAL.ListarAtendente());
+                    return View("ExcluirAtendenteUI", atendenteControllerModel);
+                }
+                else
+                {
+                    atendente.CodigoAtendente = Convert.ToInt32(txtCodigoAtendente);
+                    atendenteDAL.ExcluirAtendente(atendente);
+                    TempData[Constantes.MensagemAlerta] = "Atendente Excluído com Sucesso!";
+                    return RedirectToAction("Index", "Inicio");
+                }
             }
             else
-            {                
-                atendente.CodigoAtendente = Convert.ToInt32(txtCodigoAtendente);
-                atendenteDAL.ExcluirAtendente(atendente);
-                TempData[Constantes.MensagemAlerta] = "Atendente Excluído com Sucesso!";
-                return RedirectToAction("Index", "Inicio");
-            }        
-        }
-
-        
+            {
+                return RedirectToAction("Login", "AreaRestrita");
+            }                 
+        }        
     }
 }
