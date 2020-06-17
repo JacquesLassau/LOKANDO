@@ -6,41 +6,44 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using LoKando.Models.ControllerModel;
-using System.Security.Permissions;
 
 namespace LoKando.Controllers
 {
     public class AreaRestritaController : Controller
     {
-        // GET: AreaRestrita
-        
         public ActionResult Login()
         {
+            string btnClick = Request["btnLogin"];
+
+            if (btnClick == "Login")
+            {
+                string sessaoEmail = Request["txtEmailUsuario"];
+                string sessaoSenha = Request["txtSenhaUsuario"];
+
+                UsuarioDAL usuarioDAL = new UsuarioDAL();
+                Usuario usuario = new Usuario(sessaoEmail, sessaoSenha);
+
+                var login = usuarioDAL.AcessoUsuario(usuario);
+
+                if ((login.EmailUsuario != null) && (login.SenhaUsuario != null))
+                {
+                    Session["sessaoEmail"] = usuario.EmailUsuario;
+                    Session["sessaoId"] = usuario.CodigoUsuario;
+                    return RedirectToAction("index", "Inicio");
+                }
+                else
+                {
+                    return View();
+                }
+
+            }
+
             return View();
         }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]         
-        public ActionResult LoginAR(string txtEmailUsuario, string txtSenhaUsuario)
+        public ActionResult Logout()
         {
-            UsuarioDAL usuarioDAL = new UsuarioDAL();
-            Usuario usuario = usuarioDAL.VerificarUsuario(txtEmailUsuario, txtSenhaUsuario);
-
-            if ((usuario.EmailUsuario == txtEmailUsuario) && (usuario.SenhaUsuario == txtSenhaUsuario))
-            {
-                return RedirectToAction("Index", "Inicio");                
-            }
-            else
-            {
-                return RedirectToAction("Login", "AreaRestrita");
-            }            
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]        
-        public ActionResult LogoutAR()
-        {
+            Session.Abandon();
             return RedirectToAction("Login", "AreaRestrita");
         }
-    }
+    }    
 }

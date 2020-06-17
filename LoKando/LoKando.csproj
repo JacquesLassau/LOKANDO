@@ -120,6 +120,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AreaRestritaController.cs" />
     <Compile Include="Controllers\AtendenteController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
@@ -146,6 +147,7 @@
     <Compile Include="Models\Pedido.cs" />
     <Compile Include="Models\Token.cs" />
     <Compile Include="Models\Usuario.cs" />
+    <Compile Include="Models\ValidarUsuario.cs" />
     <Compile Include="Models\Veiculo.cs" />
     <Compile Include="Models\ControllerModel\AtendenteControllerModel.cs" />
     <Compile Include="Models\ControllerModel\ClienteControllerModel.cs" />

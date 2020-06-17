@@ -83,16 +83,14 @@ namespace LoKando.DAL
             }
         }
 
-        public Usuario VerificarUsuario(string emailUsuario, string senhaUsuario)
+        public Usuario AcessoUsuario(Usuario usuario)
         {
 
             using (SqlConnection conexao = Conexao.ConexaoDatabase())
             {
                 conexao.Open();
 
-                Usuario usuario = new Usuario(emailUsuario, senhaUsuario);
-
-                SqlCommand comandoDML = new SqlCommand("SP_VerificarUsuarioV1", conexao);
+                SqlCommand comandoDML = new SqlCommand("SP_AcessoUsuarioV1", conexao);
                 comandoDML.CommandType = CommandType.StoredProcedure;
 
                 comandoDML.Parameters.Add("@USEMAILLOK", SqlDbType.VarChar, 100);
@@ -107,15 +105,14 @@ namespace LoKando.DAL
 
                 if (verificarUsuario == false)
                 {
-                    usuario.EmailUsuario = null;
-                    usuario.SenhaUsuario = null;
+                    usuario = null;
                 }
                 else
                 {
                     while (dr.Read())
-                    {                        
-                        string emlUsuario = Convert.ToString(dr["USEMAILLOK"]);
-                        string snhUsuario = Convert.ToString(dr["USSENHALOK"]);
+                    {
+                        string emailUsuario = Convert.ToString(dr["USEMAILLOK"]);
+                        string senhaUsuario = Convert.ToString(dr["USSENHALOK"]);
                         usuario = new Usuario(emailUsuario, senhaUsuario);
                     }
                 }
@@ -123,6 +120,6 @@ namespace LoKando.DAL
                 conexao.Close();
                 return usuario;
             }
-        }
+        }        
     }
 }

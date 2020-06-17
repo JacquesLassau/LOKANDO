@@ -9,7 +9,7 @@ using LoKando.Models.ControllerModel;
 
 namespace LoKando.Controllers
 {
-    public class InicioController : Controller
+    public class AdminController : Controller
     {
         // GET: Admin
         public ActionResult Index()
@@ -21,7 +21,7 @@ namespace LoKando.Controllers
             else
             {
                 return RedirectToAction("Login", "AreaRestrita");
-            }
+            }            
         }
     }
 }

@@ -41,27 +41,26 @@
                     </div-->
                 </div>
                 <div class="card-body">
-                    @using (Html.BeginForm("LoginAR", "AreaRestrita", FormMethod.Post))
+                    @using (Html.BeginForm("Login", "AreaRestrita", FormMethod.Post))
                     {
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                         </div>                        
-                        @Html.TextBox("txtEmailUsuario", null, new { @class = "form-control", placeholder = "preencha aqui", type = "email", required = "required" })
+                        <input type="email" class="form-control" name="txtEmailUsuario" placeholder="Digite o E-mail" required>
                     </div>
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                         </div>                        
-                        @Html.TextBox("txtSenhaUsuario", null, new { @class = "form-control", placeholder = "preencha aqui", type = "password", required = "required" })
+                        <input type="password" class="form-control" name="txtSenhaUsuario" placeholder="Digite a Senha" required>
                     </div>
                         <div class="row align-items-center remember">
-                            @Html.CheckBox("txtSenhaUsuario", new { @class = "form-control"})Lembrar-se
+                            <input type="checkbox" class="form-control" name="chkLembrarUsuario">Lembrar-se
                         </div>
                         <div class="form-group">
-                            <input type="submit" value="Login" class="btn float-right login_btn" />
-                        </div>
-                        @Html.AntiForgeryToken()
+                            <input type="submit" value="Login" name="btnLogin" class="btn float-right login_btn" />
+                        </div>                        
                     }                    
                 </div>
                 <div class="card-footer">
