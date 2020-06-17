@@ -29,7 +29,14 @@ namespace LoKando.Controllers
         [HttpGet]
         public ActionResult CadastrarClienteUI()
         {
-            return View("CadastrarClienteUI");
+            if (ValidarAdmin.UsuarioValido())
+            {
+                return View("CadastrarClienteUI");
+            }
+            else
+            {
+                return RedirectToAction("Login", "AreaRestrita");
+            }            
         }
 
 
@@ -37,118 +44,168 @@ namespace LoKando.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CadastrarClienteAR(string txtNomeCliente, string txtHabilitacaoCliente, string txtCpfCliente, string txtRgCliente, string txtNascimentoCliente,string txtEmailCliente, string txtTelefoneCliente, string txtEnderecoCliente, string txtBairroCliente, string txtCidadeCliente, string selEstadoCliente, string txtCepCliente,string selSituacaoCliente, string txtSenhaCliente)
         {
-            ClienteDAL clienteDAL = new ClienteDAL();
-            UsuarioDAL usuarioDAL = new UsuarioDAL();
-            Cliente cliente = new Cliente();
-            Usuario usuario = new Usuario();
-
-            Cliente clienteEmail = clienteDAL.SelecionarClienteEmail(txtEmailCliente);
-            Cliente clienteHabil = clienteDAL.SelecionarClienteHabilitacao(txtHabilitacaoCliente);
-            Cliente clienteCpf = clienteDAL.SelecionarClienteCpf(txtCpfCliente);
-            Usuario usuarioEmail = usuarioDAL.SelecionarUsuarioEmail(txtEmailCliente);
-
-            if ((usuarioEmail.EmailUsuario != null) || (clienteEmail.EmailCliente != null))
+            if (ValidarAdmin.UsuarioValido())
             {
-                TempData[Constantes.MensagemAlerta] = "Já existe um cliente vinculado a este e-mail!";
-                return View("CadastrarClienteUI");
-            }
-            else if (clienteHabil.HabilitacaoCliente != null)
-            {              
-                TempData[Constantes.MensagemAlerta] = "Já existe um cliente vinculado a esta Habilitação!";
-                return View("CadastrarClienteUI");
-            }
-            else if (clienteCpf.CpfCliente != null)
-            {                   
-                TempData[Constantes.MensagemAlerta] = "Já existe um cliente vinculado a este Cpf!";
-                return View("CadastrarClienteUI");
+                ClienteDAL clienteDAL = new ClienteDAL();
+                UsuarioDAL usuarioDAL = new UsuarioDAL();
+                Cliente cliente = new Cliente();
+                Usuario usuario = new Usuario();
+
+                Cliente clienteEmail = clienteDAL.SelecionarClienteEmail(txtEmailCliente);
+                Cliente clienteHabil = clienteDAL.SelecionarClienteHabilitacao(txtHabilitacaoCliente);
+                Cliente clienteCpf = clienteDAL.SelecionarClienteCpf(txtCpfCliente);
+                Usuario usuarioEmail = usuarioDAL.SelecionarUsuarioEmail(txtEmailCliente);
+
+                if ((usuarioEmail.EmailUsuario != null) || (clienteEmail.EmailCliente != null))
+                {
+                    TempData[Constantes.MensagemAlerta] = "Já existe um cliente vinculado a este e-mail!";
+                    return View("CadastrarClienteUI");
+                }
+                else if (clienteHabil.HabilitacaoCliente != null)
+                {
+                    TempData[Constantes.MensagemAlerta] = "Já existe um cliente vinculado a esta Habilitação!";
+                    return View("CadastrarClienteUI");
+                }
+                else if (clienteCpf.CpfCliente != null)
+                {
+                    TempData[Constantes.MensagemAlerta] = "Já existe um cliente vinculado a este Cpf!";
+                    return View("CadastrarClienteUI");
+                }
+                else
+                {
+                    usuario = new Usuario(txtEmailCliente, txtSenhaCliente, cliente.TipoUsuarioCliente, Convert.ToChar(selSituacaoCliente));
+                    cliente = new Cliente(txtNomeCliente, txtHabilitacaoCliente, txtCpfCliente, txtRgCliente, Convert.ToDateTime(txtNascimentoCliente), txtEmailCliente, txtTelefoneCliente, txtEnderecoCliente, txtBairroCliente, txtCidadeCliente, selEstadoCliente, txtCepCliente, Convert.ToChar(selSituacaoCliente));
+
+                    usuarioDAL.CadastrarUsuario(usuario);
+                    clienteDAL.CadastrarCliente(cliente);
+
+                    TempData[Constantes.MensagemAlerta] = "Cliente cadastrado com sucesso!";
+                    return RedirectToAction("Index", "Inicio");
+                }
             }
             else
             {
-                usuario = new Usuario(txtEmailCliente, txtSenhaCliente, cliente.TipoUsuarioCliente, Convert.ToChar(selSituacaoCliente));
-                cliente = new Cliente(txtNomeCliente, txtHabilitacaoCliente, txtCpfCliente, txtRgCliente, Convert.ToDateTime(txtNascimentoCliente), txtEmailCliente, txtTelefoneCliente, txtEnderecoCliente, txtBairroCliente, txtCidadeCliente, selEstadoCliente, txtCepCliente, Convert.ToChar(selSituacaoCliente));
-
-                usuarioDAL.CadastrarUsuario(usuario);
-                clienteDAL.CadastrarCliente(cliente);
-
-                TempData[Constantes.MensagemAlerta] = "Cliente cadastrado com sucesso!";
-                return RedirectToAction("Index", "Inicio");
-            }
+                return RedirectToAction("Login", "AreaRestrita");
+            }            
         }
 
         [HttpGet]
         public ActionResult AlterarClienteUI()
         {
-            ClienteDAL clienteDAL = new ClienteDAL();
-            ClienteControllerModel clienteViewModel = ConvertToModel(clienteDAL.ListarCliente());
-            return View(clienteViewModel); 
+            if (ValidarAdmin.UsuarioValido())
+            {
+                ClienteDAL clienteDAL = new ClienteDAL();
+                ClienteControllerModel clienteViewModel = ConvertToModel(clienteDAL.ListarCliente());
+                return View(clienteViewModel);
+            }
+            else
+            {
+                return RedirectToAction("Login", "AreaRestrita");
+            }            
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AlterarClienteAR(string txtCodigoCliente, string txtNomeCliente, string txtRgCliente, string txtNascimentoCliente, string txtTelefoneCliente, string txtEnderecoCliente, string txtBairroCliente, string txtCidadeCliente, string selEstadoCliente, string txtCepCliente, string selSituacaoCliente)
         {
-            ClienteDAL clienteDAL = new ClienteDAL();
-            Cliente cliente = clienteDAL.SelecionarClienteId(Convert.ToInt32(txtCodigoCliente));
-
-            if (cliente.CodigoCliente == 0)
+            if (ValidarAdmin.UsuarioValido())
             {
-                TempData[Constantes.MensagemAlerta] = "Não existe Cliente para o código digitado... Tente novamente!";
-                ClienteControllerModel clienteViewModel = ConvertToModel(clienteDAL.ListarCliente());
-                return View("AlterarClienteUI", clienteViewModel);
+                ClienteDAL clienteDAL = new ClienteDAL();
+                Cliente cliente = clienteDAL.SelecionarClienteId(Convert.ToInt32(txtCodigoCliente));
+
+                if (cliente.CodigoCliente == 0)
+                {
+                    TempData[Constantes.MensagemAlerta] = "Não existe Cliente para o código digitado... Tente novamente!";
+                    ClienteControllerModel clienteViewModel = ConvertToModel(clienteDAL.ListarCliente());
+                    return View("AlterarClienteUI", clienteViewModel);
+                }
+                else
+                {
+                    cliente = new Cliente(Convert.ToInt32(txtCodigoCliente), txtNomeCliente, txtRgCliente, Convert.ToDateTime(txtNascimentoCliente), txtTelefoneCliente, txtEnderecoCliente, txtBairroCliente, txtCidadeCliente, selEstadoCliente, txtCepCliente, Convert.ToChar(selSituacaoCliente));
+                    clienteDAL.AlterarCliente(cliente);
+                    TempData[Constantes.MensagemAlerta] = "Cliente Alterado com Sucesso!";
+                    return RedirectToAction("Index", "Inicio");
+                }
             }
             else
             {
-                cliente = new Cliente(Convert.ToInt32(txtCodigoCliente), txtNomeCliente, txtRgCliente, Convert.ToDateTime(txtNascimentoCliente), txtTelefoneCliente, txtEnderecoCliente, txtBairroCliente, txtCidadeCliente, selEstadoCliente, txtCepCliente, Convert.ToChar(selSituacaoCliente));
-                clienteDAL.AlterarCliente(cliente);
-                TempData[Constantes.MensagemAlerta] = "Cliente Alterado com Sucesso!";
-                return RedirectToAction("Index", "Inicio");
-            }
+                return RedirectToAction("Login", "AreaRestrita");
+            }            
         }
 
         [HttpGet]
         public JsonResult SelecionarClienteJR(int codigoCliente)
         {
-            ClienteDAL clienteDAL = new ClienteDAL();
-            Cliente cliente = clienteDAL.SelecionarClienteId(codigoCliente);
-            return Json(cliente, JsonRequestBehavior.AllowGet);
+            if (ValidarAdmin.UsuarioValido())
+            {
+                ClienteDAL clienteDAL = new ClienteDAL();
+                Cliente cliente = clienteDAL.SelecionarClienteId(codigoCliente);
+                return Json(cliente, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json("Esta informação não pode ser solicitada. Por favor, contate o administrador do sistema.", JsonRequestBehavior.AllowGet);
+            }
+            
         }
 
         [HttpGet]
         public ActionResult ConsultarClienteUI()
         {
-            ClienteDAL clienteDAL = new ClienteDAL();
-            ClienteControllerModel clienteViewModel = ConvertToModel(clienteDAL.ListarCliente());
-            return View(clienteViewModel);
+            if (ValidarAdmin.UsuarioValido())
+            {
+                ClienteDAL clienteDAL = new ClienteDAL();
+                ClienteControllerModel clienteViewModel = ConvertToModel(clienteDAL.ListarCliente());
+                return View(clienteViewModel);
+            }
+            else
+            {
+                return RedirectToAction("Login", "AreaRestrita");
+            }            
         }
 
         [HttpGet]
         public ActionResult ExcluirClienteUI()
         {
-            ClienteDAL clienteDAL = new ClienteDAL();
-            ClienteControllerModel clienteViewModel = ConvertToModel(clienteDAL.ListarCliente());
-            return View(clienteViewModel);
+            if (ValidarAdmin.UsuarioValido())
+            {
+                ClienteDAL clienteDAL = new ClienteDAL();
+                ClienteControllerModel clienteViewModel = ConvertToModel(clienteDAL.ListarCliente());
+                return View(clienteViewModel);
+            }
+            else
+            {
+                return RedirectToAction("Login", "AreaRestrita");
+            }            
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult ExcluirClienteAR(string txtCodigoCliente)
         {
-            ClienteDAL clienteDAL = new ClienteDAL();
-            Cliente cliente = clienteDAL.SelecionarClienteId(Convert.ToInt32(txtCodigoCliente));
-
-            if (cliente.CodigoCliente == 0)
+            if (ValidarAdmin.UsuarioValido())
             {
-                TempData[Constantes.MensagemAlerta] = "Não existe Cliente para o código digitado... Tente novamente!";
-                ClienteControllerModel clienteViewModel = ConvertToModel(clienteDAL.ListarCliente());
-                return View("ExcluirClienteUI", clienteViewModel);
+                ClienteDAL clienteDAL = new ClienteDAL();
+                Cliente cliente = clienteDAL.SelecionarClienteId(Convert.ToInt32(txtCodigoCliente));
+
+                if (cliente.CodigoCliente == 0)
+                {
+                    TempData[Constantes.MensagemAlerta] = "Não existe Cliente para o código digitado... Tente novamente!";
+                    ClienteControllerModel clienteViewModel = ConvertToModel(clienteDAL.ListarCliente());
+                    return View("ExcluirClienteUI", clienteViewModel);
+                }
+                else
+                {
+                    cliente.CodigoCliente = Convert.ToInt32(txtCodigoCliente);
+                    clienteDAL.ExcluirCliente(cliente);
+                    TempData[Constantes.MensagemAlerta] = "Cliente Excluído com Sucesso!";
+                    return RedirectToAction("Index", "Inicio");
+                }
             }
             else
             {
-                cliente.CodigoCliente = Convert.ToInt32(txtCodigoCliente);
-                clienteDAL.ExcluirCliente(cliente);
-                TempData[Constantes.MensagemAlerta] = "Cliente Excluído com Sucesso!";
-                return RedirectToAction("Index", "Inicio");
-            }
+                return RedirectToAction("Login", "AreaRestrita");
+            }            
         }
     }
 }
