@@ -25,15 +25,19 @@ namespace LoKando.Controllers
 
                 var login = usuarioDAL.AcessoUsuario(usuario);
 
-                if ((login.EmailUsuario != null) && (login.SenhaUsuario != null))
+                if (login == null)
                 {
-                    Session["sessaoEmail"] = usuario.EmailUsuario;
-                    Session["sessaoId"] = usuario.CodigoUsuario;
-                    return RedirectToAction("index", "Inicio");
+                    TempData["Error"] = "E-mail ou Senha inválido!";
+                    return View();
                 }
                 else
                 {
-                    return View();
+                    if((login.EmailUsuario != null) && (login.SenhaUsuario != null))
+                    {
+                        Session["sessaoEmail"] = usuario.EmailUsuario;
+                        Session["sessaoId"] = usuario.CodigoUsuario;
+                        return RedirectToAction("index", "Inicio");
+                    }                    
                 }
 
             }
