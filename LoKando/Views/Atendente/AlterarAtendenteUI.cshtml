@@ -27,7 +27,7 @@
                     </div>
                     <div class="form-group">
                         @Html.Label("lblEmailAtendente", "E-Mail:")
-                        @Html.TextBox("txtEmailAtendente", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", type = "email" })
+                        @Html.TextBox("txtEmailAtendente", null, new { @class = "form-control", placeholder = "preencha aqui", type = "email", @readonly = "readonly" })
                     </div>
                     <div class="form-group">
                         @Html.Label("lblSituacaoAtendente", "Qual é a Situação do Atendente?")

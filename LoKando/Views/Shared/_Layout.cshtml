@@ -64,7 +64,7 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <a href="@Url.Action("Index","Admin")" class="sessao-usuario-mobile" id="sessao-usuario-mobile"><i class="fa fa-user"></i> @Session["sessaoEmail"]</a>
+                <a href="@Url.Action("Index","Inicio")" class="sessao-usuario-mobile" id="sessao-usuario-mobile"><i class="fa fa-user"></i> @Session["sessaoEmail"]</a>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -110,7 +110,7 @@
                             <li>@Html.ActionLink("Excluir", "ExcluirVeiculoUI", "Veiculo")</li>
                         </ul>
                     </li>
-                    <li class="pull-left"><a href="@Url.Action("Index","Admin")"><i class="fa fa-user" style="font-size:24px"></i> @Session["sessaoEmail"]</a></li>
+                    <li class="pull-left"><a href="@Url.Action("Index","Inicio")"><i class="fa fa-user" style="font-size:24px"></i> @Session["sessaoEmail"]</a></li>
                 </ul>
                 <ul class="nav navbar-nav link-sair">                    
                     <li><a href="@Url.Action("Logout","AreaRestrita")"><i class="fa fa-external-link" style="font-size:24px;"></i> Sair </a></li>

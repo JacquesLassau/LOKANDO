@@ -241,7 +241,7 @@ namespace LoKando.Controllers
 
                 if (placaVeiculo.PlacaVeiculo == null)
                 {
-                    TempData[Constantes.MensagemAlerta] = "Acesso Negado! Não Existe o veículo no sistema! Tente novamente... ";
+                    TempData[Constantes.MensagemAlerta] = "Acesso Negado! Não é possível excluir um veículo sem o código do locador. Tente novamente... ";
                     return RedirectToAction("ExcluirVeiculoUI", "Veiculo");
                 }
                 else
