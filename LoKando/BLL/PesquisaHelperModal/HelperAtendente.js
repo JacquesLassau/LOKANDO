@@ -1,12 +1,6 @@
-﻿function PesquisarAtendente() {
+﻿function TxtPesquisarAtendente() {
 
-    event.preventDefault();    
-    
-    document.getElementById("txtNomeAtendente").value = null;
-    document.getElementById("txtEmailAtendente").value = null;
-    document.getElementById("selSituacaoAtendente").value = null;
-    document.getElementById("txtUltimaAtualizacao").value = null;  
-
+    event.preventDefault();
     var item = document.getElementById("txtCodigoAtendente").value;
 
     if (item == "")
@@ -25,19 +19,17 @@
                 $("#txtUltimaAtualizacao").val(data.HoraRegistroAtendente);
 
             });
-
-        } else {
-
-            $(function () {
-
-                $("#txtNomeAtendente").val(null);
-                $("#txtEmailAtendente").val(null);
-                $("#selSituacaoAtendente").val(null);
-                $("#txtUltimaAtualizacao").val(null);
-                $("#listarAtendentes").modal("show");
-
-            });
         }
     });
+}
+
+function BtnPesquisarAtendente() {
+
+    document.getElementById("txtNomeAtendente").value = null;
+    document.getElementById("txtEmailAtendente").value = null;
+    document.getElementById("selSituacaoAtendente").value = null;
+    document.getElementById("txtUltimaAtualizacao").value = null;
+    document.getElementById("txtCodigoAtendente").value = null;
+
 }
 

@@ -95,9 +95,16 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title text-danger"><strong>Selecione um Veículo:</strong><br /></h4>
-                <p class="lead">Consulte a lista abaixo e clique para selecionar um Veículo:</p>
+                <p class="lead">Consulte a lista abaixo e clique para escolher um Veículo:</p>
             </div>
             <div class="modal-body text-center">
+                <div class="row modal-propriedades" style="margin-top:24px;">
+                    <div class="col-md-1"><b>Código Locador</b></div>
+                    <div class="col-md-3"><b>Nome <br />Locador</b></div>
+                    <div class="col-md-2"><b>Marca</b></div>
+                    <div class="col-md-2"><b>Modelo</b></div>
+                    <div class="col-md-2"><b>Placa Veículo</b></div>
+                </div>
                 <hr />
                 @foreach (var model in Model.Veiculo)
                 {

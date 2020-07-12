@@ -27,7 +27,7 @@ namespace LoKando.Controllers
 
                 if (login == null)
                 {
-                    TempData["Error"] = "E-mail ou Senha inválido ... Tente novamente!";
+                    TempData["Error"] = "E-mail ou Senha inválido.";
                     return View();
                 }
                 else

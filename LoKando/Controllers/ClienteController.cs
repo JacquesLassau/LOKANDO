@@ -115,7 +115,7 @@ namespace LoKando.Controllers
 
                 if (cliente.CodigoCliente == 0)
                 {
-                    TempData[Constantes.MensagemAlerta] = "Não existe Cliente para o código digitado... Tente novamente!";
+                    TempData[Constantes.MensagemAlerta] = "Não existe Cliente para o código digitado.";
                     ClienteControllerModel clienteViewModel = ConvertToModel(clienteDAL.ListarCliente());
                     return View("AlterarClienteUI", clienteViewModel);
                 }
@@ -190,7 +190,7 @@ namespace LoKando.Controllers
 
                 if (cliente.CodigoCliente == 0)
                 {
-                    TempData[Constantes.MensagemAlerta] = "Não existe Cliente para o código digitado... Tente novamente!";
+                    TempData[Constantes.MensagemAlerta] = "Não existe Cliente para o código digitado.";
                     ClienteControllerModel clienteViewModel = ConvertToModel(clienteDAL.ListarCliente());
                     return View("ExcluirClienteUI", clienteViewModel);
                 }

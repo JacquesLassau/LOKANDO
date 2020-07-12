@@ -17,29 +17,29 @@
                     <br />
                     <div class="form-group">
                         @Html.Label("lblRzScLocador", "Razão Social:")
-                        @Html.TextBox("txtRzScLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
+                        @Html.TextBox("txtRzScLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", maxlength = 100 })
                     </div>
                     <div class="form-group">
                         @Html.Label("lblNmFsLocador", "Nome Fantasia:")
-                        @Html.TextBox("txtNmFsLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
+                        @Html.TextBox("txtNmFsLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", maxlength = 100 })
                     </div>
                     <div class="form-group">
                         @Html.Label("lblEmailLocador", "E-Mail:")
-                        @Html.TextBox("txtEmailLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
+                        @Html.TextBox("txtEmailLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", maxlength = 100 })
                     </div>
                     <div class="form-group">
                         @Html.Label("lblSenhaLocador", "Senha:")
-                        @Html.TextBox("txtSenhaLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", type = "password", onfocusout = "SenhaLocador()" })
+                        @Html.TextBox("txtSenhaLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", type = "password", onfocusout = "SenhaLocador()", maxlength = 32 })
                         @Html.Raw("<div id='validaSenha'></div>")
                     </div>
                     <div class="form-group">
                         @Html.Label("lblConfirmaSenhaLocador", "Confirme a Senha:")
-                        @Html.TextBox("txtConfirmaSenhaLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", type = "password", onfocusout = "ConfirmaSenhaLocador()" })
+                        @Html.TextBox("txtConfirmaSenhaLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", type = "password", onfocusout = "ConfirmaSenhaLocador()", maxlength = 32 })
                         @Html.Raw("<div id='confirmaSenha'></div>")
                     </div>
                     <div class="form-group">
                         @Html.Label("lblTelefoneLocador", "Telefone:")
-                        @Html.TextBox("txtTelefoneLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
+                        @Html.TextBox("txtTelefoneLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", maxlength = 14 })
                     </div>
                     <div class="form-group">
                         @Html.Label("lblSituacaoLocador", "Qual é a Situação do Locador?")
@@ -55,7 +55,7 @@
                         @Html.Raw("<label class='btn btn-primary' id='cnpjLocador' name='cnpjLocador' onclick='CnpjLocador()'><input type='radio' name='cnpj'> Cnpj</label>")
                     </div>
                     <hr />
-                    <input type="text" class="form-control" name="txtDocumentoLocador" id="txtDocumentoLocador" placeholder="000.000.000-00" onfocusout="ValidaDocumentoLocador()" />
+                    <input type="text" class="form-control" name="txtDocumentoLocador" id="txtDocumentoLocador" placeholder="000.000.000-00" onfocusout="ValidaDocumentoLocador()" maxlength = 18 />
                     <div id="validaDocumentoLocador"></div>
                 </fieldset>
                 <br />
@@ -64,15 +64,15 @@
                     <br />
                     <div class="form-group">
                         @Html.Label("lblEnderecoLocador", "Logadouro:")
-                        @Html.TextBox("txtEnderecoLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
+                        @Html.TextBox("txtEnderecoLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", maxlength = 100 })
                     </div>
                     <div class="form-group">
                         @Html.Label("lblBairroLocador", "Bairro:")
-                        @Html.TextBox("txtBairroLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
+                        @Html.TextBox("txtBairroLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", maxlength = 100 })
                     </div>
                     <div class="form-group">
                         @Html.Label("lblCidadeLocador", "Cidade:")
-                        @Html.TextBox("txtCidadeLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
+                        @Html.TextBox("txtCidadeLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", maxlength = 100 })
                     </div>
                     <div class="form-group">
                         @Html.Label("lblEstadoLocador", "Estado:")
@@ -80,7 +80,7 @@
                     </div>
                     <div class="form-group">
                         @Html.Label("lblCepLocador", "CEP:")
-                        @Html.TextBox("txtCepLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
+                        @Html.TextBox("txtCepLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", maxlength = 9 })
                     </div>
                 </fieldset>
             </div>

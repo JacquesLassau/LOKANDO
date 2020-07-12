@@ -14,8 +14,8 @@
                 <fieldset id="pesquisaCodigoAtendente">
                     <legend>Código do Atendente</legend>
                     <div class="input-group">
-                        @Html.TextBox("txtCodigoAtendente", null, new { @class = "form-control", onfocusout = "PesquisarAtendente()", placeholder = "Pesquise pelo Código do Atendente", required = "required" })
-                        <button class="btn btn-primary" name="pesquisaAtendente" id="pesquisaAtendente" data-toggle="modal" data-target="#listarAtendentes" onclick="PesquisarAtendente()" style="width:94.75%; margin-top:6px;"><i class="fa fa-search"></i>  Procurar</button>
+                        @Html.TextBox("txtCodigoAtendente", null, new { @class = "form-control", onfocusout = "TxtPesquisarAtendente()", placeholder = "Pesquise pelo Código do Atendente", required = "required" })
+                        <button class="btn btn-primary" name="pesquisaAtendente" id="pesquisaAtendente" data-toggle="modal" data-target="#listarAtendentes" onclick="BtnPesquisarAtendente()" style="width:94.75%; margin-top:6px;"><i class="fa fa-search"></i>  Procurar</button>
                     </div>
                 </fieldset>
                 <br />
@@ -53,10 +53,16 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title text-danger"><strong>Atendente não encontrado!</strong><br /></h4>
-                <p class="lead">Consulte a lista abaixo e clique para selecionar um Atendente:</p>
+                <h4 class="modal-title text-danger"><b>Selecione um Atendente</b><br /></h4>
+                <p class="lead">Consulte a lista abaixo e clique para escolher um Atendente</p>
             </div>
             <div class="modal-body text-center">
+                <div class="row modal-propriedades" style="margin-top:24px;">
+                    <div class="col-md-1"><b>Código</b></div>
+                    <div class="col-md-3"><b>Nome</b></div>
+                    <div class="col-md-4"><b>Email</b></div>
+                    <div class="col-md-2"><b>Último Registro</b></div>
+                </div>
                 <hr />
                 @foreach (var model in Model.Atendente)
                 {

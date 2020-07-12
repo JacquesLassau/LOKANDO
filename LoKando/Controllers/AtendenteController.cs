@@ -101,7 +101,7 @@ namespace LoKando.Controllers
 
                 if (atendente.CodigoAtendente == 0)
                 {
-                    TempData[Constantes.MensagemAlerta] = "Não existe Atendente para o código digitado... Tente novamente!";
+                    TempData[Constantes.MensagemAlerta] = "Não existe Atendente para o código digitado.";
                     AtendenteControllerModel atendenteControllerModel = ConvertToModel(atendenteDAL.ListarAtendente());
                     return View("AlterarAtendenteUI", atendenteControllerModel);
                 }
@@ -175,7 +175,7 @@ namespace LoKando.Controllers
 
                 if (atendente.CodigoAtendente == 0)
                 {
-                    TempData[Constantes.MensagemAlerta] = "Não existe Atendente para o código digitado... Tente novamente!";
+                    TempData[Constantes.MensagemAlerta] = "Não existe Atendente para o código digitado.";
                     AtendenteControllerModel atendenteControllerModel = ConvertToModel(atendenteDAL.ListarAtendente());
                     return View("ExcluirAtendenteUI", atendenteControllerModel);
                 }

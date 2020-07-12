@@ -110,8 +110,9 @@ namespace LoKando.Controllers
 
                 if (locador.CodigoLocador == 0)
                 {
-                    TempData[Constantes.MensagemAlerta] = "Não existe Locador para o código digitado... Tente novamente!";
-                    return View("AlterarLocadorUI");
+                    TempData[Constantes.MensagemAlerta] = "Não existe Locador para o código digitado.";
+                    LocadorControllerModel locadorViewModel = ConvertToModel(locadorDAL.ListarLocador());
+                    return View("AlterarLocadorUI", locadorViewModel);
                 }
                 else
                 {
@@ -184,7 +185,7 @@ namespace LoKando.Controllers
 
                 if (locador.CodigoLocador == 0)
                 {
-                    TempData[Constantes.MensagemAlerta] = "Não existe Locador para o código digitado... Tente novamente!";
+                    TempData[Constantes.MensagemAlerta] = "Não existe Locador para o código digitado.";
                     LocadorControllerModel locadorViewModel = ConvertToModel(locadorDAL.ListarLocador());
                     return View("ExcluirLocadorUI", locadorViewModel);
                 }

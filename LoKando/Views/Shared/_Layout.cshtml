@@ -26,6 +26,10 @@
             .link-sair{
                float:right;
             }
+            .modal-propriedades{
+                font-size:16px;
+                color:#a94442;                
+            }
         }
 
         @@media screen and (min-width: 768px) and (max-width:1023px) {
@@ -36,28 +40,36 @@
             .link-sair{
                float:right;
             }
+            .modal-propriedades {
+                visibility: hidden;
+                display: none;
+            } 
         }
 
-        @@media screen and (max-width:767px) {            
-           .sessao-usuario-mobile{
-                color:#fff;
-                font-size:1.4em;
-                font-weight:500;
-                margin-left:32px;
-                margin-top:16px;
-                position:absolute;
-                z-index:9999;
-            } 
-           .link-sair{
-               float:left;
-               border-top: 1px solid #000;
-               width:100%;
-               position:absolute;
-               background-color:#FFBB05;
-               margin-top:-2px;
-           }
+        @@media screen and (max-width:767px) {
+            .sessao-usuario-mobile {
+                color: #fff;
+                font-size: 1.4em;
+                font-weight: 500;
+                margin-left: 32px;
+                margin-top: 16px;
+                position: absolute;
+                z-index: 9999;
+            }
+            .link-sair {
+                float: left;
+                border-top: 1px solid #000;
+                width: 100%;
+                position: absolute;
+                background-color: #FFBB05;
+                margin-top: -2px;
+            }
+
+            .modal-propriedades {
+                visibility: hidden;
+                display: none;
+            }            
         }
-        
     </style>
 </head>
 <body style="background-image: url('../img/fundo.png');background-repeat:no-repeat;">
@@ -74,7 +86,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-user" style="font-size:24px"></i> Atendente</a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-user" style="font-size: 24px "></i> Atendente</a>
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("Cadastro", "CadastrarAtendenteUI", "Atendente")</li>
                             <li>@Html.ActionLink("Alterar", "AlterarAtendenteUI", "Atendente")</li>

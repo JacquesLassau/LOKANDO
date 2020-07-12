@@ -1,12 +1,6 @@
-﻿function PesquisarCliente() {
+﻿function TxtPesquisarCliente() {
 
     event.preventDefault();
-
-    document.getElementById("txtNomeCliente").value = null;
-    document.getElementById("txtEmailCliente").value = null;
-    document.getElementById("selSituacaoCliente").value = null;
-    document.getElementById("txtUltimaAtualizacaoCliente").value = null;
-
     var item = document.getElementById("txtCodigoCliente").value;
 
     if (item == "")
@@ -35,29 +29,27 @@
                 $("#txtUltimaAtualizacaoCliente").val(data.HoraRegistroCliente);
 
             });
-
-        } else {
-
-            $(function () {
-                
-                $("#txtNomeCliente").val(null);
-                $("#txtHabilitacaoCliente").val(null);
-                $("#txtCpfCliente").val(null);
-                $("#txtRgCliente").val(null);
-                $("#txtNascimentoCliente").val(null);
-                $("#txtEmailCliente").val(null);
-                $("#txtTelefoneCliente").val(null);
-                $("#txtEnderecoCliente").val(null);
-                $("#txtBairroCliente").val(null);
-                $("#txtCidadeCliente").val(null);
-                $("#selEstadoCliente").val(null);
-                $("#txtCepCliente").val(null);
-                $("#selSituacaoCliente").val(null);
-                $("#txtUltimaAtualizacaoCliente").val(null);
-                $("#listarCliente").modal("show");
-
-            });
-        }
+        } 
     });
+}
+
+function BtnPesquisarCliente() {    
+
+    document.getElementById("txtCodigoCliente").value = null;
+    document.getElementById("txtNomeCliente").value = null;
+    document.getElementById("txtHabilitacaoCliente").value = null;
+    document.getElementById("txtCpfCliente").value = null;
+    document.getElementById("txtRgCliente").value = null;
+    document.getElementById("txtNascimentoCliente").value = null;
+    document.getElementById("txtEmailCliente").value = null;
+    document.getElementById("txtTelefoneCliente").value = null;
+    document.getElementById("txtEnderecoCliente").value = null;
+    document.getElementById("txtBairroCliente").value = null;
+    document.getElementById("txtCidadeCliente").value = null;
+    document.getElementById("selEstadoCliente").value = null;
+    document.getElementById("txtCepCliente").value = null;
+    document.getElementById("selSituacaoCliente").value = null;
+    document.getElementById("txtUltimaAtualizacaoCliente").value = null;
+
 }
 

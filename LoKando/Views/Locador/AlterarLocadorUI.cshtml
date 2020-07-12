@@ -18,8 +18,8 @@
                 <fieldset id="pesquisaCodigoLocador">
                     <legend>Código do Locador</legend>
                     <div class="input-group">
-                        @Html.TextBox("txtCodigoLocador", null, new { @class = "form-control", onfocusout = "PesquisarLocador()", placeholder = "Pesquise pelo Código do Locador", required = "required" })
-                        <a class="btn btn-primary" name="pesquisaLocador" id="pesquisaLocador" maxlength="5" data-toggle="modal" data-target="#listarLocador" onclick="PesquisarLocador()" style="width:94.75%; margin-top:6px;"><i class="fa fa-search"></i>  Procurar</a>
+                        @Html.TextBox("txtCodigoLocador", null, new { @class = "form-control", onfocusout = "TxtPesquisarLocador()", placeholder = "Pesquise pelo Código do Locador", required = "required" })
+                        <a class="btn btn-primary" name="pesquisaLocador" id="pesquisaLocador" maxlength="5" data-toggle="modal" data-target="#listarLocador" onclick="BtnPesquisarLocador()" style="width:94.75%; margin-top:6px;"><i class="fa fa-search"></i>  Procurar</a>
                     </div>
                 </fieldset>
                 <br />
@@ -28,19 +28,19 @@
                     <br />
                     <div class="form-group">
                         @Html.Label("lblRzScLocador", "Razão Social:")
-                        @Html.TextBox("txtRzScLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
+                        @Html.TextBox("txtRzScLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", maxlength = 100 })
                     </div>
                     <div class="form-group">
                         @Html.Label("lblNmFsLocador", "Nome Fantasia:")
-                        @Html.TextBox("txtNmFsLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
+                        @Html.TextBox("txtNmFsLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", maxlength = 100 })
                     </div>
                     <div class="form-group">
                         @Html.Label("lblEmailLocador", "E-Mail:")
-                        @Html.TextBox("txtEmailLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
+                        @Html.TextBox("txtEmailLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", maxlength = 100 })
                     </div>
                     <div class="form-group">
                         @Html.Label("lblTelefoneLocador", "Telefone:")
-                        @Html.TextBox("txtTelefoneLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
+                        @Html.TextBox("txtTelefoneLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", maxlength = 14 })
                     </div>
                     <div class="form-group">
                         @Html.Label("lblSituacaoLocador", "Qual é a Situação do Locador?")
@@ -63,15 +63,15 @@
                     <br />
                     <div class="form-group">
                         @Html.Label("lblEnderecoLocador", "Logadouro:")
-                        @Html.TextBox("txtEnderecoLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
+                        @Html.TextBox("txtEnderecoLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", maxlength = 100 })
                     </div>
                     <div class="form-group">
                         @Html.Label("lblBairroLocador", "Bairro:")
-                        @Html.TextBox("txtBairroLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
+                        @Html.TextBox("txtBairroLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", maxlength = 100 })
                     </div>
                     <div class="form-group">
                         @Html.Label("lblCidadeLocador", "Cidade:")
-                        @Html.TextBox("txtCidadeLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
+                        @Html.TextBox("txtCidadeLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", maxlength = 100 })
                     </div>
                     <div class="form-group">
                         @Html.Label("lblEstadoLocador", "Estado:")
@@ -79,7 +79,7 @@
                     </div>
                     <div class="form-group">
                         @Html.Label("lblCepLocador", "CEP:")
-                        @Html.TextBox("txtCepLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
+                        @Html.TextBox("txtCepLocador", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", maxlength = 9 })
                     </div>
                 </fieldset>
             </div>
@@ -97,10 +97,16 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title text-danger"><strong>Locador não encontrado!</strong><br /></h4>
-                <p class="lead">Consulte a lista abaixo e clique para selecionar um Locador:</p>
+                <h4 class="modal-title text-danger"><b>Selecione um Locador</b><br /></h4>
+                <p class="lead">Consulte a lista abaixo e clique para escolher um Locador</p>
             </div>
             <div class="modal-body text-center">
+                <div class="row modal-propriedades" style="margin-top:24px;">
+                    <div class="col-md-1"><b>Código</b></div>
+                    <div class="col-md-3"><b>Nome</b></div>
+                    <div class="col-md-4"><b>Email</b></div>
+                    <div class="col-md-2"><b>Último Registro</b></div>
+                </div>
                 <hr />
                 @foreach (var model in Model.Locador)
                 {

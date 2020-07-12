@@ -33,15 +33,15 @@
                     </div>
                     <div class="form-group">
                         @Html.Label("lblMarcaVeiculo", "Marca:")
-                        @Html.TextBox("txtMarcaVeiculo", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
+                        @Html.TextBox("txtMarcaVeiculo", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", maxlength = 100 })
                     </div>
                     <div class="form-group">
                         @Html.Label("lblModeloVeiculo", "Modelo:")
-                        @Html.TextBox("txtModeloVeiculo", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
+                        @Html.TextBox("txtModeloVeiculo", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", maxlength = 100 })
                     </div>
                     <div class="form-group">
                         @Html.Label("lblCorVeiculo", "Cor:")
-                        @Html.TextBox("txtCorVeiculo", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
+                        @Html.TextBox("txtCorVeiculo", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", maxlength = 100 })
                     </div>
                     <div class="form-group">
                         @Html.Label("lblCombustivelVeiculo", "Combustível:")
@@ -49,7 +49,7 @@
                     </div>
                     <div class="form-group">
                         @Html.Label("lblAnoVeiculo", "Ano:")
-                        @Html.TextBox("txtAnoVeiculo", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
+                        @Html.TextBox("txtAnoVeiculo", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", maxlength = 4 })
                     </div>
                     <div class="form-group">
                         @Html.Label("lblSituacaoLocador", "Qual é a Situação do Veículo?")
@@ -63,11 +63,11 @@
                     <br />
                     <div class="form-group">
                         @Html.Label("lblPlacaVeiculo", "Placa:")
-                        @Html.TextBox("txtPlacaVeiculo", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", onfocusout = "ValidaPlaca()" })
+                        @Html.TextBox("txtPlacaVeiculo", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", onfocusout = "ValidaPlaca()", maxlength = 7 })
                     </div>
                     <div class="form-group">
                         @Html.Label("lblRenavamVeiculo", "Renavam:")
-                        @Html.TextBox("txtRenavamVeiculo", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
+                        @Html.TextBox("txtRenavamVeiculo", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", maxlength = 100 })
                     </div>
                     <div class="form-group">
                         @Html.Label("lblValorDiariaVeiculo", "Diária R$:")
@@ -91,7 +91,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title text-danger"><strong>Selecione um Locador:</strong><br /></h4>
-                <p class="lead">Consulte a lista abaixo e clique para selecionar um Locador:</p>
+                <p class="lead">Consulte a lista abaixo e clique para escolher um Locador:</p>
             </div>
             <div class="modal-body text-center">
                 <hr />

@@ -70,7 +70,7 @@ namespace LoKando.Controllers
 
                 if (txtCodigoLocador == "" || txtCodigoLocador == null)
                 {
-                    TempData[Constantes.MensagemAlerta] = "Acesso Negado! Não é possível incluir um veículo sem o código do locador. Tente novamente... ";
+                    TempData[Constantes.MensagemAlerta] = "Não é possível incluir um veículo sem o código do locador.";
                     return RedirectToAction("CadastrarVeiculoUI", "Veiculo");
 
                 }
@@ -201,7 +201,7 @@ namespace LoKando.Controllers
 
                 if (txtCodigoLocador == "" || txtCodigoLocador == null)
                 {
-                    TempData[Constantes.MensagemAlerta] = "Acesso Negado! Não é possível alterar um veículo sem o código do locador. Tente novamente... ";
+                    TempData[Constantes.MensagemAlerta] = "Não é possível incluir um veículo sem o código do locador.";
                     return RedirectToAction("AlterarVeiculoUI", "Veiculo");
                 }
                 else
@@ -210,7 +210,7 @@ namespace LoKando.Controllers
 
                     if (codigoLocador.CodigoLocador == 0)
                     {
-                        TempData[Constantes.MensagemAlerta] = "Código do Locador inválido! Tente novamente... ";
+                        TempData[Constantes.MensagemAlerta] = "Código do Locador inválido. ";
                         return RedirectToAction("AlterarVeiculoUI", "Veiculo");
                     }
                     else

@@ -19,8 +19,8 @@
                 <fieldset id="pesquisaCodigoCliente">
                     <legend>Código do Cliente</legend>
                     <div class="input-group">
-                        @Html.TextBox("txtCodigoCliente", null, new { @class = "form-control", onfocusout = "PesquisarCliente()", placeholder = "Pesquise pelo Código do Cliente", required = "required" })
-                        <a class="btn btn-primary" name="pesquisaCliente" id="pesquisaCliente" data-toggle="modal" data-target="#listarCliente" onclick="PesquisarCliente()" style="width:94.75%; margin-top:6px;"><i class="fa fa-search"></i>  Procurar</a>
+                        @Html.TextBox("txtCodigoCliente", null, new { @class = "form-control", onfocusout = "TxtPesquisarCliente()", placeholder = "Pesquise pelo Código do Cliente", required = "required" })
+                        <a class="btn btn-primary" name="pesquisaCliente" id="pesquisaCliente" data-toggle="modal" data-target="#listarCliente" onclick="BtnPesquisarCliente()" style="width:94.75%; margin-top:6px;"><i class="fa fa-search"></i>  Procurar</a>
                     </div>
                 </fieldset>
                 <br />
@@ -29,7 +29,7 @@
                     <br />
                     <div class="form-group">
                         @Html.Label("lblNomeCliente", "Nome:")
-                        @Html.TextBox("txtNomeCliente", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
+                        @Html.TextBox("txtNomeCliente", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", maxlength = 100 })
                     </div>
                     <div class="form-group">
                         @Html.Label("lblEmailCliente", "E-Mail:")
@@ -42,7 +42,7 @@
                     </div>
                     <div class="form-group">
                         @Html.Label("lblTelefoneCliente", "Telefone:")
-                        @Html.TextBox("txtTelefoneCliente", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
+                        @Html.TextBox("txtTelefoneCliente", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", maxlength = 14 })
                     </div>
                     <div class="form-group">
                         @Html.Label("lblSituacaoCliente", "Qual é a Situação do Cliente?")
@@ -60,15 +60,15 @@
                     <br />
                     <div class="form-group">
                         @Html.Label("lblEnderecoCliente", "Rua:")
-                        @Html.TextBox("txtEnderecoCliente", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
+                        @Html.TextBox("txtEnderecoCliente", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", maxlength = 100 })
                     </div>
                     <div class="form-group">
                         @Html.Label("lblBairroCliente", "Bairro:")
-                        @Html.TextBox("txtBairroCliente", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
+                        @Html.TextBox("txtBairroCliente", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", maxlength = 100 })
                     </div>
                     <div class="form-group">
                         @Html.Label("lblCidadeCliente", "Cidade:")
-                        @Html.TextBox("txtCidadeCliente", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
+                        @Html.TextBox("txtCidadeCliente", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", maxlength = 100 })
                     </div>
                     <div class="form-group">
                         @Html.Label("lblEstadoCliente", "Estado:")
@@ -76,7 +76,7 @@
                     </div>
                     <div class="form-group">
                         @Html.Label("lblCepCliente", "CEP:")
-                        @Html.TextBox("txtCepCliente", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
+                        @Html.TextBox("txtCepCliente", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", maxlength = 9 })
                     </div>
                 </fieldset>
             </div>
@@ -86,7 +86,7 @@
                     <br />
                     <div class="form-group">
                         @Html.Label("lblRgCliente", "Registro Geral:")
-                        @Html.TextBox("txtRgCliente", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required" })
+                        @Html.TextBox("txtRgCliente", null, new { @class = "form-control", placeholder = "preencha aqui", required = "required", maxlength = 100 })
                     </div>
                     <div class="form-group">
                         @Html.Label("lblCpfCliente", "Cpf:")
@@ -115,10 +115,16 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title text-danger"><strong>Cliente não encontrado!</strong><br /></h4>
-                <p class="lead">Consulte a lista abaixo e clique para selecionar um Cliente:</p>
+                <h4 class="modal-title text-danger"><b>Selecione um Cliente</b><br /></h4>
+                <p class="lead">Consulte a lista abaixo e clique para escolher um Cliente</p>
             </div>           
             <div class="modal-body text-center">
+                <div class="row modal-propriedades" style="margin-top:24px;">
+                    <div class="col-md-1"><b>Código</b></div>
+                    <div class="col-md-3"><b>Nome</b></div>
+                    <div class="col-md-4"><b>Email</b></div>
+                    <div class="col-md-2"><b>Último Registro</b></div>
+                </div>
                 <hr />
                 @foreach (var model in Model.Cliente)
                 {
