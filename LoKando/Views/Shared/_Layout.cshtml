@@ -19,31 +19,35 @@
 
     <style>
         @@media screen and (min-width: 1024px) {
-            .sessao-usuario-mobile{
-                visibility:hidden;
-                display:none;
+            .sessao-usuario-mobile {
+                visibility: hidden;
+                display: none;
             }
-            .link-sair{
-               float:right;
+
+            .link-sair {
+                float: right;
             }
-            .modal-propriedades{
-                font-size:16px;
-                color:#a94442;                
+
+            .modal-propriedades {
+                font-size: 16px;
+                color: #a94442;
             }
         }
 
         @@media screen and (min-width: 768px) and (max-width:1023px) {
-            .sessao-usuario-mobile{
-                visibility:hidden;
-                display:none;
+            .sessao-usuario-mobile {
+                visibility: hidden;
+                display: none;
             }
-            .link-sair{
-               float:right;
+
+            .link-sair {
+                float: right;
             }
+
             .modal-propriedades {
                 visibility: hidden;
                 display: none;
-            } 
+            }
         }
 
         @@media screen and (max-width:767px) {
@@ -56,6 +60,7 @@
                 position: absolute;
                 z-index: 9999;
             }
+
             .link-sair {
                 float: left;
                 border-top: 1px solid #000;
@@ -68,7 +73,7 @@
             .modal-propriedades {
                 visibility: hidden;
                 display: none;
-            }            
+            }
         }
     </style>
 </head>
@@ -122,11 +127,84 @@
                             <li>@Html.ActionLink("Excluir", "ExcluirVeiculoUI", "Veiculo")</li>
                         </ul>
                     </li>
-                    <li class="pull-left"><a href="@Url.Action("Index","Inicio")"><i class="fa fa-user" style="font-size:24px"></i> @Session["sessaoEmail"]</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-car" style="font-size:24px"> </i> @Session["sessaoEmail"]</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" data-toggle="modal" data-target="#ModalAlterarEmail">Alterar Email</a></li>
+                            <li><a href="#" data-toggle="modal" data-target="#ModalAlterarSenha">Alterar Senha</a></li>
+                        </ul>
+                    </li>
                 </ul>
-                <ul class="nav navbar-nav link-sair">                    
+                <ul class="nav navbar-nav link-sair">
                     <li><a href="@Url.Action("Logout","AreaRestrita")"><i class="fa fa-external-link" style="font-size:24px;"></i> Sair </a></li>
                 </ul>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="ModalAlterarEmail" tabindex="-1" role="dialog" aria-labelledby="AlterarEmail" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title text-danger"><b>Deseja Alterar seu Email?</b><br /></h4>
+                    <p class="lead">Digite o novo email desejado para o uso no sistema</p>
+                </div>
+                @using (Html.BeginForm("AlterarEmailUsuarioAR", "Usuario", FormMethod.Post))
+                {
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Email Atual:</label>
+                            <input type="email" class="form-control" name="EmailUsuario" id="EmailUsuario" value="@Session["sessaoEmail"]" readonly="readonly">
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Novo Email:</label>
+                            <input type="email" class="form-control" name="NovoEmailUsuario" id="NovoEmailUsuario">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-success form-group" type="submit"><i class="fa fa-check"></i> Confirmar</button>
+                        <button class="btn btn-danger form-group" type="reset"><i class="fa fa-trash"></i> Limpar</button>
+                        <button class="btn btn-primary form-group" data-dismiss="modal"><i class="fa fa-reply"></i> Voltar</button>
+                    </div>
+                    @Html.AntiForgeryToken()
+                }
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="ModalAlterarSenha" tabindex="-1" role="dialog" aria-labelledby="AlterarSenha" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title text-danger"><b>Deseja Alterar sua Senha?</b><br /></h4>
+                    <p class="lead">Digite a nova senha desejada para o uso no sistema</p>
+                </div>
+                @using (Html.BeginForm("AlterarSenhaUsuarioAR", "Usuario", FormMethod.Post))
+                {
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Email Atual:</label>
+                            <input type="email" class="form-control" name="EmailUsuario" id="EmailUsuario" value="@Session["sessaoEmail"]" readonly="readonly">
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Senha Atual:</label>
+                            <input type="password" class="form-control" id="SenhaUsuario" name="SenhaUsuario">
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Nova Senha:</label>
+                            <input type="password" class="form-control" id="NovaSenhaUsuario" name="NovaSenhaUsuario">
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Confirme a Nova Senha:</label>
+                            <input type="password" class="form-control" id="ConfirmaNovaSenhaUsuario">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-success form-group" type="submit"><i class="fa fa-check"></i> Confirmar</button>
+                        <button class="btn btn-danger form-group" type="reset"><i class="fa fa-trash"></i> Limpar</button>
+                        <button class="btn btn-primary form-group" data-dismiss="modal"><i class="fa fa-reply"></i> Voltar</button>
+                    </div>
+                }
             </div>
         </div>
     </div>
@@ -148,7 +226,8 @@
         {
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
-            <script type="text/javascript">                
+            <script type="text/javascript">
+
                 $(document).ready(function () {
                     $.alert({
                         title: '<p style="text-align:center;padding:16px;width:100%;">@Html.Raw(HttpUtility.JavaScriptStringEncode(TempData[Constantes.MensagemAlerta].ToString()))</p>',

@@ -125,6 +125,7 @@
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\InicioController.cs" />
     <Compile Include="Controllers\LocadorController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\VeiculoController.cs" />
     <Compile Include="DAL\AtendenteDAL.cs" />
     <Compile Include="DAL\ClienteDAL.cs" />
@@ -140,6 +141,7 @@
     <Compile Include="Models\Atendente.cs" />
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\ControllerModel\LocadorControllerModel.cs" />
+    <Compile Include="Models\ControllerModel\UsuarioControllerModel.cs" />
     <Compile Include="Models\ControllerModel\VeiculoControllerModel.cs" />
     <Compile Include="Models\Locador.cs" />
     <Compile Include="Models\Orcamento.cs" />
@@ -234,6 +236,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Usuario\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -41,6 +41,50 @@ namespace LoKando.DAL
             }
         }
 
+        public void AlterarEmailUsuario(string emailUsuario, string novoEmailUsuario){
+
+            using (SqlConnection conexao = Conexao.ConexaoDatabase()){
+
+                conexao.Open();
+
+                SqlCommand comandoDML = new SqlCommand("SP_AlterarEmailUsuarioV1", conexao);
+                comandoDML.CommandType = CommandType.StoredProcedure;
+
+                comandoDML.Parameters.Add("@EmailUsuario", SqlDbType.VarChar, 100);
+                comandoDML.Parameters.Add("@NovoEmailUsuario", SqlDbType.VarChar, 100);                
+
+                comandoDML.Parameters["@EmailUsuario"].Value = emailUsuario;
+                comandoDML.Parameters["@NovoEmailUsuario"].Value = novoEmailUsuario;
+               
+
+                comandoDML.ExecuteNonQuery();
+                conexao.Close();
+            }
+        }
+
+        public void AlterarSenhaUsuario(string emailUsuario, string senhaUsuario, string novaSenhaUsuario){
+
+            using (SqlConnection conexao = Conexao.ConexaoDatabase()){
+
+                conexao.Open();
+
+                SqlCommand comandoDML = new SqlCommand("SP_AlterarSenhaUsuarioV1", conexao);
+                comandoDML.CommandType = CommandType.StoredProcedure;
+
+                comandoDML.Parameters.Add("@EmailUsuario", SqlDbType.VarChar, 100);
+                comandoDML.Parameters.Add("@SenhaUsuario", SqlDbType.VarChar, 100);
+                comandoDML.Parameters.Add("@NovaSenhaUsuario", SqlDbType.VarChar, 100);
+
+                comandoDML.Parameters["@EmailUsuario"].Value = emailUsuario;
+                comandoDML.Parameters["@SenhaUsuario"].Value = senhaUsuario;
+                comandoDML.Parameters["@NovaSenhaUsuario"].Value = senhaUsuario;
+
+
+                comandoDML.ExecuteNonQuery();
+                conexao.Close();
+            }
+        }
+
         public Usuario SelecionarUsuarioEmail(string buscaEmailUsuario)
         {
 
