@@ -41,6 +41,12 @@ namespace LoKando.Controllers
             return veiculoControllerModel;
         }
 
+        [ChildActionOnly]
+        public PartialViewResult _ModalConsultaVeiculoLocador()
+        {
+            return PartialView();
+        }
+
         [HttpGet]
         public ActionResult CadastrarVeiculoUI()
         {

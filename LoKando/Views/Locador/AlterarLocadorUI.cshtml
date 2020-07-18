@@ -54,7 +54,7 @@
             </div>
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <fieldset id="documentoLocador">
-                    <legend>Documentação</legend>                                      
+                    <legend>Documentação</legend>
                     @Html.TextBox("txtDocumentoLocador", null, new { @class = "form-control", placeholder = "preenchimento automático", @readonly = "readonly" })
                 </fieldset>
                 <br />
@@ -92,38 +92,6 @@
         @Html.AntiForgeryToken()
     }
 </div>
-<div id="listarLocador" class="modal fade" role="dialog">
-    <div class="modal-dialog modal-lg modal-md modal-sm">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title text-danger"><b>Selecione um Locador</b><br /></h4>
-                <p class="lead">Consulte a lista abaixo e clique para escolher um Locador</p>
-            </div>
-            <div class="modal-body text-center">
-                <div class="row modal-propriedades" style="margin-top:24px;">
-                    <div class="col-md-1"><b>Código</b></div>
-                    <div class="col-md-3"><b>Nome</b></div>
-                    <div class="col-md-4"><b>Email</b></div>
-                    <div class="col-md-2"><b>Último Registro</b></div>
-                </div>
-                <hr />
-                @foreach (var model in Model.Locador)
-                {
-                    <div class="row" style="margin-top:24px;">
-                        <div class="col-md-1"><Strong>@(model.CodigoLocador)</Strong></div>
-                        <div class="col-md-3"><i class="fa fa-user"></i> @Html.LabelForModel(model.NomeFantasiaLocador)</div>
-                        <div class="col-md-4"><i class="fa fa-envelope"></i> @Html.LabelForModel(model.EmailLocador)</div>
-                        <div class="col-md-2"><i class="fa fa-calendar"></i> @Html.LabelForModel(model.HoraRegistroLocador)</div>
-                        <div class="col-md-2"><button class="btn btn-success" name="lnkCodigoLocador" id="lnkCodigoLocador-@(model.CodigoLocador)" onclick='SelecionarLocadorLinkModal("lnkCodigoLocador-@(model.CodigoLocador)")' value="@(model.CodigoLocador)">Selecione <i class="fa fa-check"></i></button></div>
-                    </div>
-                    <hr />
-                }
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-reply"></i> Voltar</button>
-            </div>
-        </div>
-    </div>
-</div>
+
+@{Html.RenderPartial("~/Views/Locador/_ModalConsultaLocador.cshtml");}
 

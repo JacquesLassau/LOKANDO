@@ -16,6 +16,7 @@
 
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/BLL/PesquisaSenha/SenhaUsuario.js")
 
     <style>
         @@media screen and (min-width: 1024px) {
@@ -141,73 +142,10 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="ModalAlterarEmail" tabindex="-1" role="dialog" aria-labelledby="AlterarEmail" aria-hidden="true" data-keyboard="false" data-backdrop="static">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title text-danger"><b>Deseja Alterar seu Email?</b><br /></h4>
-                    <p class="lead">Digite o novo email desejado para o uso no sistema</p>
-                </div>
-                @using (Html.BeginForm("AlterarEmailUsuarioAR", "Usuario", FormMethod.Post))
-                {
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Email Atual:</label>
-                            <input type="email" class="form-control" name="EmailUsuario" id="EmailUsuario" value="@Session["sessaoEmail"]" readonly="readonly">
-                        </div>
-                        <div class="form-group">
-                            <label for="message-text" class="col-form-label">Novo Email:</label>
-                            <input type="email" class="form-control" name="NovoEmailUsuario" id="NovoEmailUsuario">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-success form-group" type="submit"><i class="fa fa-check"></i> Confirmar</button>
-                        <button class="btn btn-danger form-group" type="reset"><i class="fa fa-trash"></i> Limpar</button>
-                        <button class="btn btn-primary form-group" data-dismiss="modal"><i class="fa fa-reply"></i> Voltar</button>
-                    </div>
-                    @Html.AntiForgeryToken()
-                }
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="ModalAlterarSenha" tabindex="-1" role="dialog" aria-labelledby="AlterarSenha" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title text-danger"><b>Deseja Alterar sua Senha?</b><br /></h4>
-                    <p class="lead">Digite a nova senha desejada para o uso no sistema</p>
-                </div>
-                @using (Html.BeginForm("AlterarSenhaUsuarioAR", "Usuario", FormMethod.Post))
-                {
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Email Atual:</label>
-                            <input type="email" class="form-control" name="EmailUsuario" id="EmailUsuario" value="@Session["sessaoEmail"]" readonly="readonly">
-                        </div>
-                        <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Senha Atual:</label>
-                            <input type="password" class="form-control" id="SenhaUsuario" name="SenhaUsuario">
-                        </div>
-                        <div class="form-group">
-                            <label for="message-text" class="col-form-label">Nova Senha:</label>
-                            <input type="password" class="form-control" id="NovaSenhaUsuario" name="NovaSenhaUsuario">
-                        </div>
-                        <div class="form-group">
-                            <label for="message-text" class="col-form-label">Confirme a Nova Senha:</label>
-                            <input type="password" class="form-control" id="ConfirmaNovaSenhaUsuario">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-success form-group" type="submit"><i class="fa fa-check"></i> Confirmar</button>
-                        <button class="btn btn-danger form-group" type="reset"><i class="fa fa-trash"></i> Limpar</button>
-                        <button class="btn btn-primary form-group" data-dismiss="modal"><i class="fa fa-reply"></i> Voltar</button>
-                    </div>
-                }
-            </div>
-        </div>
-    </div>
+
+    @{Html.RenderPartial("~/Views/Usuario/_ModalAlterarEmailUsuario.cshtml");}
+    @{Html.RenderPartial("~/Views/Usuario/_ModalAlterarSenhaUsuario.cshtml");}
+
     <div class="container body-content">
         @RenderBody()
         <hr />

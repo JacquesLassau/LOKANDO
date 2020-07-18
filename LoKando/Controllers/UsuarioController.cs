@@ -26,6 +26,18 @@ namespace LoKando.Controllers
             return usuarioControllerModel;
         }
 
+        [ChildActionOnly]
+        public PartialViewResult _ModalAlterarEmailUsuario()
+        {
+            return PartialView();
+        }
+
+        [ChildActionOnly]
+        public PartialViewResult _ModalSenhaEmailUsuario()
+        {
+            return PartialView();
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AlterarEmailUsuarioAR(string EmailUsuario, string NovoEmailUsuario)
@@ -42,7 +54,7 @@ namespace LoKando.Controllers
                 }
                                 
                 usuarioDAL.AlterarEmailUsuario(EmailUsuario, NovoEmailUsuario);
-                TempData[Constantes.MensagemAlerta] = "Email alterado com sucesso. Você será redirecionado para o login em segundos.";
+                TempData[Constantes.MensagemAlerta] = "Email alterado com sucesso.";
                 return RedirectToAction("Login", "AreaRestrita");                
             }
             else
@@ -50,16 +62,16 @@ namespace LoKando.Controllers
                 TempData[Constantes.MensagemAlerta] = "Ocorreu um problema com a troca de email. Tente novamente.";
                 return RedirectToAction("Index", "Inicio");
             }            
-        }
+        }        
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AlterarSenhaUsuarioAR(string EmailUsuario, string SenhaUsuario, string NovaSenhaUsuario)
+        public ActionResult AlterarSenhaUsuarioAR(string txtEmailUsuario, string txtAtualSenhaUsuario, string txtNovaSenhaUsuario)
         {
             if (ValidarAdmin.UsuarioValido())
             {
                 UsuarioDAL usuarioDAL = new UsuarioDAL();
-                Usuario usuario = usuarioDAL.SelecionarUsuarioEmail(EmailUsuario);
+                Usuario usuario = usuarioDAL.SelecionarUsuarioEmail(txtEmailUsuario);
 
                 if (usuario == null)
                 {
@@ -67,8 +79,8 @@ namespace LoKando.Controllers
                     return RedirectToAction("Index", "Inicio");
                 }
 
-                usuarioDAL.AlterarSenhaUsuario(EmailUsuario, SenhaUsuario, NovaSenhaUsuario);
-                TempData[Constantes.MensagemAlerta] = "Senha alterada com sucesso. Você será redirecionado para o login em segundos.";
+                usuarioDAL.AlterarSenhaUsuario(txtEmailUsuario, txtAtualSenhaUsuario, txtNovaSenhaUsuario);
+                TempData[Constantes.MensagemAlerta] = "Senha alterada com sucesso. Realize o login novamente.";
                 return RedirectToAction("Login", "AreaRestrita");
             }
             else

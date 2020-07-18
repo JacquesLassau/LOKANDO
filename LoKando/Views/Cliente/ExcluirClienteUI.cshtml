@@ -29,20 +29,20 @@
                     <br />
                     <div class="form-group">
                         @Html.Label("lblNomeCliente", "Nome:")
-                        @Html.TextBox("txtNomeCliente", null, new { @class = "form-control", placeholder = "preenchimento automático", @readonly="readonly" })
+                        @Html.TextBox("txtNomeCliente", null, new { @class = "form-control", placeholder = "preenchimento automático", @readonly = "readonly" })
                     </div>
                     <div class="form-group">
                         @Html.Label("lblEmailCliente", "E-Mail:")
-                        @Html.TextBox("txtEmailCliente", null, new { @class = "form-control", placeholder = "preenchimento automático", @readonly="readonly" })
+                        @Html.TextBox("txtEmailCliente", null, new { @class = "form-control", placeholder = "preenchimento automático", @readonly = "readonly" })
                     </div>
                     <div class="form-group">
                         @Html.Label("lblNascimentoCliente", "Data de Nascimento:")
-                        @Html.TextBox("txtNascimentoCliente", null, new { @class = "form-control", placeholder = "preenchimento automático", @readonly="readonly", type = "date", onfocusout = "ValidaDataNasimento()" })
+                        @Html.TextBox("txtNascimentoCliente", null, new { @class = "form-control", placeholder = "preenchimento automático", @readonly = "readonly", type = "date", onfocusout = "ValidaDataNasimento()" })
                         @Html.Raw("<div id='validaNascimento'></div>")
                     </div>
                     <div class="form-group">
                         @Html.Label("lblTelefoneCliente", "Telefone:")
-                        @Html.TextBox("txtTelefoneCliente", null, new { @class = "form-control", placeholder = "preenchimento automático", @readonly="readonly" })
+                        @Html.TextBox("txtTelefoneCliente", null, new { @class = "form-control", placeholder = "preenchimento automático", @readonly = "readonly" })
                     </div>
                     <div class="form-group">
                         @Html.Label("lblSituacaoCliente", "Qual é a Situação do Cliente?")
@@ -50,7 +50,7 @@
                     </div>
                     <div class="form-group">
                         @Html.Label("lblUltimaAtualizacaoCliente", "Última Atualização:")
-                        @Html.TextBox("txtUltimaAtualizacaoCliente", null, new { @class = "form-control", placeholder = "Auditoria do registro é automática", @readonly="readonly" })
+                        @Html.TextBox("txtUltimaAtualizacaoCliente", null, new { @class = "form-control", placeholder = "Auditoria do registro é automática", @readonly = "readonly" })
                     </div>
                 </fieldset>
             </div>
@@ -86,20 +86,20 @@
                     <br />
                     <div class="form-group">
                         @Html.Label("lblRgCliente", "Registro Geral:")
-                        @Html.TextBox("txtRgCliente", null, new { @class = "form-control", placeholder = "preenchimento automático", @readonly="readonly" })
+                        @Html.TextBox("txtRgCliente", null, new { @class = "form-control", placeholder = "preenchimento automático", @readonly = "readonly" })
                     </div>
                     <div class="form-group">
                         @Html.Label("lblCpfCliente", "Cpf:")
-                        @Html.TextBox("txtCpfCliente", null, new { @class = "form-control", placeholder = "preenchimento automático", required = "required", @readonly="readonly" })
+                        @Html.TextBox("txtCpfCliente", null, new { @class = "form-control", placeholder = "preenchimento automático", required = "required", @readonly = "readonly" })
                         @Html.Raw("<div id='validaCpf'></div>")
                     </div>
                     <div class="form-group">
                         @Html.Label("lblHabilitacaoCliente", "Habilitação:")
-                        @Html.TextBox("txtHabilitacaoCliente", null, new { @class = "form-control", placeholder = "preenchimento automático", required = "required", @readonly="readonly" })
+                        @Html.TextBox("txtHabilitacaoCliente", null, new { @class = "form-control", placeholder = "preenchimento automático", required = "required", @readonly = "readonly" })
                         @Html.Raw("<div id='validaHabilitacao'></div>")
                     </div>
                 </fieldset>
-            </div>            
+            </div>
         </div>
         <div class="form-group">
             <button class="btn btn-success form-group" type="submit"><i class="fa fa-check"></i> Confirmar</button>
@@ -109,37 +109,5 @@
         @Html.AntiForgeryToken()
     }
 </div>
-<div id="listarCliente" class="modal fade" role="dialog">
-    <div class="modal-dialog modal-sm modal-md modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title text-danger"><b>Selecione um Cliente</b><br /></h4>
-                <p class="lead">Consulte a lista abaixo e clique para escolher um Cliente</p>
-            </div>
-            <div class="modal-body text-center" 5>
-                <div class="row modal-propriedades" style="margin-top:24px;">
-                    <div class="col-md-1"><b>Código</b></div>
-                    <div class="col-md-3"><b>Nome</b></div>
-                    <div class="col-md-4"><b>Email</b></div>
-                    <div class="col-md-2"><b>Último Registro</b></div>
-                </div>
-                <hr />
-                @foreach (var model in Model.Cliente)
-                {
-                    <div class="row" style="margin-top:24px;">
-                        <div class="col-md-1"><Strong>@(model.CodigoCliente)</Strong></div>
-                        <div class="col-md-3"><i class="fa fa-user"></i> @Html.LabelForModel(model.NomeCliente)</div>
-                        <div class="col-md-4"><i class="fa fa-envelope"></i> @Html.LabelForModel(model.EmailCliente)</div>
-                        <div class="col-md-2"><i class="fa fa-calendar"></i> @Html.LabelForModel(model.HoraRegistroCliente)</div>
-                        <div class="col-md-2"><button class="btn btn-success" name="lnkCodigoCliente" id="lnkCodigoCliente-@(model.CodigoCliente)" onclick='SelecionarClienteLinkModal("lnkCodigoCliente-@(model.CodigoCliente)")' value="@(model.CodigoCliente)">Selecione <i class="fa fa-check"></i></button></div>
-                    </div>
-                    <hr />
-                }
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-reply"></i> Voltar</button>
-            </div>
-        </div>
-    </div>
-</div>
+
+@{Html.RenderPartial("~/Views/Cliente/_ModalConsultaCliente.cshtml");}

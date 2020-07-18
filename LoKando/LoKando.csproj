@@ -178,6 +178,7 @@
     <Content Include="BLL\PesquisaSenha\SenhaLocador.js" />
     <Content Include="BLL\PesquisaSenha\SenhaCliente.js" />
     <Content Include="BLL\PesquisaSenha\SenhaAtendente.js" />
+    <Content Include="BLL\PesquisaSenha\SenhaUsuario.js" />
     <Content Include="BLL\PlacaVeiculo\PlacaVeiculo.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -233,10 +234,15 @@
     <Content Include="Views\Veiculo\ConsultarVeiculoUI.cshtml" />
     <Content Include="Views\Veiculo\ExcluirVeiculoUI.cshtml" />
     <Content Include="Views\AreaRestrita\Login.cshtml" />
+    <Content Include="Views\Usuario\_ModalAlterarEmailUsuario.cshtml" />
+    <Content Include="Views\Usuario\_ModalAlterarSenhaUsuario.cshtml" />
+    <Content Include="Views\Atendente\_ModalConsultaAtendente.cshtml" />
+    <Content Include="Views\Cliente\_ModalConsultaCliente.cshtml" />
+    <Content Include="Views\Locador\_ModalConsultaLocador.cshtml" />
+    <Content Include="Views\Veiculo\_ModalConsultaVeiculoLocador.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Usuario\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

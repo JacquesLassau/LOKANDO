@@ -26,6 +26,12 @@ namespace LoKando.Controllers
             return atendenteControllerModel;
         }
 
+        [ChildActionOnly]
+        public PartialViewResult _ModalConsultaAtendente()
+        {
+            return PartialView();
+        }
+
         [HttpGet]        
         public ActionResult CadastrarAtendenteUI()
         {

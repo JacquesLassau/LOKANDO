@@ -1,0 +1,35 @@
+﻿@model LoKando.Models.ControllerModel.AtendenteControllerModel
+<div id="listarAtendentes" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-sm modal-md modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-danger"><b>Selecione um Atendente</b><br /></h4>
+                <p class="lead">Consulte a lista abaixo e clique para escolher um Atendente</p>
+            </div>
+            <div class="modal-body text-center">
+                <div class="row modal-propriedades" style="margin-top:24px;">
+                    <div class="col-md-1"><b>Código</b></div>
+                    <div class="col-md-3"><b>Nome</b></div>
+                    <div class="col-md-4"><b>Email</b></div>
+                    <div class="col-md-2"><b>Último Registro</b></div>
+                </div>
+                <hr />
+                @foreach (var model in Model.Atendente)
+                {
+                    <div class="row" style="margin-top:24px;">
+                        <div class="col-md-1"><Strong>@(model.CodigoAtendente)</Strong></div>
+                        <div class="col-md-3"><i class="fa fa-user"></i> @Html.LabelForModel(model.NomeAtendente)</div>
+                        <div class="col-md-4"><i class="fa fa-envelope"></i> @Html.LabelForModel(model.EmailAtendente)</div>
+                        <div class="col-md-2"><i class="fa fa-calendar"></i> @Html.LabelForModel(model.HoraRegistroAtendente)</div>
+                        <div class="col-md-2"><button class="btn btn-success" name="lnkCodigoAtendente" id="lnkCodigoAtendente-@(model.CodigoAtendente)" onclick='SelecionarAtendenteLinkModal("lnkCodigoAtendente-@(model.CodigoAtendente)")' value="@(model.CodigoAtendente)">Selecione <i class="fa fa-check"></i></button></div>
+                    </div>
+                    <hr />
+                }
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-reply"></i> Voltar</button>
+            </div>
+        </div>
+    </div>
+</div>

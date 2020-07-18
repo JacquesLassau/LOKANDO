@@ -26,6 +26,11 @@ namespace LoKando.Controllers
             return locadorControllerModel;
         }
 
+        [ChildActionOnly]
+        public PartialViewResult _ModalConsultaLocador()
+        {
+            return PartialView();
+        }
 
         [HttpGet]
         public ActionResult CadastrarLocadorUI()
