@@ -43,18 +43,18 @@ namespace LoKando.Controllers
         public ActionResult AlterarEmailUsuarioAR(string EmailUsuario, string NovoEmailUsuario)
         {
             if (ValidarAdmin.UsuarioValido())
-            {
+            {                
                 UsuarioDAL usuarioDAL = new UsuarioDAL();
                 Usuario usuario = usuarioDAL.SelecionarUsuarioEmail(EmailUsuario);
 
                 if (usuario == null)
                 {
-                    TempData[Constantes.MensagemAlerta] = "Email inválido. Tente novamente.";
+                    TempData[Constantes.MensagemAlerta] = "Credenciais inválidas. Tente novamente.";
                     return RedirectToAction("Index", "Inicio");
                 }
                                 
                 usuarioDAL.AlterarEmailUsuario(EmailUsuario, NovoEmailUsuario);
-                TempData[Constantes.MensagemAlerta] = "Email alterado com sucesso.";
+                TempData[Constantes.MensagemAlerta] = "Email alterado com sucesso.";                
                 return RedirectToAction("Login", "AreaRestrita");                
             }
             else
@@ -75,12 +75,12 @@ namespace LoKando.Controllers
 
                 if (usuario == null)
                 {
-                    TempData[Constantes.MensagemAlerta] = "Email inválido. Tente novamente.";
+                    TempData[Constantes.MensagemAlerta] = "Credenciais inválidas. Tente novamente.";
                     return RedirectToAction("Index", "Inicio");
                 }
 
                 usuarioDAL.AlterarSenhaUsuario(txtEmailUsuario, txtAtualSenhaUsuario, txtNovaSenhaUsuario);
-                TempData[Constantes.MensagemAlerta] = "Senha alterada com sucesso. Realize o login novamente.";
+                TempData[Constantes.MensagemAlerta] = "Senha alterada com sucesso.";
                 return RedirectToAction("Login", "AreaRestrita");
             }
             else

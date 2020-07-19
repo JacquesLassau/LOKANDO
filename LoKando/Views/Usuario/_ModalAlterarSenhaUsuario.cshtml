@@ -4,7 +4,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title text-danger"><b>Deseja Alterar sua Senha?</b><br /></h4>
-                <p class="lead">Digite a nova senha desejada para o uso no sistema</p>
+                <p class="lead">Você será redirecionado para área de login do sistema</p>
             </div>
             @using (Html.BeginForm("AlterarSenhaUsuarioAR", "Usuario", FormMethod.Post))
             {
@@ -16,7 +16,9 @@
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Senha Atual:</label>
                         <input type="password" class="form-control" id="txtAtualSenhaUsuario" name="txtAtualSenhaUsuario">
+                        <p class="legenda-textbox"><b>• Lembre-se de utilizar sua nova senha para o acesso</b></p>
                     </div>
+                    <hr/>
                     <div class="form-group">
                         <label for="message-text" class="col-form-label">Nova Senha:</label>
                         <input type="password" class="form-control" id="txtNovaSenhaUsuario" name="txtNovaSenhaUsuario" onfocusout="SenhaUsuario()">
