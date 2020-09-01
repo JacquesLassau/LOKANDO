@@ -194,6 +194,7 @@
     <Content Include="img\icone.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\lokando - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -240,6 +241,7 @@
     <Content Include="Views\Cliente\_ModalConsultaCliente.cshtml" />
     <Content Include="Views\Locador\_ModalConsultaLocador.cshtml" />
     <Content Include="Views\Veiculo\_ModalConsultaVeiculoLocador.cshtml" />
+    <Content Include="Views\Usuario\_ModalRecuperarSenhaUsuario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

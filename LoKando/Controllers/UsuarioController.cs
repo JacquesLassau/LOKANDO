@@ -38,12 +38,18 @@ namespace LoKando.Controllers
             return PartialView();
         }
 
+        [ChildActionOnly]
+        public PartialViewResult _ModalRecuperarSenhaUsuario()
+        {
+            return PartialView();
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AlterarEmailUsuarioAR(string EmailUsuario, string NovoEmailUsuario)
         {
             if (ValidarAdmin.UsuarioValido())
-            {                
+            {
                 UsuarioDAL usuarioDAL = new UsuarioDAL();
                 Usuario usuario = usuarioDAL.SelecionarUsuarioEmail(EmailUsuario);
 
@@ -52,17 +58,17 @@ namespace LoKando.Controllers
                     TempData[Constantes.MensagemAlerta] = "Credenciais inválidas. Tente novamente.";
                     return RedirectToAction("Index", "Inicio");
                 }
-                                
+
                 usuarioDAL.AlterarEmailUsuario(EmailUsuario, NovoEmailUsuario);
-                TempData[Constantes.MensagemAlerta] = "Email alterado com sucesso.";                
-                return RedirectToAction("Login", "AreaRestrita");                
+                TempData[Constantes.MensagemAlerta] = "Email alterado com sucesso.";
+                return RedirectToAction("Login", "AreaRestrita");
             }
             else
             {
                 TempData[Constantes.MensagemAlerta] = "Ocorreu um problema com a troca de email. Tente novamente.";
                 return RedirectToAction("Index", "Inicio");
-            }            
-        }        
+            }
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -88,6 +94,23 @@ namespace LoKando.Controllers
                 TempData[Constantes.MensagemAlerta] = "Ocorreu um problema com a troca da senha. Tente novamente.";
                 return RedirectToAction("Index", "Inicio");
             }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult RecuperarSenhaUsuarioAR(string txtEmailUsuario)
+        {
+            Usuario usuario = new Usuario(txtEmailUsuario);
+            if (usuario.EmailUsuario == null)
+            {
+                TempData[Constantes.MensagemAlerta] = "E-mail não encontrado! Verifique se digitou corretamente.";
+            }
+            else
+            {
+                TempData[Constantes.MensagemAlerta] = "E-mail enviado com sucesso! Verifique seu correio eletrônico.";
+            }
+
+            return RedirectToAction("Login", "AreaRestrita");
         }
     }
 }

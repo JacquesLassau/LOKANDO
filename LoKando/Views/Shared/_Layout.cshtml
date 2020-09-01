@@ -18,7 +18,8 @@
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/BLL/PesquisaSenha/SenhaUsuario.js")
     @Scripts.Render("~/BLL/ConfirmaAlteracaoUsuario/ConfirmaAlteracaoUsuario.js")
-    
+
+
 
     <style>
         @@media screen and (min-width: 1024px) {
@@ -155,18 +156,14 @@
             <p>&copy; @DateTime.Now.Year - LoKando | Todos os Direitos Reservados</p>
         </footer>
     </div>
-    @Scripts.Render("~/bundles/jquery")
+
     @Scripts.Render("~/bundles/bootstrap")
 
     @RenderSection("scripts", required: false)
-
-    @{
-
-        if (TempData != null && TempData.ContainsKey(Constantes.MensagemAlerta))
-        {
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
-            <script type="text/javascript">
+       
+    @if (TempData != null && TempData.ContainsKey(Constantes.MensagemAlerta))
+    {
+        <script type="text/javascript">
 
                 $(document).ready(function () {
                     $.alert({
@@ -177,8 +174,7 @@
                         useBootstrap: false,
                     });
                 });
-            </script>
-        }
+        </script>
     }
 
 </body>
