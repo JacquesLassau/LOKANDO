@@ -28,7 +28,22 @@ textarea {
     font-family: 'Numans', sans-serif;
 }
 
-label {
+label,
+legend,
+text {
+    font-family: 'Numans', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Numans', sans-serif;
+}
+
+p {
     font-family: 'Numans', sans-serif;
 }
 
@@ -36,7 +51,6 @@ label {
     font-family: 'Numans', sans-serif;
     margin-top: 6px;
 }
-
 
 /**Edit Bootstrap in Menu**/
 
@@ -61,3 +75,13 @@ label {
 .navbar-inverse .navbar-toggle {
     border-color: #fff;
 }
+
+.modal-header {
+    background-color: #ffbb05;
+}
+
+.lead {
+    font-family: 'Numans', sans-serif;
+}
+
+
