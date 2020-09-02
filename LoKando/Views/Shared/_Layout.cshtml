@@ -4,11 +4,12 @@
     <meta charset="utf-8" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+        
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 
     <title>@ViewBag.Title - LoKando</title>
@@ -17,9 +18,6 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/BLL/PesquisaSenha/SenhaUsuario.js")
-    @Scripts.Render("~/BLL/ConfirmaAlteracaoUsuario/ConfirmaAlteracaoUsuario.js")
-
-
 
     <style>
         @@media screen and (min-width: 1024px) {
@@ -57,7 +55,7 @@
         @@media screen and (max-width:767px) {
             .sessao-usuario-mobile {
                 color: #fff;
-                font-size: 1.4em;
+                font-size: 1em;
                 font-weight: 500;
                 margin-left: 32px;
                 margin-top: 16px;
@@ -101,7 +99,6 @@
                             <li>@Html.ActionLink("Alterar", "AlterarAtendenteUI", "Atendente")</li>
                             <li>@Html.ActionLink("Consultar", "ConsultarAtendenteUI", "Atendente")</li>
                             <li>@Html.ActionLink("Excluir", "ExcluirAtendenteUI", "Atendente")</li>
-
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -175,7 +172,7 @@
                     });
                 });
         </script>
-    }
+     }
 
 </body>
 </html>
